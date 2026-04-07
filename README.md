@@ -12,7 +12,7 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 
 * Nome completo do aluno 1
 * Nome completo do aluno 2
-Maria Luiza Duarte Parreiras
+ Maria Luiza Duarte Parreiras
 * Nome completo do aluno 4
 * Nome completo do aluno 5
 
