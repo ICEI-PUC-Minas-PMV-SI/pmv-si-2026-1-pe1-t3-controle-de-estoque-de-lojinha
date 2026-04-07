@@ -1,4 +1,4 @@
-# Título do Projeto
+# Controle de estoque de uma lojinha
 
 `CURSO: Sistemas de Informação`
 
@@ -6,15 +6,16 @@
 
 `SEMESTRE: 1º`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O projeto tem por objetivo a automatização e organização de estoques para uma melhor logística de estabelecimentos menores de modo que permaneçam consolidados na sociedade tecnológica moderna.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 5
+* Gabriel Gonçalves de Lana
+* Gabriel Yuri Silva Alves dos Santos
+* Maria Luiza Duarte Parreiras 
+* Nicolas Sebastian Rocha Haas 
+* Nilcimar Ferreira Barbosa
+* Samuel Henrique dos Santos Souza 
 
 
 ## Orientador
