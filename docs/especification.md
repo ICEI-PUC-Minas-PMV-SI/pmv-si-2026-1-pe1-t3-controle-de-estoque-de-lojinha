@@ -1,11 +1,5 @@
 # Especificações do Projeto
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto.
-
-Caso deseje atribuir uma imagem a sua persona, utilize o site https://thispersondoesnotexist.com/
-
 ## Personas
 
 Perfil 1 Proprietário
@@ -24,14 +18,20 @@ estoque
 
 ## Histórias de Usuários
 
+| EU COMO... `QUEM` | QUERO/DESEJO... `O QUE` | PARA... `PORQUE` |
+|------------------|------------------------|------------------|
+| Proprietário | visualizar relatórios | analisar desempenho da loja |
+| Proprietário | observar dados | tomar decisões estratégicas |
+| Administrador | cadastrar produtos | organizar o controle do estoque |
+| Administrador | atualizar informações dos produtos | manter os dados corretos no sistema |
+| Administrador | identificar produtos mais vendidos | planejar melhor a requisição dos produtos |
+| Administrador | identificar produtos com baixa saída | evitar prejuízo |
+| Administrador | corrigir informações cadastradas | evitar erros |
+| Funcionário | registrar entrada de produtos | manter o estoque atualizado |
+| Funcionário | registrar saída de produtos | manter o estoque atualizado |
+| Funcionário | consultar produtos disponíveis no sistema | verificar a quantidade existente em estoque |
 
 
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
 
 ## Requisitos
 
@@ -39,46 +39,31 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade | 
-|------|-----------------------------------------|----| 
-|RF-001| A aplicação deve permitir que o usuário gerencie suas tarefas | ALTA |  
-|RF-002| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
-
+| ID    | Descrição                                                                 | Prioridade |
+|-------|-------------------------------------------------------------------------|------------|
+| RF-01 | O sistema deve permitir cadastro de produtos no estoque                | Alta       |
+| RF-02 | O sistema deve permitir registrar entrada de produtos                 | Alta       |
+| RF-03 | O sistema deve permitir registrar saída de produtos                  | Alta       |
+| RF-04 | O sistema deve permitir a consulta da quantidade disponível de cada produto, buscando por nome, categoria ou código | Alta |
+| RF-05 | O sistema deve permitir alterar informações dos produtos             | Alta       |
+| RF-06 | O sistema deve permitir o login de usuários para acesso ao sistema conforme seu perfil | Alta |
+| RF-07 | O sistema deve permitir o gerenciamento de usuários pelo administrador | Média      |
+| RF-08 | O sistema deve permitir cadastro de usuários                         | Média      |
+| RF-09 | O sistema deve exibir relatórios de movimentação de entrada e saída de produtos | Média |
+| RF-10 | O sistema deve alertar quando a quantidade de um produto estiver abaixo do nível mínimo definido | Baixa |
+| RF-11 | O sistema deve ter uma calculadora                                   | Baixa      |
+| RF-12 | O sistema pode acrescentar descontos                                 | Baixa      |
+| RF-13 | O sistema deve exibir o horário de funcionamento da loja             | Baixa      |
 
 ### Requisitos não Funcionais
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| A aplicação deve ser responsiva | MÉDIA | 
-|RNF-002| A aplicação deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
-
-## Restrições
-
-O projeto está restrito pelos itens apresentados na tabela a seguir.
-
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
-
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+| ID     | Descrição                                                                 | Prioridade |
+|--------|-------------------------------------------------------------------------|------------|
+| RNF-01 | O sistema deve ser acessível por meio de todos os navegadores web      | Alta       |
+| RNF-02 | O sistema deve garantir a integridade dos dados de estoque, evitando inconsistências durante operações de entrada e saída | Alta |
+| RNF-03 | O sistema deve ser leve e otimizado, com respostas rápidas            | Alta       |
+| RNF-04 | O sistema deve garantir a segurança dos dados dos usuários, utilizando criptografia no armazenamento de senhas | Alta |
+| RNF-05 | O sistema deve ser intuitivo e funcional, possibilitando fácil compreensão e usabilidade | Média      |
+| RNF-06 | A interface do sistema deve ser amigável, com espaçamento adequado, bordas arredondadas e identidade visual moderna | Média |
+| RNF-07 | O sistema deve ser responsivo, adaptando-se a desktop, tablet e smartphone | Baixa      |
+| RNF-08 | O sistema deve apresentar textos claros, objetivos e padronizados     | Baixa      |
