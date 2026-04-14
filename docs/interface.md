@@ -19,7 +19,6 @@ Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapea
 
 ## Wireframes
 
-As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 onde a primeira é a tela de usuário e a segunda é o padrão de organização do site. Sendo assim, divididas em o conteúdo central a tela de usuário e a tela padrão possui uma sidebar a esquerda e o conteúdo a direita.
 ---
 
 ### Tela - Login
@@ -142,6 +141,7 @@ As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 o
 
 ## Protótipo de baixa fidelidade
 
+<p>As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 onde a primeira é a tela de usuário e a segunda é o padrão de organização do site. Sendo assim, divididas em o conteúdo central a tela de usuário e a tela padrão possui uma sidebar a esquerda e o conteúdo a direita.</p>
 
 <p>A tela inicial possui o conteúdo centralizado, onde é feito o login ou o cadastro de usuário.</p>
 
