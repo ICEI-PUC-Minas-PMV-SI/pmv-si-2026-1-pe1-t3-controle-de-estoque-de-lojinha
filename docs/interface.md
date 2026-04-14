@@ -23,9 +23,10 @@ As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 o
 
 ### Protótipo de baixa fidelidade
 
-<p> A tela inicial possui o conteúdo centralizado, onde é feito o login ou o cadastro de usuário.
+<p>A tela inicial possui o conteúdo centralizado, onde é feito o login ou o cadastro de usuário.</p>
 ![Figura 1](img/figura1.png)
-Figura 1 </p> 
+Figura 1  
+<br></br>
 
 <p>A tela padrão após o login consiste em:</p>
 <ul>
@@ -37,6 +38,7 @@ Figura 1 </p>
 
 ![Figura 2](img/figura2.png)
 Figura 2
+<br></br>
 
 
 
