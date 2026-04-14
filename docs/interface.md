@@ -23,11 +23,11 @@ As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 o
 
 ### Protótipo de baixa fidelidade
 
-A tela inicial possui o conteúdo centralizado, onde é feito o login ou o cadastro de usuário.
+<p> A tela inicial possui o conteúdo centralizado, onde é feito o login ou o cadastro de usuário.
 ![Figura 1](img/figura1.png)
-Figura 1
+Figura 1 </p> 
 
-A tela padrão após o login consiste em:
+<p>A tela padrão após o login consiste em:</p>
 <ul>
 <li>Sidebar: Navegação e Orientação entre as opções</li>
 <li>Cabeçalho: Local onde aparece o titulo da pargina abordada e o perfil do usuário</li>
