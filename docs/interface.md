@@ -25,18 +25,16 @@ As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 o
 
 A tela inicial possui o conteúdo centralizado, onde é feito o login ou o cadastro de usuário.
 ![Figura 1](img/figura1.png)
-
 Figura 1
 
 A tela padrão após o login consiste em:
 Sidebar: Navegação e Orientação entre as opções 
 Cabeçalho: Local onde aparece o titulo da pargina abordada e o perfil do usuário
 Conteúdo: Local onde ocorre a apresentação das informações requeridas pelo usuário
-
-Figura 2
 ![Figura 2](img/figura2.png)
+Figura 2
 
-![Exemplo de Wireframe](img/wireframe-example.png)
+
 
  
 > **Links Úteis**:
