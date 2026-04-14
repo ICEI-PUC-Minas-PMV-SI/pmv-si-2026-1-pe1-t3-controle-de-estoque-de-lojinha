@@ -21,12 +21,13 @@ Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapea
 
 <p>As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 onde a primeira é a tela de usuário e a segunda é o padrão de organização do site. Sendo assim, divididas em o conteúdo central a tela de usuário e a tela padrão possui uma sidebar a esquerda e o conteúdo a direita.</p>
 
-### Protótipo de baixa fidelidade
+## Protótipo de baixa fidelidade
+
 
 <p>A tela inicial possui o conteúdo centralizado, onde é feito o login ou o cadastro de usuário.</p>
 
 ![Figura 1](img/figura1.png)
-Figura 1  
+Figura 1 - Tela de login 
 <br></br>
 
 
@@ -39,7 +40,7 @@ Figura 1
 
 
 ![Figura 2](img/figura2.png)
-Figura 2
+Figura 2 - Organização Padrão do site
 <br></br>
 
 
