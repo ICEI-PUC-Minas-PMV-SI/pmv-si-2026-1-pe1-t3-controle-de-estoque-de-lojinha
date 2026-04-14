@@ -29,7 +29,6 @@ A navegação lateral é fixa e organizada na seguinte ordem:
 * **Componentes:** * Botões com cantos arredondados (12px).
     * Inputs com bordas finas e cinzas.
     * Ícones lineares e minimalistas.
-* **Responsividade:** O menu lateral se adapta para dispositivos móveis, e as tabelas são reorganizadas para leitura vertical em telas pequenas.
 
 ## Cores
 #### As cores utilizadas na criação do sistema web: 
