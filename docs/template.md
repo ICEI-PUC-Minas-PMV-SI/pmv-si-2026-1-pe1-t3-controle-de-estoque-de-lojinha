@@ -10,7 +10,7 @@ Detalhe os layouts que serão utilizados. Apresente onde será colocado o logo d
 
 
 ## Cores
-#As cores utilizadas na criação do sistema web: 
+#### As cores utilizadas na criação do sistema web: 
 <ul>
 <li>7B98BB</li>
 <li>FFFFFF</li>
