@@ -29,6 +29,7 @@ Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapea
 ![Figura 1](img/figura1.png)
 Figura 1 - Tela de login 
 <br></br>
+<hr>
 
 
 <p>A tela padrão após o login consiste em:</p>
@@ -42,6 +43,7 @@ Figura 1 - Tela de login
 ![Figura 2](img/figura2.png)
 Figura 2 - Organização Padrão do site
 <br></br>
+<hr>
 
 
 
