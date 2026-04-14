@@ -19,7 +19,57 @@ Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapea
 
 ## Wireframes
 
-<p>As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 onde a primeira é a tela de usuário e a segunda é o padrão de organização do site. Sendo assim, divididas em o conteúdo central a tela de usuário e a tela padrão possui uma sidebar a esquerda e o conteúdo a direita.</p>
+As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 onde a primeira é a tela de usuário e a segunda é o padrão de organização do site. Sendo assim, divididas em o conteúdo central a tela de usuário e a tela padrão possui uma sidebar a esquerda e o conteúdo a direita.
+---
+
+### Tela - Login
+
+<p>A tela de login apresenta os campos de autenticação do usuário.</p>
+
+![Login](img/01_login.svg)
+
+<figure>
+  <figcaption>Figura 1 - Tela de Login</figcaption>
+</figure>
+
+<hr>
+
+### Tela - Dashboard
+
+<p>Apresenta uma visão geral com indicadores e navegação principal do sistema.</p>
+
+![Dashboard](img/02_dashboard.svg)
+
+<figure>
+  <figcaption>Figura 2 - Dashboard</figcaption>
+</figure>
+
+<hr>
+
+### Tela - Produtos
+
+<p>Lista de produtos cadastrados no sistema.</p>
+
+![Produtos](img/03_produtos.svg)
+
+<figure>
+  <figcaption>Figura 3 - Tela de Produtos</figcaption>
+</figure>
+
+<hr>
+
+### Tela - Saída de Produtos
+
+<p>Controle de saída/movimentação de produtos.</p>
+
+![Saída de Produtos](img/04_saida_de_produtos.svg)
+
+<figure>
+  <figcaption>Figura 4 - Saída de Produtos</figcaption>
+</figure>
+
+<hr>
+
 
 ## Protótipo de baixa fidelidade
 
