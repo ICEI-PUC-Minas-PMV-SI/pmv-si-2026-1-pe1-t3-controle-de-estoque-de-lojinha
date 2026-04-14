@@ -70,6 +70,75 @@ As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 o
 
 <hr>
 
+### Tela - Relatórios
+
+<p>Visualização de relatórios e análises.</p>
+
+![Relatórios](img/05_relatorios.svg)
+
+<figure>
+  <figcaption>Figura 5 - Relatórios</figcaption>
+</figure>
+
+<hr>
+
+### Tela - Usuários
+
+<p>Gerenciamento de usuários do sistema.</p>
+
+![Usuários](img/06_usuarios.svg)
+
+<figure>
+  <figcaption>Figura 6 - Usuários</figcaption>
+</figure>
+
+<hr>
+
+### Tela - Calculadora
+
+<p>Ferramenta auxiliar para cálculos dentro do sistema.</p>
+
+![Calculadora](img/07_calculadora.svg)
+
+<figure>
+  <figcaption>Figura 7 - Calculadora</figcaption>
+</figure>
+
+<hr>
+
+### Tela - Configurações
+
+<p>Configurações gerais do sistema.</p>
+
+![Configurações](img/08_configuracoes.svg)
+
+<figure>
+  <figcaption>Figura 8 - Configurações</figcaption>
+</figure>
+
+<hr>
+
+### Tela - Cadastro de Produtos
+
+<p>Formulário para cadastro de novos produtos.</p>
+
+![Cadastro de Produtos](img/09_cadastro_de_produtos.png)
+
+<figure>
+  <figcaption>Figura 9 - Cadastro de Produtos</figcaption>
+</figure>
+
+<hr>
+
+### Tela - Cadastro de Usuários
+
+<p>Formulário para cadastro de usuários.</p>
+
+![Cadastro de Usuários](img/10_cadastro_de_usuarios.png)
+
+<figure>
+  <figcaption>Figura 10 - Cadastro de Usuários</figcaption>
+</figure>
 
 ## Protótipo de baixa fidelidade
 
