@@ -28,9 +28,9 @@ A tela inicial possui o conteúdo centralizado, onde é feito o login ou o cadas
 Figura 1
 
 A tela padrão após o login consiste em:
-Sidebar: Navegação e Orientação entre as opções 
-Cabeçalho: Local onde aparece o titulo da pargina abordada e o perfil do usuário
-Conteúdo: Local onde ocorre a apresentação das informações requeridas pelo usuário
+<p>Sidebar: Navegação e Orientação entre as opções</p>
+<p>Cabeçalho: Local onde aparece o titulo da pargina abordada e o perfil do usuário</p>
+<p>Conteúdo: Local onde ocorre a apresentação das informações requeridas pelo usuário</p>
 ![Figura 2](img/figura2.png)
 Figura 2
 
