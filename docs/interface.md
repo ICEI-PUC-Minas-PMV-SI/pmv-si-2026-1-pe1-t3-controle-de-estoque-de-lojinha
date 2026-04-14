@@ -24,7 +24,8 @@ As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 o
 ### Protótipo de baixa fidelidade
 
 A tela inicial possui o conteúdo centralizado, onde é feito o login ou o cadastro de usuário.
-(img/Figura-1-.png)
+(https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t3-controle-de-estoque-de-lojinha/blob/c0c67f369d927dfbbe82594287ec0a611ef8ddfd/docs/img/Figura-1-.png)
+
 Figura 1
 
 A tela padrão após o login consiste em:
