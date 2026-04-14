@@ -28,8 +28,45 @@ Detalhe os layouts que serão utilizados. Apresente onde será colocado o logo d
 <li>Inter-semibold - Rótulos de componentes</li>
 </ul>
 
-## Iconografia
-[foto](img/logo_de_caixa_com_lupa_estilizada.png)
+## Sobre a logo
+Caixa fechada (box)
+Representa produto, entrega, armazenamento ou e-commerce. Dá a ideia de algo organizado, pronto para envio ou análise.
+
+Lupa integrada à caixa
+Esse é o ponto mais inteligente do design. A lupa simboliza:
+
+análise
+busca
+inspeção / qualidade
+
+Como ela está “fundida” com a caixa, passa a mensagem de:
+
+analisar produtos, rastrear pedidos ou inspecionar entregas
+
+<img src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t3-controle-de-estoque-de-lojinha/blob/main/docs/img/logodecaixacomlupaestilizada.png" width="300">
+Azul escuro
+confiança
+tecnologia
+profissionalismo
+Laranja vibrante
+energia
+destaque
+ação
+
+ O contraste entre os dois faz a logo ficar chamativa sem perder a seriedade.
+ Linhas grossas → fácil de reconhecer em qualquer tamanho
+Formas geométricas → sensação de organização e clareza
+Flat design → moderno, usado em apps e startups
+No geral, ela transmite algo como:
+
+“Uma solução moderna que analisa, gerencia ou rastreia produtos com eficiência.”
+Essa logo encaixa muito bem para:
+
+sistema de logística
+rastreamento de pedidos
+controle de estoque
+auditoria de produtos
+marketplace
 > **Links Úteis**:
 >
 > -  [Como criar um guia de estilo de design da Web](https://edrodrigues.com.br/blog/como-criar-um-guia-de-estilo-de-design-da-web/#)
