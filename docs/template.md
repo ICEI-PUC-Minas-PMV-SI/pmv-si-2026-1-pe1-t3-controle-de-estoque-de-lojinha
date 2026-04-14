@@ -16,8 +16,12 @@ Apresente a paleta de cores que será utilizada. Uma ferramenta interessante par
 
 ## Tipografia
 
-Apresente as fontes que serão utilizadas e sua função no site. As principais funções são: Título de página, Título de Seção, Rótulos de componentes e Corpo de Texto.
-
+<ul>
+<li>Iter-bold - Titulo de Seção</li>
+<li>Inter-regular - Subtitulo e Rótulos de componentes</li>
+<li>Inter-medium - Rótulos de componentes (E-mail e Senha)</li>
+<li>Inter-semibold - Rótulos de componentes</li>
+</ul>
 
 ## Iconografia
 [foto](img/logo_de_caixa_com_lupa_estilizada.png)
