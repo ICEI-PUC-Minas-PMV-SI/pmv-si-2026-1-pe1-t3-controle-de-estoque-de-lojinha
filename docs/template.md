@@ -4,8 +4,6 @@ Layout padrão do site (HTML e CSS) que será utilizado em todas as páginas com
 
 Explique as guias de estilo utilizadas no seu projeto.
 
-Aqui está uma versão resumida e direta em Markdown para o seu repositório:
-
 ---
 
 ## Design
