@@ -139,6 +139,56 @@ Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapea
   <figcaption>Figura 10 - Cadastro de Usuários</figcaption>
 </figure>
 
+
+<hr>
+
+### <b>Tela – Box de Busca de Produtos</b>
+
+<p>Componente de busca que permite localizar produtos cadastrados no sistema.</p>
+
+![box_busca_produtos](img/11_box_busca_produtos.png)
+
+<figure>
+  <figcaption>Figura 11 - Box de Busca de Produtos</figcaption>
+</figure>
+
+<hr>
+
+### <b>Tela – Box de Busca de Usuários</b>
+
+<p>Componente de busca utilizado para localizar usuários cadastrados.</p>
+
+![box_busca_users](img/12_box_busca_users.png)
+
+<figure>
+  <figcaption>Figura 12 - Box de Busca de Usuários</figcaption>
+</figure>
+
+<hr>
+
+### <b>Tela – Seletor de Grupos</b>
+
+<p>Componente responsável pela seleção de grupos/perfis de usuários no sistema.</p>
+
+![box_seletor_grupos](img/13_box_seletor_grupos.png)
+
+<figure>
+  <figcaption>Figura 13 - Seletor de Grupos</figcaption>
+</figure>
+
+<hr>
+
+### <b>Tela – Seletor de Status de Usuários</b>
+
+<p>Componente que apresenta os status disponíveis para usuários (ex: ativo, inativo, etc.).</p>
+
+![box_status_users](img/14_box_status_users.png)
+
+<figure>
+  <figcaption>Figura 14 - Status de Usuários</figcaption>
+</figure>
+
+
 ## Protótipo de baixa fidelidade
 
 <p>As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 onde a primeira é a tela de usuário e a segunda é o padrão de organização do site. Sendo assim, divididas em o conteúdo central a tela de usuário e a tela padrão possui uma sidebar a esquerda e o conteúdo a direita.</p>
