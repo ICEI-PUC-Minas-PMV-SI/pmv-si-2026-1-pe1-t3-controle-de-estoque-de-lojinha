@@ -4,10 +4,32 @@ Layout padrão do site (HTML e CSS) que será utilizado em todas as páginas com
 
 Explique as guias de estilo utilizadas no seu projeto.
 
+Aqui está uma versão resumida e direta em Markdown para o seu repositório:
+
+---
+
 ## Design
 
-Detalhe os layouts que serão utilizados. Apresente onde será colocado o logo do sistema. Defina os menus padrões, entre outras coisas.
+### 1. Logotipo do Sistema
+* **Localização:** O logo **Estoque Search** fica posicionado no **topo da barra lateral esquerda**.
+* **Função:** Atua como um botão de retorno rápido à página inicial (Dashboard).
 
+### 2. Menus Padrões
+A navegação lateral é fixa e organizada na seguinte ordem:
+1.  **Dashboard:** Indicadores e alertas.
+2.  **Produtos:** Gestão de itens.
+3.  **Saída:** Registro de baixas.
+4.  **Relatórios:** Gráficos e movimentações.
+5.  **Usuários:** Gestão de perfis.
+6.  **Calculadora:** Utilitário rápido.
+7.  **Config:** Ajustes do sistema.
+
+### 3. Identidade Visual e Componentes
+* **Cores:** Azul aço (`#7D9BBF`) para ações principais; Verde para entradas/sucesso; Vermelho para saídas/alertas.
+* **Componentes:** * Botões com cantos arredondados (12px).
+    * Inputs com bordas finas e cinzas.
+    * Ícones lineares e minimalistas.
+* **Responsividade:** O menu lateral se adapta para dispositivos móveis, e as tabelas são reorganizadas para leitura vertical em telas pequenas.
 
 ## Cores
 #### As cores utilizadas na criação do sistema web: 
