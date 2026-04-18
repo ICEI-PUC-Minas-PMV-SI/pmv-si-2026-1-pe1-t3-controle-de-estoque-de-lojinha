@@ -3,8 +3,6 @@
 
 Visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
 
- Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados nas <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a>.
-
 ## User Flow
 
 ![Exemplo de UserFlow](img/userflow_mock.svg)
@@ -19,7 +17,30 @@ Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapea
 
 ## Wireframes
 
----
+## Protótipo de baixa fidelidade
+
+<p>As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 onde a primeira é a tela de usuário e a segunda é o padrão de organização do site. Sendo assim, divididas em o conteúdo central a tela de usuário e a tela padrão possui uma sidebar a esquerda e o conteúdo a direita.</p>
+
+<p>A tela inicial possui o conteúdo centralizado, onde é feito o login ou o cadastro de usuário.</p>
+
+![Figura 1](img/figura1.png)
+Figura 1 - Tela de login 
+<hr>
+
+
+<p>A tela padrão após o login consiste em:</p>
+<ul>
+<li>Sidebar: Navegação e Orientação entre as opções</li>
+<li>Cabeçalho: Local onde aparece o titulo da página abordada e o perfil do usuário</li>
+<li>Conteúdo: Local onde ocorre a apresentação das informações requeridas pelo usuário</li>
+</ul>
+
+
+![Figura 2](img/figura2.png)
+Figura 2 - Organização Padrão do site
+<hr>
+
+
 
 ### Tela - Login
 
@@ -188,29 +209,6 @@ Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapea
   <figcaption>Figura 14 - Status de Usuários</figcaption>
 </figure>
 
-
-## Protótipo de baixa fidelidade
-
-<p>As telas do sistema possuem uma padronização abordada na figura 1 e figura 2 onde a primeira é a tela de usuário e a segunda é o padrão de organização do site. Sendo assim, divididas em o conteúdo central a tela de usuário e a tela padrão possui uma sidebar a esquerda e o conteúdo a direita.</p>
-
-<p>A tela inicial possui o conteúdo centralizado, onde é feito o login ou o cadastro de usuário.</p>
-
-![Figura 1](img/figura1.png)
-Figura 1 - Tela de login 
-<hr>
-
-
-<p>A tela padrão após o login consiste em:</p>
-<ul>
-<li>Sidebar: Navegação e Orientação entre as opções</li>
-<li>Cabeçalho: Local onde aparece o titulo da pargina abordada e o perfil do usuário</li>
-<li>Conteúdo: Local onde ocorre a apresentação das informações requeridas pelo usuário</li>
-</ul>
-
-
-![Figura 2](img/figura2.png)
-Figura 2 - Organização Padrão do site
-<hr>
 
 
 
