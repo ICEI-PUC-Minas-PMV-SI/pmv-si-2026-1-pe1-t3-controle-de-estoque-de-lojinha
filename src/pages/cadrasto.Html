@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="utf-8" />
+<title>Cadastrar Usuário</title>
+<link rel="stylesheet" href="globals.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="element-cadastro-de"> <button type="button" id="btnDarkMode">Dark Mode</button>
+<section class="frame" aria-labelledby="cadastro-titulo">
+<form class="form-container" action="#" method="post">
+<h1 class="text-wrapper" id="cadastro-titulo">Cadastrar Usuário</h1>
+<div class="div">
+<label class="email-label-1" for="nome">Nome</label>
+<input
+          class="email-input"
+          id="nome"
+          name="nome"
+          type="text"
+          placeholder="Digite o nome completo"
+          autocomplete="name"
+          required
+        > 
+</div>
+
+</div>
+<div class="div">
+<label class="email-label-3" for="email">E-Mail</label>
+<input
+          class="email-input"
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Digite o e-mail"
+          autocomplete="email"
+          required
+        >
+</div>
+<div class="group-tipo-usuario">
+<label class="email-label-3" for="setor">Setor</label>
+<select class="placeholder-wrapper" id="setor" name="setor" required>
+<option value="Gerente" selected >Gerente</option>
+<option value="Operador">Operador</option>
+<option value="Visitante">Visitante</option>
+<option value="Administrador">Administrador</option>
+</select>
+</div>
+<fieldset class="group-botoes">
+<legend class="email-label-wrapper">
+<span class="email-label-4">Grupo de Permissões</span>
+</legend>
+<div class="frame-2">
+<label class="div-wrapper">
+<input type="radio" name="grupo-permissoes" value="gerentes" class="permission-input">
+<span class="placeholder-3">Gerentes</span>
+</label>
+<label class="email-input-2">
+<input type="radio" name="grupo-permissoes" value="operadores" class="permission-input">
+<span class="placeholder-3">Operadores</span>
+</label>
+<label class="email-input-3">
+<input type="radio" name="grupo-permissoes" value="visitantes" class="permission-input">
+<span class="placeholder-3">Visitantes</span>
+</label>
+<label class="email-input-4">
+<input type="radio" name="grupo-permissoes" value="administradores" class="permission-input">
+<span class="placeholder-3">Administradores</span>
+</label>
+</div>
+</fieldset>
+<button class="btn-cadastrar" type="submit">
+<span class="button-text">Cadastrar</span>
+
+</button>
+</form>
+</section>
+</main>
+</form>
+<script src="cadrasto.js"></script>
+</body>
+</html>
