@@ -6,6 +6,7 @@
     --page-background: #f0f0f0;
     --font-main: Poppins, sans-serif;
     --border-radius: 10px;
+    --font-color1: #7B98BB;
 }
 
 * {
@@ -22,21 +23,60 @@ body {
 .header {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
     justify-content: flex-start;
-    width: 1200px;
-    padding: 10px;
-    border: 3px solid var(--primary-color);
-    border-left: none;
-    border-radius: var(--border-radius);
+    width: 100%;
+    margin-bottom: 20px;
+    gap: 24px;
 }
 
-.brand-name {
-    padding: 5px;
-    border: 3px solid var(--dark-border);
+.logo-container {
+    margin:0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 27px;
+    padding-bottom: 18px;
+    border: 0.5px solid var(--dark-border);
+    border-top: none;
+    border-left: none;
     border-radius: var(--border-radius);
+    flex-shrink: 0;
+}
+
+#titlogo {
+    color: var(--font-color1);
+    font-size: 24px;
+    margin: 0;
+    font-weight: 570;
+    line-height: 1.1;
+
+}
+
+.page-description {
+    border: 0.5px solid var(--dark-border);
+    border-top: none;
+    border-right: none;
+    border-radius: var(--border-radius);
+    padding: 10px 10px 10px 20px;
+    min-width: 306.5px;
+    flex: 1;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    
+
+}
+
+#titdash {
+    margin-bottom:0px;
+ 
+}
+#pdescription {
+    margin-top: 2px;
     color: var(--text-color);
-    font-size: 30px;
+    font-size: 14px;
 }
 
 .sidebar {
