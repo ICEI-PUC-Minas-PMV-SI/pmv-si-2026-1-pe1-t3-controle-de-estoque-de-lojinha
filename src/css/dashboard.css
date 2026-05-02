@@ -26,7 +26,6 @@ body {
     align-items: stretch;
     justify-content: flex-start;
     width: 100%;
-    margin-bottom: 20px;
     gap: 24px;
 }
 
@@ -80,6 +79,12 @@ body {
     font-size: 13px;
 }
 
+.main {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+}
+
 .sidebar {
     display: flex;
     flex-wrap: wrap;
@@ -104,6 +109,34 @@ body {
     font-size: 12px;
 }
 
+.right-content-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: nowrap;
+}
+.right-content-container p{
+    font-size: 12px;
+}
+.card{
+    width: 240px;
+    height: 110px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    padding: 10px 10px 10px 20px;
+    text-align: left;
+}
+
+
+#tot-prd{
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+
+}
+
 .abas {
     width: 100%;
     margin-bottom: 10px;
@@ -114,14 +147,3 @@ body {
     font-size: 12px;
 }
 
-.right-content-container {
-    display: flex;
-    gap: 20px;
-    border: 3px solid var(--dark-border);
-    border-radius: var(--border-radius);
-    padding: 10px;
-      
-    
-
-    
-}
