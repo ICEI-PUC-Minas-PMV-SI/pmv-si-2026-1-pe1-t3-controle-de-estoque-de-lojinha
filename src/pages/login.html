@@ -66,7 +66,7 @@
 </div>
 </section>
 </main>
-<script src = "../java-script/login2.js"></script>
+<script src = "../java-script/login.js"></script>
 <script>
   function processaFormLogin (event) {
           event.preventDefault ();
@@ -74,7 +74,7 @@
           var password = document.getElementById("password").value;
                resultadoLogin = loginUser (username, password);
                    if (resultadoLogin) {
-                    window.location.href = "./direcaologin.html";
+                    window.location.href = "./dashboard.html";
                    }
                    else { alert ("Usuário ou senha incorretos");
 
