@@ -6,6 +6,7 @@
     --page-background: #f0f0f0;
     --font-main: Poppins, sans-serif;
     --border-radius: 10px;
+    --font-color1: #7B98BB;
 }
 
 * {
@@ -22,21 +23,66 @@ body {
 .header {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
     justify-content: flex-start;
-    width: 1200px;
-    padding: 10px;
-    border: 3px solid var(--primary-color);
-    border-left: none;
-    border-radius: var(--border-radius);
+    width: 100%;
+    gap: 24px;
 }
 
-.brand-name {
-    padding: 5px;
-    border: 3px solid var(--dark-border);
+.logo-container {
+    margin:0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 27px;
+    padding-bottom: 18px;
+    border-top: none;
+    border-left: none;
     border-radius: var(--border-radius);
+    flex-shrink: 0;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+#titlogo {
+    color: var(--font-color1);
+    font-size: 24px;
+    margin: 0;
+    font-weight: 570;
+    line-height: 1.1;
+
+}
+
+.page-description {
+    border-top: none;
+    border-right: none;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    padding: 10px 10px 10px 20px;
+    min-width: 306.5px;
+    flex: 1;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+
+}
+
+#titdash {
+    margin-bottom:0px;
+    font-weight: 400;
+    font-size: 14px;
+ 
+}
+#pdescription {
+    margin-top: 2px;
     color: var(--text-color);
-    font-size: 30px;
+    font-size: 13px;
+}
+
+.main {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
 }
 
 .sidebar {
@@ -63,6 +109,42 @@ body {
     font-size: 12px;
 }
 
+.right-content-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: nowrap;
+}
+.right-content-container p{
+    font-size: 12px;
+}
+.card{
+    width: 240px;
+    height: 110px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    padding: 10px 10px 10px 20px;
+    text-align: left;
+}
+
+.card-left {
+    border: 3px solid var(--primary-color);
+    border-right: none;
+}
+
+#tot-prd{
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+
+}
+.dow-content-container {
+    
+    
+}
+
 .abas {
     width: 100%;
     margin-bottom: 10px;
@@ -72,3 +154,4 @@ body {
     color: var(--text-color);
     font-size: 12px;
 }
+
