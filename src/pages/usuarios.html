@@ -4,23 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>usuarios</title>
     <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/usuarios.css">
 </head>
 
-<body class="app-page dashboard-page" style="--app-active-color: #7b98bb;">
+<body class="app-page usuarios-page" style="--app-active-color: #7b98bb;">
     <div class="app-shell">
         <aside class="app-sidebar" aria-label="Navegação principal">
-            <a class="app-sidebar-brand" href="./dashboard.html" aria-label="Ir para o dashboard">
+            <a class="app-sidebar-brand" href="./usuarios.html" aria-label="Ir para o usuarios">
                 <img src="../../docs/img/logo.header.svg" alt="Logo Estoque Search">
                 <span class="app-sidebar-brand-title">Estoque<br>Search</span>
             </a>
 
             <div class="app-sidebar-panel">
-                <nav class="app-sidebar-nav" aria-label="Menu principal" >
-                    <a class="app-sidebar-nav-item" href="./dashboard.html" aria-current="page">
-                        <img src="../../docs/img/icons/00-abas-off-dashboard.svg" alt="" class="app-sidebar-nav-icon">
+                <nav class="app-sidebar-nav" aria-label="Menu principal">
+
+                    <a class="app-sidebar-nav-item" href="./dashboard.html">
+                        <img src="../../docs/img/icons/00-abas-dashboard.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Dashboard</span>
                     </a>
 
@@ -39,8 +40,8 @@
                         <span class="app-sidebar-nav-label">Relatórios</span>
                     </a>
 
-                    <a class="app-sidebar-nav-item" href="./usuarios.html" >
-                        <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
+                    <a class="app-sidebar-nav-item" href="./usuarios.html" aria-current="page">
+                        <img src="../../docs/img/icons/04-abas-off-usuarios.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Usuários</span>
                     </a>
 
@@ -76,8 +77,8 @@
             <header class="app-header">
                 <div class="app-header-panel">
                     <div>
-                        <h1 class="app-header-title">Dashboard</h1>
-                        <p class="app-header-subtitle">Visão geral do estoque</p>
+                        <h1 class="app-header-title">Usuários</h1>
+                        <p class="app-header-subtitle">Gerenciamento de usuários</p>
                     </div>
 
                     <div class="app-header-profile">
@@ -86,41 +87,8 @@
                 </div>
             </header>
 
-            <section class="app-content dashboard-content" aria-label="Conteúdo do dashboard">
-                <div class="dashboard-summary-grid">
-                    <article class="summary-card">
-                        <h2 class="summary-card-title">Total de produtos</h2>
-                        <p class="summary-card-number">653</p>
-                    </article>
+            <section class="app-content usuarios-content" aria-label="Conteúdo do usuarios"></section>
 
-                    <article class="summary-card">
-                        <h2 class="summary-card-title">Entradas hoje</h2>
-                        <p class="summary-card-number">2832</p>
-                    </article>
-
-                    <article class="summary-card">
-                        <h2 class="summary-card-title">Saídas hoje</h2>
-                        <p class="summary-card-number">1568</p>
-                    </article>
-
-                    <article class="summary-card">
-                        <h2 class="summary-card-title">Alertas</h2>
-                        <p class="summary-card-number">5</p>
-                    </article>
-                </div>
-
-                <div class="dashboard-chart-grid">
-                    <article class="chart-card chart-card-entries">
-                        <h2>Gráfico de entradas</h2>
-                        <p>Bem-vindo ao Dashboard do Estoque Search!</p>
-                    </article>
-
-                    <article class="chart-card chart-card-exits">
-                        <h2>Gráfico de saídas</h2>
-                        <p>Bem-vindo ao Dashboard do Estoque Search!</p>
-                    </article>
-                </div>
-            </section>
         </main>
     </div>
 </body>
