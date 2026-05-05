@@ -7,6 +7,40 @@
     <title>usuarios</title>
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/usuarios.css">
+    <script src="../java-script/login.js" defer></script>
+    <script defer>
+         
+        function exibeUsuarios() {
+            
+            // Popula a tabela com os registros do banco de dados
+            let listaUsuarios = '';
+            for (i = 0; i < db_usuarios.usuarios.length; i++) {
+                let usuario = db_usuarios.usuarios[i];
+                listaUsuarios += `<tr><td scope="row">${usuario.nome}</td><td>${usuario.login}</td><td>${usuario.email}</td></tr>`;
+            }
+
+            // Substitui as linhas do corpo da tabela
+            document.getElementById("table-usuarios").innerHTML = listaUsuarios
+
+        }
+
+        function initPage() {
+
+            // Associa a função de logout ao botão fica logo abaixo
+            //---botão de logout para configurar em js depois---
+            
+            // Verifica se o usuário já esta logado e se negativo, redireciona para tela de login 
+        if (!usuarioCorrente.login) {
+            window.location.href = LOGIN_URL;
+        }
+
+            // Lista os usuários 
+            exibeUsuarios ();
+        }
+
+        // Associa ao evento de carga da página a função para verificar se o usuário está logado
+        window.addEventListener('load', initPage);
+    </script>
 </head>
 
 <body class="app-page usuarios-page" style="--app-active-color: #7b98bb;">
