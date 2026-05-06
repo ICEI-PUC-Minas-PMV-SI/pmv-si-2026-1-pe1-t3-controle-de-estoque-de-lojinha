@@ -9,21 +9,21 @@ btnDark.addEventListener('click', () => {
     const isDark = document.body.classList.contains('dark-theme');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
-// Ao carregar a página, verifica a preferência salva
+
 });
-// Seleciona o formulário
+
 const formCadastro = document.getElementById('meuCadastro');
 
 formCadastro.addEventListener('submit', (event) => {
-    event.preventDefault(); // Impede a página de recarregar
+    event.preventDefault(); 
 
-    // Cria um objeto com os dados dos inputs
+    
     const usuario = {
         email: document.getElementById('email').value,
         senha: document.getElementById('senha').value,
         Setor: document.getElementById('setor').value,
         Grupodepermissoes: document.getElementById('grupo-de-permissoes').value,  
-        // Adicione outros campos aqui
+        
     };
 
     // Salva no localStorage convertendo para String
@@ -33,7 +33,6 @@ formCadastro.addEventListener('submit', (event) => {
     // Opcional: Redirecionar para a página de login
       window.location.href = "login.html"; 
 });
-// Exemplo simples de troca de tela
 function irParaEtapa2() {
     document.getElementById('etapa1').style.display = 'none';
     document.getElementById('etapa2').style.display = 'block';
