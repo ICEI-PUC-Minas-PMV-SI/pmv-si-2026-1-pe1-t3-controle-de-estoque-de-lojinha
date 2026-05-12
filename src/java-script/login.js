@@ -51,6 +51,39 @@ if (!usuariosJSON) { alert("Dados não encontrados no LocalStorage. \n ----> Faz
         localStorage.setItem("db_usuarios", JSON.stringify(dadosIniciais));
 } else { db_usuarios = JSON.parse(usuariosJSON);
        }
+const existeAdmin = db_usuarios.usuarios.find(
+            usuario =>
+                usuario.login === "Admilson@gmail.com"
+        );
+if (!existeAdmin) {
+
+            db_usuarios.usuarios.push({
+                id: generateUUID(),
+                login: "Admilson@gmail.com",
+                senha: "123",
+                nome: "Administrador do Sistema",
+                email: "Admilson@gmail.com"
+            });
+        }
+const existeUser = db_usuarios.usuarios.find(
+            usuario =>
+                usuario.login === "user@gmail.com"
+        );
+if (!existeUser) {
+
+            db_usuarios.usuarios.push({
+                id: generateUUID(),
+                login: "user@gmail.com",
+                senha: "123",
+                nome: "Usuario Comum",
+                email: "user@gmail.com"
+            });
+        }
+localStorage.setItem(
+            "db_usuarios",
+            JSON.stringify(db_usuarios)
+        );
+       
 };
 
 // Primeiro verifica se o login esta composto por login e senha e depois olha em todos os itens do banco de dados se existe o usuário informado no formulário de login //

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
   <title>Cadastrar Usuário</title>
-  <link rel="stylesheet" href="globals.css">
+  <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="..\css\cadastro.css">
 </head>
 
@@ -81,60 +81,6 @@
 
   <script src="..\java-script\cadastro.js"></script>
   <script>
-    // Agora o JavaScript vai encontrar o formulário correto
-    const form = document.getElementById('registroForm');
-
-    form.addEventListener('submit', function (event) {
-      event.preventDefault(); // Impede a página de recarregar
-
-      const email = document.getElementById('email').value;
-      const senha = document.getElementById('senha').value;
-      const confirmarSenha = document.getElementById('confirmar-senha').value;
-      
-      if (senha !== confirmarSenha) {
-        alert("As senhas não coincidem. Por favor, tente novamente.");
-        return;
-      }  
-      const conta = {
-        email: email,
-        senha: senha
-      };
-      localStorage.setItem('dadosUsuario', JSON.stringify(conta));
-      alert("Conta criada com sucesso!");
-      
-      window.location.href = "login.html";
-    });
-    const btn = document.getElementById('btnDarkMode');
-
-let isDragging = false;
-let offset = { x: 0, y: 0 };
-
-btn.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  
-  // Calcula a distância entre o clique do mouse e o canto do botão
-  offset.x = e.clientX - btn.getBoundingClientRect().left;
-  offset.y = e.clientY - btn.getBoundingClientRect().top;
-  
-  btn.style.opacity = '0.8'; // Efeito visual opcional
-});
-
-document.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-
-  
-  let x = e.clientX - offset.x;
-  let y = e.clientY - offset.y;
-
-  btn.style.left = x + 'px';
-  btn.style.top = y + 'px';
-  btn.style.right = 'auto'; // Anula o 'right' se você tiver no CSS original
-});
-
-document.addEventListener('mouseup', () => {
-  isDragging = false;
-  btn.style.opacity = '1';
-});
   </script>
   
 </body>
