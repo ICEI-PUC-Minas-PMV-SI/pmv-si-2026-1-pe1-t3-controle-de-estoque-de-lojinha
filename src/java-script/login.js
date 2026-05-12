@@ -126,5 +126,27 @@ function addUser (login, senha, nome, email) {
 function setUserPass () {
 
 }
+function verificaLogin() {
+
+    // Busca usuário logado
+    let usuarioCorrenteJSON =
+        sessionStorage.getItem("usuarioCorrente");
+
+    // Se não existir
+    if (!usuarioCorrenteJSON) {
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+    let usuario = JSON.parse(usuarioCorrenteJSON);
+
+    // Se objeto vazio
+    if (!usuario.login) {
+
+        window.location.href = "login.html";
+    }
+}
 
 initLoginApp();
