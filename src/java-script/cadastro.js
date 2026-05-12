@@ -3,14 +3,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const btnDark = document.getElementById('btnDarkMode');
 
-btnDark.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
+//btnDark.addEventListener('click', () => {
+    //document.body.classList.toggle('dark-theme');
     // Salva a preferência no navegador
-    const isDark = document.body.classList.contains('dark-theme');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-});
+    //const isDark = document.body.classList.contains('dark-theme');
+    //localStorage.setItem('theme', isDark ? 'dark' : 'light');
+//});
 
 });
+
+const dadosIniciais = {
+    usuarios: [
+        { "id": generateUUID (), "login": "Admilson@gmail.com", "senha": "123", "nome": "Administrador do Sistema", "email": "Admilson@gmail.com"},
+
+        { "id": generateUUID (), "login": "user@gmail.com", "senha": "123", "nome": "Usuario Comum", "email": "user@gmail.com"},
+    ]
+};
 
 const formCadastro = document.getElementById('registroForm');
 
@@ -89,7 +97,7 @@ if (usuariosJSON) {
 
         alert("Cadastro salvo com sucesso! Agora você pode logar.");
     // Opcional: Redirecionar para a página de login
-      window.location.href = "login.html"; 
+      window.location.href = "usuarios.html"; 
     });
 
 
