@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+.col-sm-12{
+    box-sizing: border-box;
+    margin-top: 0px;
+    box-shadow: var(--app-shadow);
+    border-radius: 8px;
+    font-family: var(--app-font);
+    font-size: 13px;
+   
+
+
+
+    
+
+}
+tbody{
+    background-color: var(--app-surface);
+    border-radius: 8px;
+    font-size: 14px;
+    margin: 10px;
+
+
+  
+}
+th[scope="col"] {
+    background-color: var(--app-muted-text);
+    border-radius: 8px;
+
+}
+.btn-new-user{
+    background-color:var(--app-background);
+    margin-bottom: 20px;
+    box-shadow: var(--app-card-shadow);
+    border:none;
+    border-radius: 8px;
+    font-family: var(--app-font);
+    color: var(--app-muted-text);
+    padding: 10px;
+
+   
+    
+
+    
+}
+
