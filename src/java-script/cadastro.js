@@ -2,14 +2,62 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Sistema de Cadastro Inicializado...");
 
     const btnDark = document.getElementById('btnDarkMode');
+    let isDragging = false;
+    let moved = false;
+    let offsetX = 0;
+    let offsetY = 0;
 
-//btnDark.addEventListener('click', () => {
-    //document.body.classList.toggle('dark-theme');
-    // Salva a preferência no navegador
-    //const isDark = document.body.classList.contains('dark-theme');
-    //localStorage.setItem('theme', isDark ? 'dark' : 'light');
-//});
+    const limitButtonToScreen = (x, y) => {
+        const maxX = window.innerWidth - btnDark.offsetWidth;
+        const maxY = window.innerHeight - btnDark.offsetHeight;
 
+        return {
+            x: Math.max(0, Math.min(x, maxX)),
+            y: Math.max(0, Math.min(y, maxY))
+        };
+    };
+
+    btnDark.addEventListener('pointerdown', (event) => {
+        isDragging = true;
+        moved = false;
+        offsetX = event.clientX - btnDark.offsetLeft;
+        offsetY = event.clientY - btnDark.offsetTop;
+        btnDark.setPointerCapture(event.pointerId);
+    });
+
+    btnDark.addEventListener('pointermove', (event) => {
+        if (!isDragging) {
+            return;
+        }
+
+        const position = limitButtonToScreen(
+            event.clientX - offsetX,
+            event.clientY - offsetY
+        );
+
+        btnDark.style.left = `${position.x}px`;
+        btnDark.style.top = `${position.y}px`;
+        moved = true;
+    });
+
+    btnDark.addEventListener('pointerup', () => {
+        isDragging = false;
+    });
+
+    btnDark.addEventListener('pointercancel', () => {
+        isDragging = false;
+    });
+
+    btnDark.addEventListener('click', () => {
+        if (moved) {
+            return;
+        }
+
+        document.body.classList.toggle('dark-theme');
+        // Salva a preferência no navegador
+        const isDark = document.body.classList.contains('dark-theme');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
 });
 
 const dadosIniciais = {
@@ -33,8 +81,6 @@ formCadastro.addEventListener('submit', (event) => {
 
         const confirmarSenha = document.getElementById('confirmar-senha').value;
 
-        const setor = document.getElementById('setor').value;
-
         const grupo = document.querySelector(
             'input[name="grupo-permissoes"]:checked'
         );
@@ -43,6 +89,13 @@ formCadastro.addEventListener('submit', (event) => {
         if (senha !== confirmarSenha) {
 
             alert("As senhas não coincidem.");
+
+            return;
+        }
+
+        if (!grupo) {
+
+            alert("Selecione um grupo de permissões.");
 
             return;
         }
@@ -83,9 +136,8 @@ if (usuariosJSON) {
             id: generateUUID(),
             login: email,
             senha: senha,
-            nome: email,
+            nome: nome,
             email: email,
-            setor: setor,
             grupoDePermissoes: grupo.value
         };
 

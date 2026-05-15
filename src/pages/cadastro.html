@@ -11,7 +11,7 @@
 
 <body>
   <main class="element-cadastro-de"> 
-   <!-- <button type="switch" id="btnDarkMode">Dark mode</button>-->
+   <button type="button" id="btnDarkMode">Dark mode</button>
     <section class="frame" aria-labelledby="cadastro-titulo">
       
       
@@ -38,23 +38,13 @@
           <input type="password" id="confirmar-senha" class="email-input" placeholder="Repita a senha" required>
         </div>
         
-        <div class="group-tipo-usuario">
-          <label class="email-label-3" for="setor">Setor</label>
-          <select class="placeholder-wrapper" id="setor" name="setor" required>
-            <option value="Gerente" selected>Gerente</option>
-            <option value="Operador">Operador</option>
-            <option value="Visitante">Visitante</option>
-            <option value="Administrador">Administrador</option>
-          </select>
-        </div>
-        
         <fieldset class="group-botoes">
           <legend class="email-label-wrapper">
             <span class="email-label-4">Grupo de Permissões</span>
           </legend>
           <div class="frame-2">
             <label class="div-wrapper">
-              <input type="radio" name="grupo-permissoes" value="gerentes" class="permission-input">
+              <input type="radio" name="grupo-permissoes" value="gerentes" class="permission-input" required>
               <span class="placeholder-3">Gerentes</span>
             </label>
             <label class="email-input-2">
