@@ -23,6 +23,21 @@ tbody{
 
   
 }
+
+.headcont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 20px;
+  margin-bottom: 25px;
+  padding: 5px;
+  color: var(--app-text);
+  background-color: blue;
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-card-shadow);
+
+}
+
 th[scope="col"] {
     background-color: var(--app-muted-text);
     border-radius: 8px;
@@ -37,6 +52,7 @@ th[scope="col"] {
     font-family: var(--app-font);
     color: var(--app-muted-text);
     padding: 10px;
+    text-align: right;
 
    
     
