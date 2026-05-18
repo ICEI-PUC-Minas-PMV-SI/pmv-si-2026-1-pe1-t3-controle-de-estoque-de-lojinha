@@ -6,6 +6,10 @@ const botao=document.getElementById('btnCadastrar');
 botao.addEventListener('click',(event)=>{
 event.preventDefault();
 
+let db_produtos = JSON.parse(localStorage.getItem('db_produtos')) || {
+    produto: []
+};
+
 const produto={
 
 nome:document.getElementById('produto').value,
@@ -29,9 +33,15 @@ alert("Preencha os campos obrigatórios!");
 return;
 
 }
-
-localStorage.setItem('produtoCadastrado',JSON.stringify(produto));
-
+function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0;
+        var v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+db_produtos.produto.push(produto);
+localStorage.setItem('db_produtos', JSON.stringify(db_produtos));
 alert("Produto cadastrado com sucesso!");
 
 console.log(produto);

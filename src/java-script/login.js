@@ -3,6 +3,7 @@ const LOGIN_URL= "login.html";
 
 /*Criação do "banco de dados" de usuários*/
 var db_usuarios = {};
+var db_produtos = {};
 
 /*Guardar os usuários no LocalStorage*/
 var usuarioCorrente = {};
