@@ -1,53 +1,135 @@
-'<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrada de produtos</title>
+    <title>Produtos</title>
+
+    <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/produtos.css">
 </head>
-<body>
 
-    <div class="container">
-        <h1>Nova Entrada de Produto</h1>
+<body class="app-page produtos-page" style="--app-active-color: #7b98bb;">
 
-        <div>
-            <label>Produto</label>
-            <input id="produto" type="text" placeholder="Buscar produto por nome ou código...">
-        </div>
-        
-        <div>
-            <label>Quantidade</label>
-            <input id="quantidade" type="number" placeholder="0">
-        </div>
+    <div class="app-shell">
 
-        <div>
-            <label>Preço Unitário</label>
-            <input id="preco" type="number" placeholder="R$0.00" step="R$0.01">
-        </div>
+        <!-- SIDEBAR -->
+        <aside class="app-sidebar">
 
-        <div>
-            <label>Fornecedor</label>
-           <input id="fornecedor" type="text" placeholder="Nome do Fornecedor">
-        </div>
+            <a class="app-sidebar-brand" href="./usuarios.html">
+                <img src="../../docs/img/logo.header.svg" alt="Logo">
 
-        <div>
-            <label>Nota Fiscal</label>
-            <input id="notaFiscal" type="text" placeholder="N° da NF">
-        </div>
+                <span class="app-sidebar-brand-title">
+                    Estoque<br>Search
+                </span>
+            </a>
 
-        <div>
-            <label>Data</label>
-           <input id="data" type="date">
-        </div>
+            <div class="app-sidebar-panel">
 
-        <div>
-            <label>Observações</label>
-           <input id="observacoes" type="text" placeholder="Observações opcionais...">
-        </div>
- 
-       <button id="btnCadastrar">Registrar Entrada</button>
+                <nav class="app-sidebar-nav">
+
+                    <a class="app-sidebar-nav-item" href="./dashboard.html">
+                        <img src="../../docs/img/icons/00-abas-dashboard.svg" alt="">
+                        <span>Dashboard</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./produtos.html">
+                        <img src="../../docs/img/icons/01-abas-produtos.svg" alt="">
+                        <span>Produtos</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./saidas.html">
+                        <img src="../../docs/img/icons/02-abas-saidas.svg" alt="">
+                        <span>Saídas</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./relatorios.html">
+                        <img src="../../docs/img/icons/03-abas-relatorios.svg" alt="">
+                        <span>Relatórios</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./usuarios.html">
+                        <img src="../../docs/img/icons/04-abas-off-usuarios.svg" alt="">
+                        <span>Usuários</span>
+                    </a>
+
+                </nav>
+
+            </div>
+
+        </aside>
+
+        <!-- MAIN -->
+        <main class="app-main">
+
+            <header class="app-header">
+
+                <div class="app-header-panel">
+
+                    <div>
+                        <h1 class="app-header-title">Produtos</h1>
+
+                        <p class="app-header-subtitle">
+                            Gerenciamento de produtos
+                        </p>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <section class="app-content">
+
+                <div class="container">
+
+                    <!-- BOTÃO -->
+                    <a href="./cadProdutos.html">
+
+                        <button class="btn-new-user">
+
+                            <img src="../../docs/img/icons/012-add-user.svg" alt="">
+
+                            Novo produto
+
+                        </button>
+
+                    </a>
+
+                    <!-- TABELA -->
+                    <table class="table table-striped">
+
+                        <thead>
+
+                            <tr>
+                                <th>Nome</th>
+                                <th>Quantidade</th>
+                                <th>Preço</th>
+                                <th>Fornecedor</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="table-produtos">
+
+                            <tr>
+                                <td>Bolacha</td>
+                                <td>10</td>
+                                <td>R$ 5,00</td>
+                                <td>Fornecedor Danix</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
     </div>
-<script src="../js/produtos.js"></script>
+
 </body>
 </html>
