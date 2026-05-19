@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/usuarios.css">
     <script src="../java-script/login.js" defer></script>
     <script defer>
-         
+
         function escapeHtml(valor) {
             const mapa = {
                 "&": "&amp;",
@@ -73,7 +73,7 @@
         }
 
         function exibeUsuarios() {
-            
+
             // Popula a tabela com os registros do banco de dados
             let listaUsuarios = '';
             const filtro = document.getElementById("busca-usuarios")?.value.trim().toLowerCase() || "";
@@ -117,13 +117,13 @@
 
             // Associa a função de logout ao botão fica logo abaixo
             //---botão de logout para configurar em js depois---
-            
-            // Verifica se o usuário já esta logado e se negativo, redireciona para tela de login 
+
+            // Verifica se o usuário já esta logado e se negativo, redireciona para tela de login
         if (!usuarioCorrente.login) {
             window.location.href = LOGIN_URL;
         }
 
-            // Lista os usuários 
+            // Lista os usuários
             exibeUsuarios ();
 
             const campoBusca = document.getElementById("busca-usuarios");
@@ -135,14 +135,14 @@
 
         // Associa ao evento de carga da página a função para verificar se o usuário está logado
         window.addEventListener('load', initPage);
-        
+
     </script>
 </head>
 
-<body class="app-page usuarios-page" style="--app-active-color: #7b98bb;">
+<body class="app-page saidas-page" style="--app-active-color: #7b98bb;">
     <div class="app-shell">
         <aside class="app-sidebar" aria-label="Navegação principal">
-            <a class="app-sidebar-brand" href="./usuarios.html" aria-label="Ir para o usuarios">
+            <a class="app-sidebar-brand" href="./saidas.html" aria-label="Ir para o saidas">
                 <img src="../../docs/img/logo.header.svg" alt="Logo Estoque Search">
                 <span class="app-sidebar-brand-title">Estoque<br>Search</span>
             </a>
@@ -160,8 +160,8 @@
                         <span class="app-sidebar-nav-label">Produtos</span>
                     </a>
 
-                    <a class="app-sidebar-nav-item" href="./saidas.html">
-                        <img src="../../docs/img/icons/02-abas-saidas.svg" alt="" class="app-sidebar-nav-icon">
+                    <a class="app-sidebar-nav-item" href="./saidas.html" aria-current="page">
+                        <img src="../../docs/img/icons/02-abas_off-saidas.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Saídas</span>
                     </a>
 
@@ -170,8 +170,8 @@
                         <span class="app-sidebar-nav-label">Relatórios</span>
                     </a>
 
-                    <a class="app-sidebar-nav-item" href="./usuarios.html" aria-current="page">
-                        <img src="../../docs/img/icons/04-abas-off-usuarios.svg" alt="" class="app-sidebar-nav-icon">
+                    <a class="app-sidebar-nav-item" href="./usuarios.html" >
+                        <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Usuários</span>
                     </a>
 
@@ -207,8 +207,8 @@
             <header class="app-header">
                 <div class="app-header-panel">
                     <div>
-                        <h1 class="app-header-title">Usuários</h1>
-                        <p class="app-header-subtitle">Gerenciamento de usuários</p>
+                        <h1 class="app-header-title">Saídas</h1>
+                        <p class="app-header-subtitle">Gerenciamento de saídas</p>
                     </div>
 
                     <div class="app-header-profile">
@@ -223,19 +223,19 @@
                         <label class="users-search-field" for="busca-usuarios">
                             <span>Nome:</span>
                             <span class="users-search-box">
-                                <input id="busca-usuarios" type="search" placeholder="Augustinho" autocomplete="off">
+                                <input id="busca-usuarios" type="search" placeholder="Biscoito Globo" autocomplete="off">
                                 <img src="../../docs/img/icons/search.svg" alt="">
                             </span>
                         </label>
 
-                        <a href="./cadastro.html" class="btn-new-user">
+                        <a href="./em-breve.html" class="btn-new-user">
                             <img src="../../docs/img/icons/add-circle.svg" alt="">
-                            <span>Novo Usuário</span>
+                            <span>Nova Saída</span>
                         </a>
                     </div>
 
                     <div class="users-table-card">
-                        <div class="users-table-title">
+                        <!-- <div class="users-table-title">
                             <img src="../../docs/img/icons/people-team.svg" alt="">
                             <span>Usuários cadastrados</span>
                         </div>
@@ -259,7 +259,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </section>
