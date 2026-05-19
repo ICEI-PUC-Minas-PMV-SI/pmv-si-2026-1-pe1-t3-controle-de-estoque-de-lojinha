@@ -10,13 +10,100 @@
     <script src="../java-script/login.js" defer></script>
     <script defer>
          
+        function escapeHtml(valor) {
+            const mapa = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            };
+
+            return String(valor ?? "").replace(/[&<>"']/g, caractere => mapa[caractere]);
+        }
+
+        function formataGrupo(usuario) {
+            let grupo = usuario.grupo || usuario.grupoDePermissoes || usuario.setor;
+
+            if (!grupo && usuario.login && usuario.login.toLowerCase().includes("adm")) {
+                grupo = "Administradores";
+            }
+
+            if (!grupo) {
+                grupo = "Gerentes";
+            }
+
+            const grupos = {
+                admin: "Admin",
+                administrador: "Administradores",
+                administradores: "Administradores",
+                gerente: "Gerentes",
+                gerentes: "Gerentes",
+                operador: "Operadores",
+                operadores: "Operadores",
+                visitante: "Visitantes",
+                visitantes: "Visitantes"
+            };
+
+            return grupos[String(grupo).toLowerCase()] || grupo;
+        }
+
+        function formataStatus(usuario) {
+            return usuario.status || "Ativo";
+        }
+
+        function formataDataUsuario(usuario) {
+            const dataBruta = usuario.criadoEm || usuario.dataCadastro || usuario.createdAt || usuario.created_at;
+
+            if (!dataBruta) {
+                return "01/01/2026";
+            }
+
+            if (/^\d{2}\/\d{2}\/\d{4}$/.test(dataBruta)) {
+                return dataBruta;
+            }
+
+            const data = new Date(dataBruta);
+
+            if (Number.isNaN(data.getTime())) {
+                return dataBruta;
+            }
+
+            return data.toLocaleDateString("pt-BR");
+        }
+
         function exibeUsuarios() {
             
             // Popula a tabela com os registros do banco de dados
             let listaUsuarios = '';
-            for (i = 0; i < db_usuarios.usuarios.length; i++) {
-                let usuario = db_usuarios.usuarios[i];
-                listaUsuarios += `<tr><td scope="row">${usuario.nome}</td><td>${usuario.login}</td><td>${usuario.email}</td></tr>`;
+            const filtro = document.getElementById("busca-usuarios")?.value.trim().toLowerCase() || "";
+            const usuariosFiltrados = (db_usuarios.usuarios || []).filter(usuario => {
+                const textoBusca = `${usuario.nome || ""} ${usuario.email || ""} ${usuario.login || ""}`.toLowerCase();
+
+                return textoBusca.includes(filtro);
+            });
+
+            if (usuariosFiltrados.length === 0) {
+                document.getElementById("table-usuarios").innerHTML = `
+                    <tr class="empty-row">
+                        <td colspan="5">Nenhum usuário encontrado</td>
+                    </tr>
+                `;
+                return;
+            }
+
+            for (let i = 0; i < usuariosFiltrados.length; i++) {
+                let usuario = usuariosFiltrados[i];
+                const status = formataStatus(usuario);
+                const statusClasse = status.toLowerCase().includes("inat") ? "inactive" : "active";
+
+                listaUsuarios += `<tr>
+                    <td class="cell-strong">${escapeHtml(usuario.nome || usuario.login || "-")}</td>
+                    <td>${escapeHtml(usuario.email || usuario.login || "-")}</td>
+                    <td><span class="user-tag">${escapeHtml(formataGrupo(usuario))}</span></td>
+                    <td><span class="user-status user-status-${statusClasse}">${escapeHtml(status)}</span></td>
+                    <td>${escapeHtml(formataDataUsuario(usuario))}</td>
+                </tr>`;
             }
 
             // Substitui as linhas do corpo da tabela
@@ -36,6 +123,12 @@
 
             // Lista os usuários 
             exibeUsuarios ();
+
+            const campoBusca = document.getElementById("busca-usuarios");
+
+            if (campoBusca) {
+                campoBusca.addEventListener("input", exibeUsuarios);
+            }
         }
 
         // Associa ao evento de carga da página a função para verificar se o usuário está logado
@@ -122,39 +215,50 @@
                 </div>
             </header>
 
-            <section class="app-content usuarios-content" aria-label="Conteúdo do usuarios">
-        <div class="container">
-             
-        <div class="row">
-                         <div class="headcont">
-                            <a href="./cadastro.html">
-                            <button class="btn-new-user">
-                                <!-- <img src="../../docs/img/icons/012-add-user.svg" alt=""> -->
-                                Novo usuário
-                            </button>
+            <section class="app-content usuarios-content" aria-label="Conteúdo de usuários">
+                <div class="users-page-panel">
+                    <div class="users-toolbar">
+                        <label class="users-search-field" for="busca-usuarios">
+                            <span>Nome:</span>
+                            <span class="users-search-box">
+                                <input id="busca-usuarios" type="search" placeholder="Augustinho" autocomplete="off">
+                                <img src="../../docs/img/icons/search.svg" alt="">
+                            </span>
+                        </label>
+
+                        <a href="./cadastro.html" class="btn-new-user">
+                            <img src="../../docs/img/icons/add-circle.svg" alt="">
+                            <span>Novo Usuário</span>
                         </a>
                     </div>
-            <div class="col-sm-12">
-                <table id="grid-usuarios" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">login</th>
-                            <th scope="col">E-mail</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-usuarios">
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
+
+                    <div class="users-table-card">
+                        <div class="users-table-title">
+                            <img src="../../docs/img/icons/people-team.svg" alt="">
+                            <span>Usuários cadastrados</span>
+                        </div>
+
+                        <div class="users-table-wrap">
+                            <table id="grid-usuarios">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">E-mail</th>
+                                        <th scope="col">Grupo</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Criado em</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-usuarios">
+                                    <tr class="empty-row">
+                                        <td colspan="5">Carregando usuários...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
         </main>
     </div>
