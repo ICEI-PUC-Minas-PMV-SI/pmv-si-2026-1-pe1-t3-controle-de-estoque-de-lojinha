@@ -1,55 +1,97 @@
-'<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrada de produtos</title>
+
     <link rel="stylesheet" href="../css/produtos.css">
 </head>
+
 <body>
 
     <div class="container">
+
         <h1>Nova Entrada de Produto</h1>
 
         <div>
-            <label>Produto</label>
-            <input id="produto" type="text" placeholder="Buscar produto por nome ou código...">
-        </div>
-        
-        <div>
-            <label>Quantidade</label>
-            <input id="quantidade" type="number" placeholder="0">
+            <label for="produto">Produto</label>
+
+            <input 
+                id="produto"
+                type="text"
+                placeholder="Buscar produto por nome ou código..."
+            >
         </div>
 
         <div>
-            <label>Preço Unitário</label>
-            <input id="preco" type="number" placeholder="R$0.00" step="R$0.01">
+            <label for="quantidade">Quantidade</label>
+
+            <input 
+                id="quantidade"
+                type="number"
+                placeholder="0"
+            >
         </div>
 
         <div>
-            <label>Fornecedor</label>
-           <input id="fornecedor" type="text" placeholder="Nome do Fornecedor">
+            <label for="preco">Preço Unitário</label>
+
+            <input 
+                id="preco"
+                type="number"
+                placeholder="R$ 0,00"
+                step="0.01"
+            >
         </div>
 
         <div>
-            <label>Nota Fiscal</label>
-            <input id="notaFiscal" type="text" placeholder="N° da NF">
+            <label for="fornecedor">Fornecedor</label>
+
+            <input 
+                id="fornecedor"
+                type="text"
+                placeholder="Nome do fornecedor"
+            >
         </div>
 
         <div>
-            <label>Data</label>
-           <input id="data" type="date">
+            <label for="notaFiscal">Nota Fiscal</label>
+
+            <input 
+                id="notaFiscal"
+                type="text"
+                placeholder="N° da NF"
+            >
         </div>
 
         <div>
-            <label>Observações</label>
-           <input id="observacoes" type="text" placeholder="Observações opcionais...">
+            <label for="data">Data</label>
+
+            <input 
+                id="data"
+                type="date"
+            >
         </div>
- 
-       <button id="btnCadastrar">Registrar Entrada</button>
+
+        <div>
+            <label for="observacoes">Observações</label>
+
+            <input 
+                id="observacoes"
+                type="text"
+                placeholder="Observações opcionais..."
+            >
+        </div>
+
+        <button id="btnCadastrar">
+            Registrar Entrada
+        </button>
+
     </div>
-<script src="../java-script/login.js"></script>    
-<script src="../java-script/cadastrop.js"></script>
+
+    <script src="../js/produtos.js"></script>
 
 </body>
 </html>
