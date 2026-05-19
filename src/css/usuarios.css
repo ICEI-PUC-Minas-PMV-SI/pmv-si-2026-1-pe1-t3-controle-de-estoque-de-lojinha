@@ -2,7 +2,7 @@
 
 .usuarios-content {
     color: var(--app-text);
-    padding-left: 8px;
+    overflow: visible;
 }
 
 .users-page-panel {
@@ -18,7 +18,7 @@
     background: linear-gradient(180.03deg, #fafafa 0%, #ffffff 80.29%);
     border: 1px solid rgba(255, 255, 255, 0);
     border-radius: 16px;
-    box-shadow: 0 0 10px rgba(4, 4, 4, 0.1);
+    box-shadow: var(--app-shadow);
 }
 
 .users-toolbar {
@@ -89,7 +89,7 @@
     background-color: var(--app-active-color);
     border: 0;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(4, 4, 4, 0.1);
+    box-shadow: var(--app-card-shadow);
     font-family: "Inter", var(--app-font);
     font-size: 13px;
     font-weight: 600;
