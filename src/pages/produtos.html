@@ -1,135 +1,165 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos</title>
-
+    <title>produtos</title>
     <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/produtos.css">
+    <link rel="stylesheet" href="../css/usuarios.css">
+    <script src="../java-script/login.js" defer></script>
+    <script defer>
+         
+
+    function exibeProdutos() {
+
+        let listaProdutos = '';
+
+        for (i = 0; i < db_produtos.produtos.length; i++) {
+
+            let produto = db_produtos.produtos[i];
+
+            listaProdutos += `
+                <tr>
+                    <td>${produto.id}</td>
+                    <td>${produto.nome}</td>
+                    <td>${produto.categoria}</td>
+                    <td>${produto.limite}</td>
+                    <td>${produto.quantidade}</td>
+                    <td>${produto.preco}</td>
+                    <td>Ativo</td>
+                </tr>
+            `;
+        }
+
+        document.getElementById("table-produtos").innerHTML = listaProdutos;
+    }
+
+    </script>
 </head>
 
-<body class="app-page produtos-page" style="--app-active-color: #7b98bb;">
-
+<body class="app-page usuarios-page" style="--app-active-color: #7b98bb;">
     <div class="app-shell">
-
-        <!-- SIDEBAR -->
-        <aside class="app-sidebar">
-
-            <a class="app-sidebar-brand" href="./usuarios.html">
-                <img src="../../docs/img/logo.header.svg" alt="Logo">
-
-                <span class="app-sidebar-brand-title">
-                    Estoque<br>Search
-                </span>
+        <aside class="app-sidebar" aria-label="Navegação principal">
+            <a class="app-sidebar-brand" href="./usuarios.html" aria-label="Ir para o usuarios">
+                <img src="../../docs/img/logo.header.svg" alt="Logo Estoque Search">
+                <span class="app-sidebar-brand-title">Estoque<br>Search</span>
             </a>
 
             <div class="app-sidebar-panel">
-
-                <nav class="app-sidebar-nav">
+                <nav class="app-sidebar-nav" aria-label="Menu principal">
 
                     <a class="app-sidebar-nav-item" href="./dashboard.html">
-                        <img src="../../docs/img/icons/00-abas-dashboard.svg" alt="">
-                        <span>Dashboard</span>
+                        <img src="../../docs/img/icons/00-abas-dashboard.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Dashboard</span>
                     </a>
 
-                    <a class="app-sidebar-nav-item" href="./produtos.html">
-                        <img src="../../docs/img/icons/01-abas-produtos.svg" alt="">
-                        <span>Produtos</span>
+                    <a class="app-sidebar-nav-item" href="./produtos.html"aria-current="page">
+                        <img src="../../docs/img/icons/01-abas-off_produtos.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Produtos</span>
                     </a>
 
                     <a class="app-sidebar-nav-item" href="./saidas.html">
-                        <img src="../../docs/img/icons/02-abas-saidas.svg" alt="">
-                        <span>Saídas</span>
+                        <img src="../../docs/img/icons/02-abas-saidas.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Saídas</span>
                     </a>
 
                     <a class="app-sidebar-nav-item" href="./relatorios.html">
-                        <img src="../../docs/img/icons/03-abas-relatorios.svg" alt="">
-                        <span>Relatórios</span>
+                        <img src="../../docs/img/icons/03-abas-relatorios.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Relatórios</span>
                     </a>
 
                     <a class="app-sidebar-nav-item" href="./usuarios.html">
-                        <img src="../../docs/img/icons/04-abas-off-usuarios.svg" alt="">
-                        <span>Usuários</span>
+                        <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Usuários</span>
                     </a>
 
+                    <a class="app-sidebar-nav-item" href="#">
+                        <img src="../../docs/img/icons/05-abas-calculadora.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Calculadora</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="#">
+                        <img src="../../docs/img/icons/06-abas-config.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Configurações</span>
+                    </a>
                 </nav>
+                <div class="app-sidebar-footer">
+                    <div class="app-sidebar-user-card">
+                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg" alt="Foto do usuário">
 
-            </div>
-
-        </aside>
-
-        <!-- MAIN -->
-        <main class="app-main">
-
-            <header class="app-header">
-
-                <div class="app-header-panel">
-
-                    <div>
-                        <h1 class="app-header-title">Produtos</h1>
-
-                        <p class="app-header-subtitle">
-                            Gerenciamento de produtos
-                        </p>
+                        <div class="app-sidebar-user-info">
+                            <span class="app-sidebar-user-label">Seu grupo:</span>
+                            <strong class="app-sidebar-user-group">Gerentes</strong>
+                        </div>
                     </div>
 
+                    <a class="app-sidebar-logout" href="./login.html">
+                        <img class="app-sidebar-logout-icon" src="../../docs/img/icons/011-exit.svg" alt="">
+                        <span>Sair</span>
+                    </a>
                 </div>
+            </div>
+        </aside>
 
+        <main class="app-main">
+            <header class="app-header">
+                <div class="app-header-panel">
+                    <div>
+                        <h1 class="app-header-title">Produtos</h1>
+                        <p class="app-header-subtitle">Gerenciamento de produtos</p>
+                    </div>
+
+                    <div class="app-header-profile">
+                        <img src="../../docs/img/15_foto_perfil.svg" alt="Foto do perfil">
+                    </div>
+                </div>
             </header>
 
-            <section class="app-content">
-
-                <div class="container">
-
-                    <!-- BOTÃO -->
-                    <a href="./cadProdutos.html">
-
-                        <button class="btn-new-user">
-
-                            <img src="../../docs/img/icons/012-add-user.svg" alt="">
-
-                            Novo produto
-
-                        </button>
-
-                    </a>
-
-                    <!-- TABELA -->
-                    <table class="table table-striped">
-
-                        <thead>
-
-                            <tr>
-                                <th>Nome</th>
-                                <th>Quantidade</th>
-                                <th>Preço</th>
-                                <th>Fornecedor</th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="table-produtos">
-
-                            <tr>
-                                <td>Bolacha</td>
-                                <td>10</td>
-                                <td>R$ 5,00</td>
-                                <td>Fornecedor Danix</td>
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </section>
+            <section class="app-content produtos-content" aria-label="Conteúdo do produtos">
+        <div class="container">
+             
+        <div class="row">
+                         <div class="headcont">
+                            <a href="./cadastrop.html">
+                            <button class="btn-new-product">
+                               <!-- <img src="../../docs/img/icons/013-add-product.svg" alt="">-->
+                                Novo produto
+                            </button>
+                        </a>
+                    </div>
+            <div class="col-sm-13">
+                <table id="grid-produtos" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Limite</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-produtos">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
 
         </main>
-
     </div>
-
 </body>
+
 </html>

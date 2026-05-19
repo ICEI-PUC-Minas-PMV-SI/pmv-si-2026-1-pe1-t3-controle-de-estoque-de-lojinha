@@ -155,6 +155,24 @@
     font-size: 13px;
 }
 
+.headcont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 20px;
+  margin-bottom: 25px;
+  padding: 5px;
+  color: var(--app-text);
+  background-color: blue;
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-card-shadow);
+
+}
+
+th[scope="col"] {
+    background-color: var(--app-muted-text);
+    border-radius: 8px;
+
 #grid-usuarios th,
 #grid-usuarios td {
     overflow: hidden;
@@ -165,11 +183,8 @@
 #grid-usuarios thead th {
     padding: 16px 20px;
     color: var(--app-muted-text);
-    background-color: #f5f5fa;
-    font-size: 12px;
-    font-weight: 600;
-    text-align: left;
-}
+    padding: 10px;
+    text-align: right;
 
 #grid-usuarios thead th:first-child {
     border-top-left-radius: 12px;
