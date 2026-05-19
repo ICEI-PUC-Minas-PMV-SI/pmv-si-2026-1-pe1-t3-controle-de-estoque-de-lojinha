@@ -1,91 +1,64 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Inter",sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
-body{
-background:#f4f6f9;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-padding:30px;
+body {
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-.container{
-width:600px;
-background:#f8f8fa;
-padding:40px;
-border-radius:12px;
-box-shadow:0 4px 10px rgba(0,0,0,0.08);
-display:flex;
-flex-direction:column;
-gap:22px;
+.container {
+    width: 600px;
+    background: #f8f8fa;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.container h1{
-font-size:28px;
-font-weight:700;
-color:#1e1e2b;
-margin-bottom:10px;
+h1 {
+    font-size: 26px;
+    color: #1e1e2b;
 }
 
-.container div{
-display:flex;
-flex-direction:column;
-gap:8px;
+label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
 }
 
-label{
-font-size:14px;
-font-weight:500;
-color:#33333f;
+input {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #d8d8e0;
+    outline: none;
 }
 
-input{
-width:100%;
-height:50px;
-border:1px solid #d8d8e0;
-border-radius:10px;
-padding:0 16px;
-font-size:14px;
-background:#ffffff;
-outline:none;
-transition:0.3s;
+input:focus {
+    border-color: #7b98bb;
 }
 
-input:focus{
-border-color:#7b98bb;
-box-shadow:0 0 5px rgba(123,152,187,0.3);
+button {
+    height: 50px;
+    background: #7b98bb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-input::placeholder{
-color:#adadb7;
-}
-
-button{
-width:100%;
-height:52px;
-background:#7b98bb;
-border:none;
-border-radius:10px;
-color:white;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-transition:0.3s;
-margin-top:10px;
-}
-
-button:hover{
-background:#6987ab;
-}
-
-@media(max-width:768px){
-
-.container{
-width:100%;
-padding:25px;
+button:hover {
+    background: #6987ab;
 }
