@@ -51,6 +51,8 @@ localStorage.setItem('db_produtos', JSON.stringify(db_produtos));
 
 alert("Produto cadastrado com sucesso!");
 
+window.location.href = "./produtos.html";
+
 console.log(produto);
 
 document.getElementById('produto').value="";
