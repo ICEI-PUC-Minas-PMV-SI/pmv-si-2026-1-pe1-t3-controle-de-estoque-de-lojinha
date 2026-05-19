@@ -1,33 +1,106 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>produtos</title>
+    <title>Produtos</title>
     <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/usuarios.css">
+    <link rel="stylesheet" href="../css/produtos.css">
     <script src="../java-script/login.js" defer></script>
     <script defer>
          
+          const db_produtos = JSON.parse(localStorage.getItem('db_produtos')) || {
+        produtos: []
+    };
+
+    function escapeHtml(valor) {
+
+        const mapa = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        };
+
+        return String(valor ?? "").replace(/[&<>"']/g, caractere => mapa[caractere]);
+    }
+
+    function formataStatus(produto) {
+
+        if (!produto.quantidade || Number(produto.quantidade) <= 0) {
+            return "Sem estoque";
+        }
+
+        return "Disponível";
+    }
 
     function exibeProdutos() {
 
         let listaProdutos = '';
 
-        for (i = 0; i < db_produtos.produtos.length; i++) {
+        const filtro = document.getElementById("busca-produtos")?.value.trim().toLowerCase() || "";
 
-            let produto = db_produtos.produtos[i];
+        const produtosFiltrados = (db_produtos.produtos || []).filter(produto => {
+
+            const textoBusca = `
+                ${produto.nome || ""}
+                ${produto.fornecedor || ""}
+                ${produto.notaFiscal || ""}
+            `.toLowerCase();
+
+            return textoBusca.includes(filtro);
+        });
+
+        if (produtosFiltrados.length === 0) {
+
+            document.getElementById("table-produtos").innerHTML = `
+                <tr class="empty-row">
+                    <td colspan="6">Nenhum produto encontrado</td>
+                </tr>
+            `;
+
+            return;
+        }
+
+        for (let i = 0; i < produtosFiltrados.length; i++) {
+
+            let produto = produtosFiltrados[i];
+
+            const status = formataStatus(produto);
+
+            const statusClasse =
+                status.toLowerCase().includes("sem")
+                    ? "inactive"
+                    : "active";
 
             listaProdutos += `
                 <tr>
-                    <td>${produto.id}</td>
-                    <td>${produto.nome}</td>
-                    <td>${produto.categoria}</td>
-                    <td>${produto.limite}</td>
-                    <td>${produto.quantidade}</td>
-                    <td>${produto.preco}</td>
-                    <td>Ativo</td>
+
+                    <td class="cell-strong">
+                        ${escapeHtml(produto.nome || "-")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(produto.quantidade || "-")}
+                    </td>
+
+                    <td>
+                        R$ ${escapeHtml(produto.preco || "-")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(produto.fornecedor || "-")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(produto.notaFiscal || "-")}
+                    </td>
+
+                    <td>
+                        <span class="user-status user-status-${statusClasse}">
+                            ${escapeHtml(status)}
+                        </span>
+                    </td>
+
                 </tr>
             `;
         }
@@ -35,6 +108,24 @@
         document.getElementById("table-produtos").innerHTML = listaProdutos;
     }
 
+    function initPage() {
+
+        if (!usuarioCorrente.login) {
+            window.location.href = LOGIN_URL;
+        }
+
+        exibeProdutos();
+
+        const campoBusca = document.getElementById("busca-produtos");
+
+        if (campoBusca) {
+            campoBusca.addEventListener("input", exibeProdutos);
+        }
+    }
+
+    window.addEventListener('load', initPage);
+
+        
     </script>
 </head>
 
@@ -54,7 +145,7 @@
                         <span class="app-sidebar-nav-label">Dashboard</span>
                     </a>
 
-                    <a class="app-sidebar-nav-item" href="./produtos.html"aria-current="page">
+                    <a class="app-sidebar-nav-item" href="./produtos.html" aria-current="page">
                         <img src="../../docs/img/icons/01-abas-off_produtos.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Produtos</span>
                     </a>
@@ -116,47 +207,51 @@
                 </div>
             </header>
 
-            <section class="app-content produtos-content" aria-label="Conteúdo do produtos">
-        <div class="container">
-             
-        <div class="row">
-                         <div class="headcont">
-                            <a href="./cadastrop.html">
-                            <button class="btn-new-product">
-                               <!-- <img src="../../docs/img/icons/013-add-product.svg" alt="">-->
-                                Novo produto
-                            </button>
+            <section class="app-content produtos-content" aria-label="Conteúdo de produtos">
+                <div class="users-page-panel">
+                    <div class="users-toolbar">
+                        <label class="users-search-field" for="busca-produtos">
+                            <span>Produto:</span>
+                            <span class="users-search-box">
+                                <input id="busca-produtos" type="search" placeholder="Biscoito" autocomplete="off">
+                                <img src="../../docs/img/icons/search.svg" alt="">
+                            </span>
+                        </label>
+
+                        <a href="./cadastrop.html" class="btn-new-user">
+                            <img src="../../docs/img/icons/add-circle.svg" alt="">
+                            <span>Novo Produto</span>
                         </a>
                     </div>
-            <div class="col-sm-13">
-                <table id="grid-produtos" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Código</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Limite</th>
-                            <th scope="col">Quantidade</th>
-                            <th scope="col">Preço</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-produtos">
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
+
+                    <div class="users-table-card">
+                        <div class="users-table-title">
+                            <img src="../../docs/img/icons/01-abas-produtos.svg" alt="">
+                            <span>Produtos cadastrados</span>
+                        </div>
+
+                        <div class="users-table-wrap">
+                            <table id="grid-usuarios">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Produto</th>
+                                        <th scope="col">Quantidade</th>
+                                        <th scope="col">Preço</th>
+                                        <th scope="col">Fornecedor</th>
+                                        <th scope="col">Nota Fiscal</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-produtos">
+                                    <tr class="empty-row">
+                                        <td colspan="6">Carregando produtos...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
         </main>
     </div>
