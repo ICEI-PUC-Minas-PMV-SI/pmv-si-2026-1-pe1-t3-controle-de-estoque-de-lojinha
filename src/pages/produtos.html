@@ -100,6 +100,18 @@
                             ${escapeHtml(status)}
                         </span>
                     </td>
+                    <td>
+                        <button
+                           type="button"
+                           onclick="editarProduto('${produto.id}')">
+                           Editar
+                        </button>
+                        <button
+                           type="button"
+                           onclick="excluirProduto('${produto.id}')">
+                           Excluir
+                        </button>
+                    </td>
 
                 </tr>
             `;
@@ -107,7 +119,25 @@
 
         document.getElementById("table-produtos").innerHTML = listaProdutos;
     }
+    function excluirProduto(id){
+        const confirmar = confirm("Deseja excluir este produto?");
+        if(!confirmar){
+            return; 
+        }
+        db_produtos.produtos = db_produtos.produtos.filter(produto => produto.id !== id);
+        localStorage.setItem('db_produtos', JSON.stringify(db_produtos));
+        exibeProdutos();    
+    }
+    function editarProduto(id) {
 
+    localStorage.setItem(
+        'produtoEdicao',
+        id
+    );
+
+    window.location.href =
+        './cadastrop.html';
+}
     function initPage() {
 
         if (!usuarioCorrente.login) {
@@ -240,11 +270,13 @@
                                         <th scope="col">Fornecedor</th>
                                         <th scope="col">Nota Fiscal</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Ações</th>
+                                        </tr>
                                     </tr>
                                 </thead>
                                 <tbody id="table-produtos">
                                     <tr class="empty-row">
-                                        <td colspan="6">Carregando produtos...</td>
+                                        <td colspan="7">Carregando produtos...</td>
                                     </tr>
                                 </tbody>
                             </table>
