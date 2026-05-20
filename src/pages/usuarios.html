@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/usuarios.css">
     <script src="../java-script/login.js" defer></script>
     <script defer>
-         
+
         function escapeHtml(valor) {
             const mapa = {
                 "&": "&amp;",
@@ -103,8 +103,21 @@
                     <td><span class="user-tag">${escapeHtml(formataGrupo(usuario))}</span></td>
                     <td><span class="user-status user-status-${statusClasse}">${escapeHtml(status)}</span></td>
                     <td>${escapeHtml(formataDataUsuario(usuario))}</td>
-                    <td><button type="button">Editar</button></td>
-                    <td><button type="button">Excluir</button></td>
+                    <td>
+    <button
+        type="button"
+        onclick="editarUsuario('${usuario.id}')">
+        Editar
+    </button>
+</td>
+
+<td>
+    <button
+        type="button"
+        onclick="excluirUsuario('${usuario.id}')">
+        Excluir
+    </button>
+</td>
                 </tr>`;
             }
 
@@ -112,19 +125,49 @@
             document.getElementById("table-usuarios").innerHTML = listaUsuarios
 
         }
+function excluirUsuario(id) {
 
+    const confirmar = confirm(
+        "Deseja excluir este usuário?"
+    );
+
+    if (!confirmar) {
+        return;
+    }
+
+    db_usuarios.usuarios =
+        db_usuarios.usuarios.filter(
+            usuario => usuario.id !== id
+        );
+
+    localStorage.setItem(
+        'db_usuarios',
+        JSON.stringify(db_usuarios)
+    );
+
+    exibeUsuarios();
+}
+
+function editarUsuario(id) {
+
+    localStorage.setItem(
+        'usuarioEdicao',
+        id
+    );
+
+    window.location.href =
+        './cadastro.html';
+}
         function initPage() {
 
-            // Associa a função de logout ao botão fica logo abaixo
-            //---botão de logout para configurar em js depois---
-            
-            // Verifica se o usuário já esta logado e se negativo, redireciona para tela de login 
+
         if (!usuarioCorrente.login) {
             window.location.href = LOGIN_URL;
         }
 
-            // Lista os usuários 
+
             exibeUsuarios ();
+
 
             const campoBusca = document.getElementById("busca-usuarios");
 
@@ -133,7 +176,7 @@
             }
         }
 
-        // Associa ao evento de carga da página a função para verificar se o usuário está logado
+
         window.addEventListener('load', initPage);
         
     </script>

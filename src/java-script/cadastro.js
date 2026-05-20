@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Sistema de Cadastro Inicializado...");
 });
+const idEdicao =
+    localStorage.getItem('usuarioEdicao');
 
 const dadosIniciais = {
     usuarios: [
@@ -30,6 +32,44 @@ const dadosIniciais = {
 };
 
 const formCadastro = document.getElementById("registroForm");
+
+if (idEdicao) {
+
+    const usuariosJSON =
+        localStorage.getItem("db_usuarios");
+
+    const db_usuarios =
+        JSON.parse(usuariosJSON);
+
+    const usuario =
+        db_usuarios.usuarios.find(
+            u => u.id === idEdicao
+        );
+
+    if (usuario) {
+
+        document.getElementById("nome").value =
+            usuario.nome || "";
+
+        document.getElementById("email").value =
+            usuario.email || "";
+
+        document.getElementById("senha").value =
+            usuario.senha || "";
+
+        document.getElementById("confirmar-senha").value =
+            usuario.senha || "";
+
+        // marca o radio do grupo
+        const radioGrupo = document.querySelector(
+            `input[name="grupo-permissoes"][value="${usuario.grupo}"]`
+        );
+
+        if (radioGrupo) {
+            radioGrupo.checked = true;
+        }
+    }
+}
 
 formCadastro.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -73,7 +113,7 @@ formCadastro.addEventListener("submit", (event) => {
     }
 
     const novoUsuario = {
-        id: generateUUID(),
+        id: idEdicao || generateUUID(),
         login: email,
         senha: senha,
         nome: nome,
@@ -84,11 +124,48 @@ formCadastro.addEventListener("submit", (event) => {
         criadoEm: new Date().toISOString()
     };
 
-    db_usuarios.usuarios.push(novoUsuario);
-    localStorage.setItem("db_usuarios", JSON.stringify(db_usuarios));
+    if (idEdicao) {
 
-    alert("Cadastro salvo com sucesso!");
-    window.location.href = "usuarios.html";
+    const index = db_usuarios.usuarios.findIndex(
+        usuario => usuario.id === idEdicao
+    );
+
+    if (index !== -1) {
+
+        db_usuarios.usuarios[index] = {
+            ...db_usuarios.usuarios[index],
+            ...novoUsuario
+        };
+
+        localStorage.setItem(
+            "db_usuarios",
+            JSON.stringify(db_usuarios)
+        );
+
+        localStorage.removeItem(
+            "usuarioEdicao"
+        );
+
+        alert("Usuário atualizado com sucesso!");
+
+        window.location.href = "usuarios.html";
+
+        return;
+    }
+}
+
+
+
+db_usuarios.usuarios.push(novoUsuario);
+
+localStorage.setItem(
+    "db_usuarios",
+    JSON.stringify(db_usuarios)
+);
+
+alert("Cadastro salvo com sucesso!");
+
+window.location.href = "usuarios.html";
 });
 
 function generateUUID() {
