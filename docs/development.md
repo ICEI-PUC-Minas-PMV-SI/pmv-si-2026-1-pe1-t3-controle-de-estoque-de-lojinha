@@ -27,20 +27,11 @@ As tabelas que se seguem apresentam os requisitos funcionais e não-funcionais q
 
 |ID    | Descrição do Requisito | Responsável | Artefato Criado |
 |------|------------------------|------------|-----------------|
-|RF-001| O sistema deve permitir cadastro de produtos no estoque | Maria | cadastrop.html |
-|RF-002| O sistema deve permitir registrar entrada de produtos | Ana Paula | cadastro-noticia.html x |
-|RF-003| O sistema deve permitir registrar saída de produtos | Ana Paula | cadastro-noticia.html x |
-|RF-004| O sistema deve permitir a consulta da quantidade disponível de cada produto, buscando por nome, categoria ou código | Ana Paula | cadastro-noticia.html x |
-|RF-005| O sistema deve permitir alterar informações dos produtos | Gabriel Lana | cadastrop.html |
-|RF-006| O sistema deve permitir o login de usuários para acesso ao sistema conforme seu perfil | Gabriel Lana | login.html |
-|RF-007| O sistema deve permitir o gerenciamento de usuários pelo administrador | Samuel | usuarios.html |
-|RF-008| O sistema deve permitir cadastro de usuários | Gabriel Yuri | cadastro.html |
-|RF-009| O sistema deve exibir relatórios de movimentação de entrada e saída de produtos | Ana Paula | cadastro-noticia.html x |
-|RF-010| O sistema deve alertar quando a quantidade de um produto estiver abaixo do nível mínimo definido | Ana Paula | cadastro-noticia.html x |
-|RF-011| O sistema deve ter uma calculadora | Ana Paula | cadastro-noticia.html x |
-|RF-012| O sistema pode acrescentar descontos | Ana Paula | cadastro-noticia.html x |
-|RF-013| O sistema deve exibir o horário de funcionamento da loja | Ana Paula | cadastro-noticia.html x |
-
+|RF-001| O sistema deve permitir cadastro de produtos no estoque | Maria/Gabriel Lana | cadastrop.html, cadastrop.js, produtos.html|
+|RF-005| O sistema deve permitir alterar informações dos produtos | Gabriel Lana | cadastrop.html, cadastrop.js |
+|RF-006| O sistema deve permitir o login de usuários para acesso ao sistema conforme seu perfil | Gabriel Lana/Gabriel Yuri | login.html, login.js |
+|RF-007| O sistema deve permitir o gerenciamento de usuários pelo administrador | Samuel | usuarios.html e js |
+|RF-008| O sistema deve permitir cadastro de usuários | Gabriel Yuri/Samuel | cadastro.html, cadastro.js |
 
 
 ## Descrição das estruturas:
