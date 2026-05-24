@@ -40,10 +40,10 @@ As tabelas que se seguem apresentam os requisitos funcionais e não-funcionais q
 |  **Nome**      | **Tipo**          | **Descrição**                             | **Exemplo**                                    |
 |:--------------:|-------------------|-------------------------------------------|------------------------------------------------|
 | Id             | UUID (Texto)      | Identificador único do usuário            | a1b2c3d4-e5f6-4g7h-8i9j-0k1l2m3n4o5p         |
-| Login          | Texto             | Email/login para autenticação             | usuario@email.com                              |
+| Login          | Texto             | Email/login para autenticação             | user@gmail.com                              |
 | Senha          | Texto             | Senha para autenticação do usuário        | 123                                            |
-| Nome           | Texto             | Nome completo do usuário                  | João da Silva                                  |
-| Email          | Texto             | Email de contato do usuário               | joao.silva@email.com                           |
+| Nome           | Texto             | Nome completo do usuário                  | Usuario Comum                                  |
+| Email          | Texto             | Email de contato do usuário               | user@gmail.com                           |
 | Grupo          | Texto             | Grupo/Perfil de permissões do usuário     | administradores, gerentes, operadores, visitantes |
 | GrupoDePermissões | Texto          | Grupo de permissões do usuário            | administradores                                |
 | Status         | Texto             | Status do usuário no sistema              | Ativo, Inativo                                 |
@@ -52,12 +52,12 @@ As tabelas que se seguem apresentam os requisitos funcionais e não-funcionais q
 ## Produto
 |  **Nome**      | **Tipo**          | **Descrição**                             | **Exemplo**                                    |
 |:--------------:|-------------------|-------------------------------------------|------------------------------------------------|
-| Id             | UUID (Texto)      | Identificador único do produto            | b2c3d4e5-f6a7-4h8i-9j0k-1l2m3n4o5p6q         |
-| Nome           | Texto             | Nome/descrição do produto                 | Notebook Dell Inspiron 15                      |
-| Quantidade     | Número (Inteiro)  | Quantidade disponível em estoque          | 25                                             |
-| Preço          | Número (Decimal)  | Preço unitário do produto                 | 2499.99                                        |
-| Fornecedor     | Texto             | Nome do fornecedor do produto             | Distribuidor XYZ LTDA                         |
-| NotaFiscal     | Texto             | Número da nota fiscal de entrada          | NF-123456789                                   |
-| Data           | Data              | Data da entrada/última movimentação       | 2026-05-20                                     |
-| Observações    | Texto             | Observações adicionais sobre o produto    | Produto com defeito - aguardando troca         |
+| Id             | UUID (Texto)      | Identificador único do produto            | 3e90b1a4-4e70-45a3-83ce-b803782f7b6f         |
+| Nome           | Texto             | Nome/descrição do produto                 | banana                                         |
+| Quantidade     | Número (Inteiro)  | Quantidade disponível em estoque          | 20                                             |
+| Preço          | Número (Decimal)  | Preço unitário do produto                 | 20                                             |
+| Fornecedor     | Texto             | Nome do fornecedor do produto             | samuel                                         |
+| NotaFiscal     | Texto             | Número da nota fiscal de entrada          | 1234                                           |
+| Data           | Data              | Data da entrada/última movimentação       | 0003-12-25                                     |
+| Observações    | Texto             | Observações adicionais sobre o produto    | cadastro                                       |
 
