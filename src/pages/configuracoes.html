@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/configuracoes.css">
+</head>
+
+<body class="app-page dashboard-page" style="--app-active-color: #7b98bb;">
+    <div class="app-shell">
+        <aside class="app-sidebar" aria-label="Navegação principal">
+            <a class="app-sidebar-brand" href="./dashboard.html" aria-label="Ir para o dashboard">
+                <img src="../../docs/img/logo.header.svg" alt="Logo Estoque Search">
+                <span class="app-sidebar-brand-title">Estoque<br>Search</span>
+            </a>
+
+            <div class="app-sidebar-panel">
+                <nav class="app-sidebar-nav" aria-label="Menu principal" >
+                    <a class="app-sidebar-nav-item" href="./dashboard.html">
+                        <img src="../../docs/img/icons/00-abas-dashboard.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Dashboard</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./produtos.html">
+                        <img src="../../docs/img/icons/01-abas-produtos.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Produtos</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./saidas.html">
+                        <img src="../../docs/img/icons/02-abas-saidas.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Saídas</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./relatorios.html">
+                        <img src="../../docs/img/icons/03-abas-relatorios.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Relatórios</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./usuarios.html" >
+                        <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Usuários</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="em-breve.html">
+                        <img src="../../docs/img/icons/05-abas-calculadora.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Calculadora</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./configuracoes.html" aria-current="page">
+                        <img src="../../docs/img/icons/06-abas-off-config.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Configurações</span>
+                    </a>
+                </nav>
+                <div class="app-sidebar-footer">
+                    <div class="app-sidebar-user-card">
+                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg" alt="Foto do usuário">
+
+                        <div class="app-sidebar-user-info">
+                            <span class="app-sidebar-user-label">Seu grupo:</span>
+                            <strong class="app-sidebar-user-group">Gerentes</strong>
+                        </div>
+                    </div>
+
+                    <a class="app-sidebar-logout" href="./login.html">
+                        <img class="app-sidebar-logout-icon" src="../../docs/img/icons/011-exit.svg" alt="">
+                        <span>Sair</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="app-main">
+            <header class="app-header">
+                <div class="app-header-panel">
+                    <div>
+                        <h1 class="app-header-title">Configurações</h1>
+                        <p class="app-header-subtitle">Ajustes Gerais</p>
+                    </div>
+
+                    <div class="app-header-profile">
+                        <img src="../../docs/img/15_foto_perfil.svg" alt="Foto do perfil">
+                    </div>
+                </div>
+            </header>
+
+            <section class="app-content dashboard-content" aria-label="Conteúdo do dashboard">
+                <div class="dashboard-summary-grid">
+                   
+                </div>
+
+                <div class="dashboard-chart-grid">
+                    <article class="chart-card chart-card-entries">
+                        <h2>Gerenciamento de Permissões</h2>
+                        <nav class="permissions-nav" aria-label="Navegação de permissões">
+                            <a href="#" class="permissions-nav-item">Administradores</a>
+                            <a href="#" class="permissions-nav-item">Gerentes</a>
+                            <a href="#" class="permissions-nav-item">Operadores</a>
+                            <a href="#" class="permissions-nav-item">Visitantes</a>
+                        </nav>
+                    </article>
+
+                    <article class="chart-card chart-card-exits">
+                        <h2>Gráfico de saídas</h2>
+                        <p>Bem-vindo ao Dashboard do Estoque Search!</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
