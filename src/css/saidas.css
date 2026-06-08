@@ -1,20 +1,52 @@
+.app-content {
+    background-color:blueviolet;
+    margin-left: 14px;
+}
+
+#exit-icon {
+
+    display: block;
+}
+
 .product-content{    
     color: var(--app-text);
     overflow: visible;
 }
-
+.product-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 16px;
+}
+.product-toolbar-title {
+    font-family: "Inter", var(--app-font);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--app-text);
+}
+#tit-produtos{
+    align-self: flex-start;
+}
 
 .product-page-panel {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
+    width: fit-content;
     min-width: 0;
-}
-.product-toolbar {
-    background-color:brown;
+    margin-left: 16px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 16px;
+    box-shadow: var(--app-shadow);
+    margin-top: 16px;
+    
 
 }
+
+.product-info{
+ margin-right: 16px;
+}
+
 .product-info input{
     display: flex;
     align-items: center;
@@ -29,20 +61,19 @@
 
 }
 .product-search-field {
-    background-color: blue;
-    padding: 50px;
-    display: flex;
+    
+    display: inline-flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
     min-width: 0;
     color: var(--app-muted-text);
     font-family: "Inter", var(--app-font);
     font-size: 13px;
     font-weight: 500;
+    margin-left: 16px;
 }
 .product-search-box{
-    background-color: green;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -61,3 +92,47 @@
     background-color: transparent;
     border: 0;
 }
+.product-tollbar {
+    display: inline-block;
+}
+.product-toolbar,
+.product-table-card {
+    background: linear-gradient(180.03deg, #fafafa 0%, #ffffff 80.29%);
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 16px;
+    box-shadow: var(--app-shadow);
+}
+.product-actions{
+    display: flex;
+    width: min(480px, 52vw);
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+.btn-new-product{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 0 12px;
+    color: #ffffff;
+    background-color: var(--app-active-color);
+    border: 0;
+    border-radius: var(--app-radius);
+    box-shadow: var(--app-card-shadow);
+    font-family: "Inter", var(--app-font);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-new-product:hover {
+    background-color: #6f8db0;
+    transform: translateY(-1px);
+}
+

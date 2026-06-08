@@ -219,16 +219,21 @@
             </header>
 
             <section class="app-content produtos-content" aria-label="Conteúdo de produtos">
+
                 <div class="product-page-panel">
                     <div class="product-toolbar">
-                        <label class="product-search-field" for="busca-produtos">
-                            <img src="../../docs/img/icons/012-exit-yellow.svg.svg">
-                            <span>Nova Saída de Produto</span>
-                            <span class="product-search-box">
+                        <div class="product-header">
+                        <img  id = "exit-icon" src="../../docs/img/icons/012-exit-yellow.svg.svg">
+                        <h1 class="product-toolbar-title">Nova saída de produto</h1>
+                        </div>
+                        <div class="product-search-field">
+                         <label for="busca-produtos">Produto</label>
+                                <div class="product-search-box">
                                 <input id="busca-produtos" type="search" placeholder="Biscoito Globo" autocomplete="off">
                                 <img src="../../docs/img/icons/search.svg" alt="">
-                            </span>
-                            
+                            </div>
+
+
                             <div class="product-info">
                             <span>Quantidade</span>
                             <span class="quantity-badge">
@@ -265,12 +270,13 @@
                                 placeholder="Observações adicionais">
                             </span>
                              </div>
-                        </label>
-
-                        <a href="./em-breve.html" class="btn-new-user">
+                     </div>
+                        <div class="product-actions">
+                        <a href="./em-breve.html" class="btn-new-product">
                             <img src="../../docs/img/icons/add-circle.svg" alt="">
                             <span>Registrar Saída</span>
                         </a>
+                        </div>
                     </div>
                 </div>
             </section>
