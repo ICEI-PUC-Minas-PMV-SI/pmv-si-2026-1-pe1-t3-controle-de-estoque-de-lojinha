@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/configuracoes.css">
 </head>
 
-<body class="app-page dashboard-page" style="--app-active-color: #7b98bb;">
+<body class="app-page settings-page" style="--app-active-color: #7b98bb;">
     <div class="app-shell">
         <aside class="app-sidebar" aria-label="Navegação principal">
             <a class="app-sidebar-brand" href="./dashboard.html" aria-label="Ir para o dashboard">
@@ -19,7 +19,7 @@
             </a>
 
             <div class="app-sidebar-panel">
-                <nav class="app-sidebar-nav" aria-label="Menu principal" >
+                <nav class="app-sidebar-nav" aria-label="Menu principal">
                     <a class="app-sidebar-nav-item" href="./dashboard.html">
                         <img src="../../docs/img/icons/00-abas-dashboard.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Dashboard</span>
@@ -40,7 +40,7 @@
                         <span class="app-sidebar-nav-label">Relatórios</span>
                     </a>
 
-                    <a class="app-sidebar-nav-item" href="./usuarios.html" >
+                    <a class="app-sidebar-nav-item" href="./usuarios.html">
                         <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Usuários</span>
                     </a>
@@ -57,7 +57,8 @@
                 </nav>
                 <div class="app-sidebar-footer">
                     <div class="app-sidebar-user-card">
-                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg" alt="Foto do usuário">
+                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg"
+                            alt="Foto do usuário">
 
                         <div class="app-sidebar-user-info">
                             <span class="app-sidebar-user-label">Seu grupo:</span>
@@ -87,28 +88,180 @@
                 </div>
             </header>
 
-            <section class="app-content dashboard-content" aria-label="Conteúdo do dashboard">
-                <div class="dashboard-summary-grid">
-                   
-                </div>
+            <section class="app-content settings-content" aria-label="Conteúdo de configurações">
+                <div class="settings-primary-grid">
+                    <article class="settings-card settings-permissions-card">
+                        <header class="settings-card-header">
+                            <h2 class="settings-card-title">Gerenciamento de Permissões</h2>
+                        </header>
 
-                <div class="dashboard-chart-grid">
-                    <article class="chart-card chart-card-entries">
-                        <h2>Gerenciamento de Permissões</h2>
-                        <nav class="permissions-nav" aria-label="Navegação de permissões">
-                            <a href="#" class="permissions-nav-item">Administradores</a>
-                            <a href="#" class="permissions-nav-item">Gerentes</a>
-                            <a href="#" class="permissions-nav-item">Operadores</a>
-                            <a href="#" class="permissions-nav-item">Visitantes</a>
-                        </nav>
+                        <div class="settings-permissions-panel">
+                            <div class="permissions-tabs" aria-label="Perfis de acesso">
+                                <button class="permissions-tab permissions-tab-active" type="button" aria-pressed="true">
+                                    Administradores
+                                </button>
+                                <button class="permissions-tab" type="button" aria-pressed="false">
+                                    Gerentes
+                                </button>
+                                <button class="permissions-tab" type="button" aria-pressed="false">
+                                    Operadores
+                                </button>
+                                <button class="permissions-tab" type="button" aria-pressed="false">
+                                    Visitantes
+                                </button>
+                            </div>
+
+                            <div class="permissions-list">
+                                <div class="permission-row">
+                                    <span class="permission-label">Visualizar Dashboard</span>
+                                    <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
+                                        aria-label="Visualizar Dashboard">
+                                        <span class="settings-switch-knob"></span>
+                                    </button>
+                                </div>
+                                <div class="settings-divider"></div>
+
+                                <div class="permission-row">
+                                    <span class="permission-label">Gerenciar Produtos</span>
+                                    <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
+                                        aria-label="Gerenciar Produtos">
+                                        <span class="settings-switch-knob"></span>
+                                    </button>
+                                </div>
+                                <div class="settings-divider"></div>
+
+                                <div class="permission-row">
+                                    <span class="permission-label">Registrar Entrada / Saída</span>
+                                    <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
+                                        aria-label="Registrar Entrada / Saída">
+                                        <span class="settings-switch-knob"></span>
+                                    </button>
+                                </div>
+                                <div class="settings-divider"></div>
+
+                                <div class="permission-row">
+                                    <span class="permission-label">Acessar Relatórios</span>
+                                    <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
+                                        aria-label="Acessar Relatórios">
+                                        <span class="settings-switch-knob"></span>
+                                    </button>
+                                </div>
+                                <div class="settings-divider"></div>
+
+                                <div class="permission-row">
+                                    <span class="permission-label">Gerenciar Usuários</span>
+                                    <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
+                                        aria-label="Gerenciar Usuários">
+                                        <span class="settings-switch-knob"></span>
+                                    </button>
+                                </div>
+                                <div class="settings-divider"></div>
+
+                                <div class="permission-row">
+                                    <span class="permission-label">Acessar Calculadora</span>
+                                    <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
+                                        aria-label="Acessar Calculadora">
+                                        <span class="settings-switch-knob"></span>
+                                    </button>
+                                </div>
+                                <div class="settings-divider"></div>
+
+                                <div class="permission-row">
+                                    <span class="permission-label">Alterar Configurações</span>
+                                    <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
+                                        aria-label="Alterar Configurações">
+                                        <span class="settings-switch-knob"></span>
+                                    </button>
+                                </div>
+                                <div class="settings-divider"></div>
+
+                                <div class="permission-row">
+                                    <span class="permission-label">Gerar Backup</span>
+                                    <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
+                                        aria-label="Gerar Backup">
+                                        <span class="settings-switch-knob"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </article>
 
-                    <!-- <article class="chart-card chart-card-exits">
-                        <h2>Gráfico de saídas</h2>
-                        <p>Bem-vindo ao Dashboard do Estoque Search!</p>
-                    </article> -->
+                    <article class="settings-card settings-preferences-card">
+                        <header class="settings-card-header">
+                            <h2 class="settings-card-title">Preferências do Sistema</h2>
+                        </header>
+
+                        <div class="preferences-list">
+                            <div class="preference-row">
+                                <div class="preference-copy">
+                                    <h3 class="preference-title">Confirmação de Saída</h3>
+                                    <p class="preference-description">Confirmar antes de registrar saída</p>
+                                </div>
+                                <button class="settings-switch" type="button" aria-pressed="false"
+                                    aria-label="Confirmação de Saída">
+                                    <span class="settings-switch-knob"></span>
+                                </button>
+                            </div>
+                            <div class="settings-divider"></div>
+
+                            <div class="preference-row">
+                                <div class="preference-copy">
+                                    <h3 class="preference-title">Modo Escuro</h3>
+                                    <p class="preference-description">Ativar tema escuro no sistema</p>
+                                </div>
+                                <button class="settings-switch" type="button" aria-pressed="false"
+                                    aria-label="Modo Escuro">
+                                    <span class="settings-switch-knob"></span>
+                                </button>
+                            </div>
+                            <div class="settings-divider"></div>
+
+                            <div class="preference-row">
+                                <div class="preference-copy">
+                                    <h3 class="preference-title">Notificações por E-mail</h3>
+                                    <p class="preference-description">Receber alertas de estoque baixo</p>
+                                </div>
+                                <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
+                                    aria-label="Notificações por E-mail">
+                                    <span class="settings-switch-knob"></span>
+                                </button>
+                            </div>
+                            <div class="settings-divider"></div>
+
+                            <div class="preference-row">
+                                <div class="preference-copy">
+                                    <h3 class="preference-title">Relatórios Automáticos</h3>
+                                    <p class="preference-description">Gerar relatório semanal</p>
+                                </div>
+                                <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
+                                    aria-label="Relatórios Automáticos">
+                                    <span class="settings-switch-knob"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
                 </div>
+
+                <article class="settings-card settings-about-card">
+                    <header class="settings-card-header">
+                        <h2 class="settings-card-title">Sobre o Sistema</h2>
+                    </header>
+
+                    <div class="settings-about-content">
+                        <div class="settings-about-meta">
+                            <span>Versão: 1.0.0</span>
+                            <span class="settings-about-separator" aria-hidden="true">|</span>
+                            <span>Licença: Comercial</span>
+                            <span class="settings-about-separator" aria-hidden="true">|</span>
+                            <span>Suporte: suporte@estoquepro.com</span>
+                        </div>
+                        <p class="settings-copyright">
+                            © 2026 Estoque Search. Todos os direitos reservados.
+                        </p>
+                    </div>
+                </article>
             </section>
+
         </main>
     </div>
 </body>
