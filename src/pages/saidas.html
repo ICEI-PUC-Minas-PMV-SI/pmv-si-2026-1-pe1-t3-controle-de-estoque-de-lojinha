@@ -278,29 +278,34 @@
                     </div>
                 </div>
                     <div class = "recent-exits">
-                    <h1 class="app-header-title">Saídas</h1>
-                                        <div class="users-table-card">
-                        <div class="users-table-title">
-                            <img src="../../docs/img/icons/people-team.svg" alt="">
-                            <span>Usuários cadastrados</span>
+
+                       <div class="recent-exit-header">
+                           <img id = "recent-icon" src="../../docs/img/icons/013-recent-icon.svg" alt="">
+                          <h1 class="app-header-title">Saídas recentes</h1>   
+                       </div>
+
+                      <div class="product-recent-table-card">
+                        <div class="product-recent-table-title">
                         </div>
 
-                        <div class="users-table-wrap">
+                        <div class="product-table-wrap">
                             <table id="grid-usuarios">
                                 <thead>
                                     <tr>
+                                        <th scope="col">Código</th>
                                         <th scope="col">Nome</th>
-                                        <th scope="col">E-mail</th>
-                                        <th scope="col">Grupo</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Criado em</th>
+                                        <th scope="col">Categoria</th>
+                                        <th scope="col">QTD</th>
+                                        <th scope="col">Preço</th>
+                                        <th scope="col">NF</th>
+                                        <th scope="col">Data</th>
                                         <th scope="col">Editar</th>
                                         <th scope="col">Excluir</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-usuarios">
                                     <tr class="empty-row">
-                                        <td colspan="7">Carregando usuários...</td>
+                                        <td colspan="10">Carregando saídas...</td>
                                     </tr>
                                 </tbody>
                             </table>
