@@ -21,6 +21,9 @@
   border: 1px solid rgba(255, 255, 255, 0);
   border-radius: 16px;
   box-shadow: var(--app-shadow);
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .settings-card-header {
@@ -74,6 +77,14 @@
   font-size: 12px;
   font-weight: 600;
   line-height: 1.2;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.permissions-tab:hover {
+  transform: translateY(-1px);
 }
 
 .permissions-tab-active {
@@ -125,6 +136,7 @@
   background: #d2d2dc;
   border: 0;
   border-radius: 999px;
+  transition: background-color 0.2s ease;
 }
 
 .settings-switch-on {
@@ -137,6 +149,7 @@
   height: 18px;
   background: #ffffff;
   border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(4, 4, 4, 0.18);
 }
 
 .settings-divider {
@@ -215,6 +228,61 @@
   line-height: 1.4;
 }
 
+.settings-feedback {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 20;
+  margin: 0;
+  padding: 10px 14px;
+  color: #ffffff;
+  background: var(--app-active-color);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.settings-feedback-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.settings-theme-dark {
+  --app-background: #121722;
+  --app-surface: #1b2230;
+  --app-text: #f5f7fb;
+  --app-muted-text: #c5cad6;
+  --app-subtle-text: #8e96a8;
+  --app-border: #333b4d;
+  --app-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
+  background-color: var(--app-background);
+}
+
+.settings-theme-dark .settings-card {
+  background: linear-gradient(180.03deg, #202838 0%, #18202d 80.29%);
+  border-color: rgba(255, 255, 255, 0.04);
+}
+
+.settings-theme-dark .settings-divider {
+  background: #323a4b;
+}
+
+.settings-theme-dark .permissions-tab {
+  background: #242c3c;
+}
+
+.settings-theme-dark .permissions-tab-active {
+  background: var(--app-active-color);
+}
+
 @media (max-width: 1100px) {
   .settings-primary-grid {
     grid-template-columns: 1fr;
@@ -271,5 +339,10 @@
 
   .settings-about-separator {
     display: none;
+  }
+
+  .settings-feedback {
+    right: 16px;
+    bottom: 16px;
   }
 }
