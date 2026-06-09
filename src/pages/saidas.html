@@ -207,10 +207,6 @@
         <main class="app-main">
             <header class="app-header">
                 <div class="app-header-panel">
-                    <div>
-                        <h1 class="app-header-title">Saídas</h1>
-                        <p class="app-header-subtitle">Gerenciamento de saídas</p>
-                    </div>
 
                     <div class="app-header-profile">
                         <img src="../../docs/img/15_foto_perfil.svg" alt="Foto do perfil">
@@ -219,8 +215,10 @@
             </header>
 
             <section class="app-content produtos-content" aria-label="Conteúdo de produtos">
-
+                                                                       
                 <div class="product-page-panel">
+
+
                     <div class="product-toolbar">
                         <div class="product-header">
                         <img  id = "exit-icon" src="../../docs/img/icons/012-exit-yellow.svg.svg">
@@ -279,6 +277,37 @@
                         </div>
                     </div>
                 </div>
+                    <div class = "recent-exits">
+                    <h1 class="app-header-title">Saídas</h1>
+                                        <div class="users-table-card">
+                        <div class="users-table-title">
+                            <img src="../../docs/img/icons/people-team.svg" alt="">
+                            <span>Usuários cadastrados</span>
+                        </div>
+
+                        <div class="users-table-wrap">
+                            <table id="grid-usuarios">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">E-mail</th>
+                                        <th scope="col">Grupo</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Criado em</th>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Excluir</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-usuarios">
+                                    <tr class="empty-row">
+                                        <td colspan="7">Carregando usuários...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                         </div>
+                       </div>
+                    </div>
+                 </div>
             </section>
 
         </main>
