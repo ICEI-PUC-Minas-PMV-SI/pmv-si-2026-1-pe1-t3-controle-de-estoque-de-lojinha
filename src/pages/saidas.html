@@ -9,7 +9,48 @@
     <!--<link rel="stylesheet" href="../css/usuarios.css">-->
     <link rel="stylesheet" href="../css/saidas.css">
     <script src="../java-script/login.js" defer></script>
-    <script defer> 
+    <script defer>
+
+        let db_saidas = JSON.parse(localStorage.getItem("db_saidas")) || {
+            saidas: []
+        };
+        function registrarSaida() {
+
+                const produto = document.getElementById("produto").value;
+                const quantidade = document.getElementById("quantidade").value;
+                const preco = document.getElementById("preco").value;
+                const fornecedor = document.getElementById("fornecedor").value;
+                const nf = document.getElementById("nf").value;
+                const data = document.getElementById("data").value;
+                const observacoes = document.getElementById("obs").value;
+            
+                if (!produto || !quantidade) {
+                    alert("Preencha produto e quantidade.");
+                    return;
+
+        }
+        const novaSaida = {
+            codigo: Date.now(),
+            produto,
+            quantidade,
+            preco,
+            fornecedor,
+            nf,
+            data,
+            obs
+        };
+
+        db_saidas.saidas.push(novaSaida);
+
+        localStorage.setItem(
+           "db_saidas"
+           JSON.stringify(db_saidas)
+        );
+
+        exibeUsuarios();
+    }
+
+    
 
         function escapeHtml(valor) {
             const mapa = {
@@ -120,12 +161,12 @@
             //---botão de logout para configurar em js depois---
 
             // Verifica se o usuário já esta logado e se negativo, redireciona para tela de login
-        if (!usuarioCorrente.login) {
-            window.location.href = LOGIN_URL;
-        }
+            if (!usuarioCorrente.login) {
+                window.location.href = LOGIN_URL;
+            }
 
             // Lista os usuários
-            exibeUsuarios ();
+            exibeUsuarios();
 
             const campoBusca = document.getElementById("busca-usuarios");
 
@@ -171,7 +212,7 @@
                         <span class="app-sidebar-nav-label">Relatórios</span>
                     </a>
 
-                    <a class="app-sidebar-nav-item" href="./usuarios.html" >
+                    <a class="app-sidebar-nav-item" href="./usuarios.html">
                         <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Usuários</span>
                     </a>
@@ -188,7 +229,8 @@
                 </nav>
                 <div class="app-sidebar-footer">
                     <div class="app-sidebar-user-card">
-                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg" alt="Foto do usuário">
+                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg"
+                            alt="Foto do usuário">
 
                         <div class="app-sidebar-user-info">
                             <span class="app-sidebar-user-label">Seu grupo:</span>
@@ -215,81 +257,73 @@
             </header>
 
             <section class="app-content produtos-content" aria-label="Conteúdo de produtos">
-                                                                       
+
                 <div class="product-page-panel">
 
 
                     <div class="product-toolbar">
                         <div class="product-header">
-                        <img  id = "exit-icon" src="../../docs/img/icons/012-exit-yellow.svg.svg">
-                        <h1 class="product-toolbar-title">Nova saída de produto</h1>
+                            <img id="exit-icon" src="../../docs/img/icons/012-exit-yellow.svg.svg">
+                            <h1 class="product-toolbar-title">Nova saída de produto</h1>
                         </div>
                         <div class="product-search-field">
-                         <label for="busca-produtos">Produto</label>
-                                <div class="product-search-box">
-                                <input id="busca-produtos" type="search" placeholder="Biscoito Globo" autocomplete="off">
+                            <label for="busca-produtos">Produto</label>
+                            <div class="product-search-box">
+                                <input id="busca-produtos" type="search" placeholder="Biscoito Globo"
+                                    autocomplete="off">
                                 <img src="../../docs/img/icons/search.svg" alt="">
                             </div>
 
 
                             <div class="product-info">
-                            <span>Quantidade</span>
-                            <span class="quantity-badge">
-                                <input type="number" placeholder="0">
-                            </span>
-                            <span>Preço Unitário</span>
-                            <span
-                                class="price-badge">
-                                <input type="number" placeholder="R$ 0,00" step="0.01">
-                            </span>
-                            <span>Fornecedor</span>
-                            <span
-                                class="supplier-badge">
-                                <input type="text"
-                                placeholder="Nome do Fornecedor">
-                            </span>
-                            <span>Nota Fiscal</span>
-                            <span
-                                class="invoice-badge">
-                                <input type="text"
-                                placeholder="Nº da NF">
-                            </span>
-                            <span>
-                                Data
-                            </span>
-                            <span>
-                                <input type="date">
-                            </span>
-                            <span>
-                                Observações
-                            </span>
-                            <span>
-                                <input type="text"
-                                placeholder="Observações adicionais">
-                            </span>
-                             </div>
-                     </div>
+                                <span>Quantidade</span>
+                                <span class="quantity-badge">
+                                    <input id="quantidade" type="number" placeholder="0">
+                                </span>
+                                <span>Preço Unitário</span>
+                                <span class="price-badge">
+                                    <input id="preco" type="number" placeholder="R$ 0,00" step="0.01">
+                                </span>
+                                <span>Fornecedor</span>
+                                <span class="supplier-badge">
+                                    <input id="fornecedor" type="text" placeholder="Nome do Fornecedor">
+                                </span>
+                                <span>Nota Fiscal</span>
+                                <span class="invoice-badge">
+                                    <input id="nf" type="text" placeholder="Nº da NF">
+                                </span>
+                                <span>
+                                    Data
+                                </span>
+                                <span>
+                                    <input id="data" type="date">
+                                </span>
+                                <span>
+                                    Observações
+                                </span>
+                                <span>
+                                    <input id="obs" type="text" placeholder="Observações adicionais">
+                                </span>
+                            </div>
+                        </div>
                         <div class="product-actions">
-                        <a href="./em-breve.html" class="btn-new-product">
-                            <img src="../../docs/img/icons/add-circle.svg" alt="">
-                            <span>Registrar Saída</span>
-                        </a>
+                            <button id="btnRegistrarSaida" class="btn-new-product">
+                                <img src="../../docs/img/icons/add-circle.svg" alt="">
+                                <span>Registrar Saída</span>
+                            </button>
                         </div>
                     </div>
                 </div>
-                    <div class = "recent-exits">
-
-                       <div class="recent-exit-header">
-                           <img id = "recent-icon" src="../../docs/img/icons/013-recent-icon.svg" alt="">
-                          <h1 class="app-header-title">Saídas recentes</h1>   
-                       </div>
-
-                      <div class="product-recent-table-card">
-                        <div class="product-recent-table-title">
+                <div class="recent-exits">
+                    <div class="product-recent-table-card">
+                        <div class="recent-exit-header">
+                           <img id="recent-icon" src="../../docs/img/icons/013-recent-icon.svg" alt="">
+                           <h1 class="app-header-title">Saídas recentes</h1>
                         </div>
-
+                    </div>
+                    
                         <div class="product-table-wrap">
-                            <table id="grid-usuarios">
+                            <table id="grid-products">
                                 <thead>
                                     <tr>
                                         <th scope="col">Código</th>
@@ -305,17 +339,19 @@
                                 </thead>
                                 <tbody id="table-usuarios">
                                     <tr class="empty-row">
-                                        <td colspan="10">Carregando saídas...</td>
+                                        <td colspan="19">Carregando saídas...</td>
                                     </tr>
                                 </tbody>
                             </table>
-                         </div>
-                       </div>
-                    </div>
-                 </div>
-            </section>
+                        </div>
 
-        </main>
+                    </div>
+
+                </div>
+    </div>
+    </section>
+
+    </main>
     </div>
 </body>
 

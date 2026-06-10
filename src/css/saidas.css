@@ -113,7 +113,7 @@
     background-color: transparent;
     border: 0;
 }
-.product-tollbar {
+.product-toolbar {
     
     max-width: 520px;
     margin-left:10px;
@@ -162,13 +162,13 @@
 .recent-exits {
     display: flex;
     flex-direction: column;
-
     flex: 1 1 550px;
     min-width: 0px;
-
     margin-top: 16px;
-
-    
+    background: linear-gradient(180.03deg, #fafafa 0%, #ffffff 80.29%);
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 16px;
+    box-shadow: var(--app-shadow);
 }
 
 #recent-icon {
@@ -180,11 +180,31 @@
     align-items: center;
     gap: 12px;
     margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.product-recent-table-card {
+    color: var(--app-text);
+    overflow: visible;
+    
 }
 .product-table-wrap{
     background: blue;
+    width: 100%;
+    overflow: auto;
+
     
-    
+}
+#grid-products {
+    width: 100%;
+    border-collapse:collapse;
+
+}
+#grid-products th,
+#grid-products td {
+    padding: 12px 16px;
+    text-align: left;
+    white-space: nowrap;
 }
 @media (max-width: 900px) {
 
