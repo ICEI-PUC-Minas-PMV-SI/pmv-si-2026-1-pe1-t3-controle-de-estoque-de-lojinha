@@ -10,173 +10,109 @@
     <link rel="stylesheet" href="../css/saidas.css">
     <script src="../java-script/login.js" defer></script>
     <script defer>
+let db_saidas = JSON.parse(localStorage.getItem("db_saidas")) || {
+    saidas: []
+};
 
-        let db_saidas = JSON.parse(localStorage.getItem("db_saidas")) || {
-            saidas: []
-        };
-        function registrarSaida() {
+function registrarSaida() {
 
-                const produto = document.getElementById("produto").value;
-                const quantidade = document.getElementById("quantidade").value;
-                const preco = document.getElementById("preco").value;
-                const fornecedor = document.getElementById("fornecedor").value;
-                const nf = document.getElementById("nf").value;
-                const data = document.getElementById("data").value;
-                const observacoes = document.getElementById("obs").value;
-            
-                if (!produto || !quantidade) {
-                    alert("Preencha produto e quantidade.");
-                    return;
+    const produto = document.getElementById("busca-produtos").value;
+    const quantidade = document.getElementById("quantidade").value;
+    const preco = document.getElementById("preco").value;
+    const fornecedor = document.getElementById("fornecedor").value;
+    const nf = document.getElementById("nf").value;
+    const data = document.getElementById("data").value;
+    const observacoes = document.getElementById("obs").value;
 
-        }
-        const novaSaida = {
-            codigo: Date.now(),
-            produto,
-            quantidade,
-            preco,
-            fornecedor,
-            nf,
-            data,
-            obs
-        };
-
-        db_saidas.saidas.push(novaSaida);
-
-        localStorage.setItem(
-           "db_saidas"
-           JSON.stringify(db_saidas)
-        );
-
-        exibeUsuarios();
+    if (!produto || !quantidade) {
+        alert("Preencha produto e quantidade.");
+        return;
     }
 
-    
+    const novaSaida = {
+        codigo: Date.now(),
+        produto,
+        quantidade,
+        preco,
+        fornecedor,
+        nf,
+        data,
+        observacoes
+    };
 
-        function escapeHtml(valor) {
-            const mapa = {
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#39;"
-            };
+    db_saidas.saidas.push(novaSaida);
 
-            return String(valor ?? "").replace(/[&<>"']/g, caractere => mapa[caractere]);
-        }
+    localStorage.setItem(
+        "db_saidas",
+        JSON.stringify(db_saidas)
+    );
 
-        function formataGrupo(usuario) {
-            let grupo = usuario.grupo || usuario.grupoDePermissoes || usuario.setor;
+    exibeSaidas();
+}
 
-            if (!grupo && usuario.login && usuario.login.toLowerCase().includes("adm")) {
-                grupo = "Administradores";
-            }
+function escapeHtml(valor) {
 
-            if (!grupo) {
-                grupo = "Gerentes";
-            }
+    const mapa = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    };
 
-            const grupos = {
-                admin: "Admin",
-                administrador: "Administradores",
-                administradores: "Administradores",
-                gerente: "Gerentes",
-                gerentes: "Gerentes",
-                operador: "Operadores",
-                operadores: "Operadores",
-                visitante: "Visitantes",
-                visitantes: "Visitantes"
-            };
+    return String(valor ?? "")
+        .replace(/[&<>"']/g, caractere => mapa[caractere]);
+}
 
-            return grupos[String(grupo).toLowerCase()] || grupo;
-        }
+function exibeSaidas() {
 
-        function formataStatus(usuario) {
-            return usuario.status || "Ativo";
-        }
+    let listaSaidas = "";
 
-        function formataDataUsuario(usuario) {
-            const dataBruta = usuario.criadoEm || usuario.dataCadastro || usuario.createdAt || usuario.created_at;
+    if (db_saidas.saidas.length === 0) {
 
-            if (!dataBruta) {
-                return "01/01/2026";
-            }
+        document.getElementById("table-saidas").innerHTML = `
+            <tr class="empty-row">
+                <td colspan="9">
+                    Nenhuma saída cadastrada
+                </td>
+            </tr>
+        `;
 
-            if (/^\d{2}\/\d{2}\/\d{4}$/.test(dataBruta)) {
-                return dataBruta;
-            }
+        return;
+    }
 
-            const data = new Date(dataBruta);
+    for (let i = 0; i < db_saidas.saidas.length; i++) {
 
-            if (Number.isNaN(data.getTime())) {
-                return dataBruta;
-            }
+        const saida = db_saidas.saidas[i];
 
-            return data.toLocaleDateString("pt-BR");
-        }
+        listaSaidas += `
+            <tr>
+                <td>${saida.codigo}</td>
+                <td>${escapeHtml(saida.produto)}</td>
+                <td>-</td>
+                <td>${escapeHtml(saida.quantidade)}</td>
+                <td>R$ ${escapeHtml(saida.preco)}</td>
+                <td>${escapeHtml(saida.nf)}</td>
+                <td>${escapeHtml(saida.data)}</td>
+                <td><button type="button">Editar</button></td>
+                <td><button type="button">Excluir</button></td>
+            </tr>
+        `;
+    }
 
-        function exibeUsuarios() {
+    document.getElementById("table-saidas").innerHTML = listaSaidas;
+}
 
-            // Popula a tabela com os registros do banco de dados
-            let listaUsuarios = '';
-            const filtro = document.getElementById("busca-usuarios")?.value.trim().toLowerCase() || "";
-            const usuariosFiltrados = (db_usuarios.usuarios || []).filter(usuario => {
-                const textoBusca = `${usuario.nome || ""} ${usuario.email || ""} ${usuario.login || ""}`.toLowerCase();
+function initPage() {
 
-                return textoBusca.includes(filtro);
-            });
+    document
+        .getElementById("btnRegistrarSaida")
+        ?.addEventListener("click", registrarSaida);
 
-            if (usuariosFiltrados.length === 0) {
-                document.getElementById("table-usuarios").innerHTML = `
-                    <tr class="empty-row">
-                        <td colspan="5">Nenhum usuário encontrado</td>
-                    </tr>
-                `;
-                return;
-            }
+    exibeSaidas();
+}
 
-            for (let i = 0; i < usuariosFiltrados.length; i++) {
-                let usuario = usuariosFiltrados[i];
-                const status = formataStatus(usuario);
-                const statusClasse = status.toLowerCase().includes("inat") ? "inactive" : "active";
-
-                listaUsuarios += `<tr>
-                    <td class="cell-strong">${escapeHtml(usuario.nome || usuario.login || "-")}</td>
-                    <td>${escapeHtml(usuario.email || usuario.login || "-")}</td>
-                    <td><span class="user-tag">${escapeHtml(formataGrupo(usuario))}</span></td>
-                    <td><span class="user-status user-status-${statusClasse}">${escapeHtml(status)}</span></td>
-                    <td>${escapeHtml(formataDataUsuario(usuario))}</td>
-                    <td><button type="button">Editar</button></td>
-                    <td><button type="button">Excluir</button></td>
-                </tr>`;
-            }
-
-            // Substitui as linhas do corpo da tabela
-            document.getElementById("table-usuarios").innerHTML = listaUsuarios
-
-        }
-
-        function initPage() {
-
-            // Associa a função de logout ao botão fica logo abaixo
-            //---botão de logout para configurar em js depois---
-
-            // Verifica se o usuário já esta logado e se negativo, redireciona para tela de login
-            if (!usuarioCorrente.login) {
-                window.location.href = LOGIN_URL;
-            }
-
-            // Lista os usuários
-            exibeUsuarios();
-
-            const campoBusca = document.getElementById("busca-usuarios");
-
-            if (campoBusca) {
-                campoBusca.addEventListener("input", exibeUsuarios);
-            }
-        }
-
-        // Associa ao evento de carga da página a função para verificar se o usuário está logado
-        window.addEventListener('load', initPage);
+window.addEventListener("load", initPage);
 
     </script>
 </head>
@@ -257,102 +193,108 @@
             </header>
 
             <section class="app-content produtos-content" aria-label="Conteúdo de produtos">
-
-                <div class="product-page-panel">
-
+     
 
                     <div class="product-toolbar">
                         <div class="product-header">
                             <img id="exit-icon" src="../../docs/img/icons/012-exit-yellow.svg.svg">
                             <h1 class="product-toolbar-title">Nova saída de produto</h1>
                         </div>
+
                         <div class="product-search-field">
+
                             <label for="busca-produtos">Produto</label>
                             <div class="product-search-box">
+
                                 <input id="busca-produtos" type="search" placeholder="Biscoito Globo"
                                     autocomplete="off">
                                 <img src="../../docs/img/icons/search.svg" alt="">
                             </div>
+                        </div>
 
+                        <div class="product-row">
+                            <div class="product-field">
+                                <label for="quantidade">Quantidade</label>
+                                <input id="quantidade" type="number" placeholder="0">
+                            </div>
 
-                            <div class="product-info">
-                                <span>Quantidade</span>
-                                <span class="quantity-badge">
-                                    <input id="quantidade" type="number" placeholder="0">
-                                </span>
-                                <span>Preço Unitário</span>
-                                <span class="price-badge">
-                                    <input id="preco" type="number" placeholder="R$ 0,00" step="0.01">
-                                </span>
-                                <span>Fornecedor</span>
-                                <span class="supplier-badge">
-                                    <input id="fornecedor" type="text" placeholder="Nome do Fornecedor">
-                                </span>
-                                <span>Nota Fiscal</span>
-                                <span class="invoice-badge">
-                                    <input id="nf" type="text" placeholder="Nº da NF">
-                                </span>
-                                <span>
-                                    Data
-                                </span>
-                                <span>
-                                    <input id="data" type="date">
-                                </span>
-                                <span>
-                                    Observações
-                                </span>
-                                <span>
-                                    <input id="obs" type="text" placeholder="Observações adicionais">
-                                </span>
+                            <div class="product-field">
+                                <label for="preco">Preço Unitário</label>
+                                <input id="preco" type="number" placeholder="R$ 0,00" step="0.01">
                             </div>
                         </div>
+
+                        <div class="product-field">
+                            <label for="fornecedor">Fornecedor</label>
+                            <input id="fornecedor" type="text" placeholder="Nome do Fornecedor">
+                        </div>
+
+                        <div class="product-row">
+                            <div class="product-field">
+                                <label for="nota-fiscal">Nota Fiscal</label>
+                                <input id="nf" type="text" placeholder="Nº da NF">
+                            </div>
+
+                            <div class="product-field">
+                                <label for="data">Data</label>
+                                <input id="data" type="date">
+                            </div>
+                        </div>
+
+                        <div class="product-search-field">
+                            <label for="obs"></label>Observações
+
+                            <input id="obs" type="text" placeholder="Observações adicionais">
+                        </div>
+
+
                         <div class="product-actions">
                             <button id="btnRegistrarSaida" class="btn-new-product">
                                 <img src="../../docs/img/icons/add-circle.svg" alt="">
                                 <span>Registrar Saída</span>
                             </button>
                         </div>
-                    </div>
-                </div>
-                <div class="recent-exits">
-                    <div class="product-recent-table-card">
-                        <div class="recent-exit-header">
-                           <img id="recent-icon" src="../../docs/img/icons/013-recent-icon.svg" alt="">
-                           <h1 class="app-header-title">Saídas recentes</h1>
-                        </div>
-                    </div>
-                    
-                        <div class="product-table-wrap">
-                            <table id="grid-products">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Código</th>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Categoria</th>
-                                        <th scope="col">QTD</th>
-                                        <th scope="col">Preço</th>
-                                        <th scope="col">NF</th>
-                                        <th scope="col">Data</th>
-                                        <th scope="col">Editar</th>
-                                        <th scope="col">Excluir</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-usuarios">
-                                    <tr class="empty-row">
-                                        <td colspan="19">Carregando saídas...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-
-                </div>
+                
     </div>
-    </section>
 
-    </main>
+    <div class="recent-exits">
+
+        <div class="recent-exit-header">
+            <img id="recent-icon" src="../../docs/img/icons/013-recent-icon.svg" alt="">
+            <h1 class="recent-title">Saídas recentes</h1>
+        </div>
+    
+
+    <div class="product-recent-table-card">
+        <div class="product-table-wrap">
+            <table id="grid-products">
+                <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">QTD</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">NF</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Excluir</th>
+                    </tr>
+                </thead>
+                      <tbody id="table-saidas">
+                       <tr class="empty-row">
+                        <td colspan="19">Carregando saídas...</td>
+                       </tr>
+                      </tbody>
+            </table>
+            </div>
+        </div>
     </div>
+</div>
+</section>
+
+</main>
+</div>
 </body>
 
 </html>
