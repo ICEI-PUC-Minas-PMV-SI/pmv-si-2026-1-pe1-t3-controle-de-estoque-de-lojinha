@@ -1,271 +1,169 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>usuarios</title>
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/usuarios.css">
-    <script src="../java-script/login.js" defer></script>
-    <script defer>
-
-        function escapeHtml(valor) {
-            const mapa = {
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#39;"
-            };
-
-            return String(valor ?? "").replace(/[&<>"']/g, caractere => mapa[caractere]);
-        }
-
-        function formataGrupo(usuario) {
-            let grupo = usuario.grupo || usuario.grupoDePermissoes || usuario.setor;
-
-            if (!grupo && usuario.login && usuario.login.toLowerCase().includes("adm")) {
-                grupo = "Administradores";
-            }
-
-            if (!grupo) {
-                grupo = "Gerentes";
-            }
-
-            const grupos = {
-                admin: "Admin",
-                administrador: "Administradores",
-                administradores: "Administradores",
-                gerente: "Gerentes",
-                gerentes: "Gerentes",
-                operador: "Operadores",
-                operadores: "Operadores",
-                visitante: "Visitantes",
-                visitantes: "Visitantes"
-            };
-
-            return grupos[String(grupo).toLowerCase()] || grupo;
-        }
-
-        function formataStatus(usuario) {
-            return usuario.status || "Ativo";
-        }
-
-        function formataDataUsuario(usuario) {
-            const dataBruta = usuario.criadoEm || usuario.dataCadastro || usuario.createdAt || usuario.created_at;
-
-            if (!dataBruta) {
-                return "01/01/2026";
-            }
-
-            if (/^\d{2}\/\d{2}\/\d{4}$/.test(dataBruta)) {
-                return dataBruta;
-            }
-
-            const data = new Date(dataBruta);
-
-            if (Number.isNaN(data.getTime())) {
-                return dataBruta;
-            }
-
-            return data.toLocaleDateString("pt-BR");
-        }
-
-        function exibeUsuarios() {
-
-            // Popula a tabela com os registros do banco de dados
-            let listaUsuarios = '';
-            const filtro = document.getElementById("busca-usuarios")?.value.trim().toLowerCase() || "";
-            const usuariosFiltrados = (db_usuarios.usuarios || []).filter(usuario => {
-                const textoBusca = `${usuario.nome || ""} ${usuario.email || ""} ${usuario.login || ""}`.toLowerCase();
-
-                return textoBusca.includes(filtro);
-            });
-
-            if (usuariosFiltrados.length === 0) {
-                document.getElementById("table-usuarios").innerHTML = `
-                    <tr class="empty-row">
-                        <td colspan="5">Nenhum usuário encontrado</td>
-                    </tr>
-                `;
-                return;
-            }
-
-            for (let i = 0; i < usuariosFiltrados.length; i++) {
-                let usuario = usuariosFiltrados[i];
-                const status = formataStatus(usuario);
-                const statusClasse = status.toLowerCase().includes("inat") ? "inactive" : "active";
-
-                listaUsuarios += `<tr>
-                    <td class="cell-strong">${escapeHtml(usuario.nome || usuario.login || "-")}</td>
-                    <td>${escapeHtml(usuario.email || usuario.login || "-")}</td>
-                    <td><span class="user-tag">${escapeHtml(formataGrupo(usuario))}</span></td>
-                    <td><span class="user-status user-status-${statusClasse}">${escapeHtml(status)}</span></td>
-                    <td>${escapeHtml(formataDataUsuario(usuario))}</td>
-                    <td><button type="button">Editar</button></td>
-                    <td><button type="button">Excluir</button></td>
-                </tr>`;
-            }
-
-            // Substitui as linhas do corpo da tabela
-            document.getElementById("table-usuarios").innerHTML = listaUsuarios
-
-        }
-
-        function initPage() {
-
-            // Associa a função de logout ao botão fica logo abaixo
-            //---botão de logout para configurar em js depois---
-
-            // Verifica se o usuário já esta logado e se negativo, redireciona para tela de login
-        if (!usuarioCorrente.login) {
-            window.location.href = LOGIN_URL;
-        }
-
-            // Lista os usuários
-            exibeUsuarios ();
-
-            const campoBusca = document.getElementById("busca-usuarios");
-
-            if (campoBusca) {
-                campoBusca.addEventListener("input", exibeUsuarios);
-            }
-        }
-
-        // Associa ao evento de carga da página a função para verificar se o usuário está logado
-        window.addEventListener('load', initPage);
-
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Relatórios - Estoque Search</title>
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/relatorios.css" />
 </head>
 
-<body class="app-page saidas-page" style="--app-active-color: #7b98bb;">
-    <div class="app-shell">
-        <aside class="app-sidebar" aria-label="Navegação principal">
-            <a class="app-sidebar-brand" href="./saidas.html" aria-label="Ir para o saidas">
-                <img src="../../docs/img/logo.header.svg" alt="Logo Estoque Search">
-                <span class="app-sidebar-brand-title">Estoque<br>Search</span>
-            </a>
+<body class="app-page" style="--app-active-color: #7b98bb;">
+  <div class="app-shell">
 
-            <div class="app-sidebar-panel">
-                <nav class="app-sidebar-nav" aria-label="Menu principal">
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="app-sidebar" aria-label="Navegação principal">
+      <a class="app-sidebar-brand" href="./dashboard.html">
+        <img src="../../docs/img/logo.header.svg" alt="Logo Estoque Search">
+        <span class="app-sidebar-brand-title">Estoque<br>Search</span>
+      </a>
+      <div class="app-sidebar-panel">
+        <nav class="app-sidebar-nav">
+          <a class="app-sidebar-nav-item" href="./dashboard.html">
+            <img src="../../docs/img/icons/00-abas-dashboard.svg" class="app-sidebar-nav-icon" alt="">
+            <span class="app-sidebar-nav-label">Dashboard</span>
+          </a>
+          <a class="app-sidebar-nav-item" href="./produtos.html">
+            <img src="../../docs/img/icons/01-abas-produtos.svg" class="app-sidebar-nav-icon" alt="">
+            <span class="app-sidebar-nav-label">Produtos</span>
+          </a>
+          <a class="app-sidebar-nav-item" href="./saidas.html">
+            <img src="../../docs/img/icons/02-abas_off-saidas.svg" class="app-sidebar-nav-icon" alt="">
+            <span class="app-sidebar-nav-label">Saídas</span>
+          </a>
+          <a class="app-sidebar-nav-item" href="./relatorios.html" aria-current="page">
+            <img src="../../docs/img/icons/03-abas-relatorios.svg" class="app-sidebar-nav-icon" alt="">
+            <span class="app-sidebar-nav-label">Relatórios</span>
+          </a>
+          <a class="app-sidebar-nav-item" href="./usuarios.html">
+            <img src="../../docs/img/icons/04-abas-usuarios.svg" class="app-sidebar-nav-icon" alt="">
+            <span class="app-sidebar-nav-label">Usuários</span>
+          </a>
+          <a class="app-sidebar-nav-item" href="./em-breve.html">
+            <img src="../../docs/img/icons/05-abas-calculadora.svg" class="app-sidebar-nav-icon" alt="">
+            <span class="app-sidebar-nav-label">Calculadora</span>
+          </a>
+          <a class="app-sidebar-nav-item" href="./configuracoes.html">
+            <img src="../../docs/img/icons/06-abas-config.svg" class="app-sidebar-nav-icon" alt="">
+            <span class="app-sidebar-nav-label">Configurações</span>
+          </a>
+        </nav>
 
-                    <a class="app-sidebar-nav-item" href="./dashboard.html">
-                        <img src="../../docs/img/icons/00-abas-dashboard.svg" alt="" class="app-sidebar-nav-icon">
-                        <span class="app-sidebar-nav-label">Dashboard</span>
-                    </a>
-
-                    <a class="app-sidebar-nav-item" href="./produtos.html">
-                        <img src="../../docs/img/icons/01-abas-produtos.svg" alt="" class="app-sidebar-nav-icon">
-                        <span class="app-sidebar-nav-label">Produtos</span>
-                    </a>
-
-                    <a class="app-sidebar-nav-item" href="./saidas.html" >
-                        <img src="../../docs/img/icons/02-abas-saidas.svg" alt="" class="app-sidebar-nav-icon">
-                        <span class="app-sidebar-nav-label">Saídas</span>
-                    </a>
-
-                    <a class="app-sidebar-nav-item" href="./relatorios.html" aria-current="page">
-                        <img src="../../docs/img/icons/03-abas-off-relatorios.svg" alt="" class="app-sidebar-nav-icon">
-                        <span class="app-sidebar-nav-label">Relatórios</span>
-                    </a>
-
-                    <a class="app-sidebar-nav-item" href="./usuarios.html" >
-                        <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
-                        <span class="app-sidebar-nav-label">Usuários</span>
-                    </a>
-
-                    <a class="app-sidebar-nav-item" href="em-breve.html">
-                        <img src="../../docs/img/icons/05-abas-calculadora.svg" alt="" class="app-sidebar-nav-icon">
-                        <span class="app-sidebar-nav-label">Calculadora</span>
-                    </a>
-
-                    <a class="app-sidebar-nav-item" href="./configuracoes.html">
-                        <img src="../../docs/img/icons/06-abas-config.svg" alt="" class="app-sidebar-nav-icon">
-                        <span class="app-sidebar-nav-label">Configurações</span>
-                    </a>
-                </nav>
-                <div class="app-sidebar-footer">
-                    <div class="app-sidebar-user-card">
-                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg" alt="Foto do usuário">
-
-                        <div class="app-sidebar-user-info">
-                            <span class="app-sidebar-user-label">Seu grupo:</span>
-                            <strong class="app-sidebar-user-group">Gerentes</strong>
-                        </div>
-                    </div>
-
-                    <a class="app-sidebar-logout" href="./login.html">
-                        <img class="app-sidebar-logout-icon" src="../../docs/img/icons/011-exit.svg" alt="">
-                        <span>Sair</span>
-                    </a>
-                </div>
+        <div class="app-sidebar-footer">
+          <div class="app-sidebar-user-card">
+            <img class="app-sidebar-user-avatar"
+                 src="../../docs/img/icons/010-group-mini-icon.svg" alt="Avatar">
+            <div class="app-sidebar-user-info">
+              <span class="app-sidebar-user-label">Seu grupo:</span>
+              <strong class="app-sidebar-user-group">Gerentes</strong>
             </div>
-        </aside>
+          </div>
+          <a class="app-sidebar-logout" href="./login.html">
+            <img class="app-sidebar-logout-icon" src="../../docs/img/icons/011-exit.svg" alt="">
+            <span>Sair</span>
+          </a>
+        </div>
+      </div>
+    </aside>
 
-        <main class="app-main">
-            <header class="app-header">
-                <div class="app-header-panel">
-                    <div>
-                        <h1 class="app-header-title">Relatórios</h1>
-                        <p class="app-header-subtitle">Gerenciamento de relatórios</p>
-                    </div>
+    <main class="app-main">
+      <header class="app-header">
+        <div class="app-header-panel">
+          <div>
+            <h1 class="app-header-title">Relatórios</h1>
+            <p class="app-header-subtitle">Relatório de vendas e produtos</p>
+          </div>
+          <div class="app-header-profile">
+            <img src="../../docs/img/15_foto_perfil.svg" alt="Foto do perfil">
+          </div>
+        </div>
+      </header>
 
-                    <div class="app-header-profile">
-                        <img src="../../docs/img/15_foto_perfil.svg" alt="Foto do perfil">
-                    </div>
-                </div>
-            </header>
+      <section class="app-content" aria-label="Relatórios">
+        <div class="relatorio-content">
 
-            <section class="app-content usuarios-content" aria-label="Conteúdo de usuários">
-                <div class="users-page-panel">
-                    <!-- <div class="users-toolbar">
-                        <label class="users-search-field" for="busca-usuarios">
-                            <span>Nome:</span>
-                            <span class="users-search-box">
-                                <input id="busca-usuarios" type="search" placeholder="Biscoito Globo" autocomplete="off">
-                                <img src="../../docs/img/icons/search.svg" alt="">
-                            </span>
-                        </label>
+        
+          <div class="rel-filtros">
+            <div class="rel-filtro-grupo">
+              <label for="filtroPeriodo">Período:</label>
+              <select id="filtroPeriodo">
+                <option value="todos" selected>Todos</option>
+                <option value="7">Últimos 7 dias</option>
+                <option value="30">Últimos 30 dias</option>
+                <option value="60">Últimos 60 dias</option>
+                <option value="90">Últimos 90 dias</option>
+              </select>
+            </div>
+            <div class="rel-filtro-grupo">
+              <label for="filtroTipo">Tipo:</label>
+              <select id="filtroTipo">
+                <option value="todos" selected>Todos</option>
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+              </select>
+            </div>
+            <button class="rel-btn-filtrar" id="btnFiltrar">Filtrar</button>
+            <button class="rel-btn-exportar" id="btnExportar">Exportar PDF</button>
+          </div>
 
-                        <a href="./em-breve.html" class="btn-new-user">
-                            <img src="../../docs/img/icons/add-circle.svg" alt="">
-                            <span>Nova Saída</span>
-                        </a>
-                    </div>
+          <div class="rel-cards">
+            <div class="rel-card-resumo rel-card-entrada">
+              <span class="rel-card-label">Total Entradas (qtd)</span>
+              <span class="rel-card-valor" id="resumoEntradas">0</span>
+            </div>
+            <div class="rel-card-resumo rel-card-saida">
+              <span class="rel-card-label">Total Saídas (qtd)</span>
+              <span class="rel-card-valor" id="resumoSaidas">0</span>
+            </div>
+            <div class="rel-card-resumo rel-card-valor">
+              <span class="rel-card-label">Valor Movimentado</span>
+              <span class="rel-card-valor" id="resumoValor">R$ 0,00</span>
+            </div>
+            <div class="rel-card-resumo rel-card-produtos">
+              <span class="rel-card-label">Produtos Distintos</span>
+              <span class="rel-card-valor" id="resumoProdutos">0</span>
+            </div>
+          </div>
 
-                    <div class="users-table-card">
-                        <div class="users-table-title">
-                            <img src="../../docs/img/icons/people-team.svg" alt="">
-                            <span>Usuários cadastrados</span>
-                        </div>
+          <div class="rel-card">
+            <h2 class="rel-card-titulo">Movimentação Mensal</h2>
+            <div class="rel-grafico-container">
+              <canvas id="grafico"></canvas>
+            </div>
+          </div>
 
-                        <div class="users-table-wrap">
-                            <table id="grid-usuarios">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">E-mail</th>
-                                        <th scope="col">Grupo</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Criado em</th>
-                                        <th scope="col">Editar</th>
-                                        <th scope="col">Excluir</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-usuarios">
-                                    <tr class="empty-row">
-                                        <td colspan="7">Carregando usuários...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div> -->
-            </section>
+          <div class="rel-card">
+            <h2 class="rel-card-titulo">Detalhamento</h2>
+            <div class="rel-tabela-wrapper">
+              <table class="rel-tabela">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Produto</th>
+                    <th>Tipo</th>
+                    <th>Qtd</th>
+                    <th>Preço Unit.</th>
+                    <th>Fornecedor</th>
+                    <th>Nota Fiscal</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody id="corpoTabela">
+                  <tr>
+                    <td colspan="8" class="td-vazio">Carregando...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-        </main>
-    </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="../java-script/login.js"></script>
+  <script src="../java-script/relatorios.js"></script>
 </body>
-
 </html>

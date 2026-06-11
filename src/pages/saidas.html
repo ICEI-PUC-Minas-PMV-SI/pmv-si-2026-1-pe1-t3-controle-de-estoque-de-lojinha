@@ -9,133 +9,295 @@
     <!--<link rel="stylesheet" href="../css/usuarios.css">-->
     <link rel="stylesheet" href="../css/saidas.css">
     <script src="../java-script/login.js" defer></script>
-    <script defer> 
+    <script defer>
+   let db_saidas = JSON.parse(localStorage.getItem("db_saidas")) || {
+    saidas: []
+   };
+   let db_produtos = JSON.parse(
+    localStorage.getItem("db_produtos")
+    ) || {
+    produtos: []
+    };
+   function carregarProdutos() {
 
-        function escapeHtml(valor) {
-            const mapa = {
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#39;"
-            };
+    const lista =
+        document.getElementById("lista-produtos");
 
-            return String(valor ?? "").replace(/[&<>"']/g, caractere => mapa[caractere]);
-        }
+    lista.innerHTML = "";
 
-        function formataGrupo(usuario) {
-            let grupo = usuario.grupo || usuario.grupoDePermissoes || usuario.setor;
+    db_produtos.produtos.forEach(produto => {
 
-            if (!grupo && usuario.login && usuario.login.toLowerCase().includes("adm")) {
-                grupo = "Administradores";
-            }
+        lista.innerHTML += `
+            <option value="${produto.nome}">
+        `;
+    });
+   }
+   function preencherDadosProduto() {
 
-            if (!grupo) {
-                grupo = "Gerentes";
-            }
+    const nomeProduto =
+        document.getElementById("busca-produtos").value;
 
-            const grupos = {
-                admin: "Admin",
-                administrador: "Administradores",
-                administradores: "Administradores",
-                gerente: "Gerentes",
-                gerentes: "Gerentes",
-                operador: "Operadores",
-                operadores: "Operadores",
-                visitante: "Visitantes",
-                visitantes: "Visitantes"
-            };
+    const produto = db_produtos.produtos.find(
+        p => p.nome.toLowerCase() ===
+             nomeProduto.toLowerCase()
+    );
 
-            return grupos[String(grupo).toLowerCase()] || grupo;
-        }
+    if (!produto) {
+        return;
+    }
 
-        function formataStatus(usuario) {
-            return usuario.status || "Ativo";
-        }
+    document.getElementById("preco").value =
+        produto.preco || "";
 
-        function formataDataUsuario(usuario) {
-            const dataBruta = usuario.criadoEm || usuario.dataCadastro || usuario.createdAt || usuario.created_at;
+    document.getElementById("fornecedor").value =
+        produto.fornecedor || "";
 
-            if (!dataBruta) {
-                return "01/01/2026";
-            }
+    document.getElementById("nf").value =
+        produto.notaFiscal || "";
+ }
+   function registrarSaida() {
 
-            if (/^\d{2}\/\d{2}\/\d{4}$/.test(dataBruta)) {
-                return dataBruta;
-            }
+    const produto = document.getElementById("busca-produtos").value;
+    const produtoEncontrado =
+    db_produtos.produtos.find(
+        p => p.nome.toLowerCase() ===
+             produto.toLowerCase()
+    );
 
-            const data = new Date(dataBruta);
+    if (!produtoEncontrado) {
 
-            if (Number.isNaN(data.getTime())) {
-                return dataBruta;
-            }
+       alert("Produto não encontrado.");
+       return;
+    }
+    const quantidade = document.getElementById("quantidade").value;
+    const preco = document.getElementById("preco").value;
+    const fornecedor = document.getElementById("fornecedor").value;
+    const nf = document.getElementById("nf").value;
+    const data = document.getElementById("data").value;
+    const observacoes = document.getElementById("obs").value;
 
-            return data.toLocaleDateString("pt-BR");
-        }
+    if (!produto || !quantidade) {
+        alert("Preencha produto e quantidade.");
+        return;
+    }
+    
 
-        function exibeUsuarios() {
+    if (
+       Number(quantidade) >
+       Number(produtoEncontrado.quantidade)
+   )  {
+       alert("Estoque insuficiente.");
+       return;
+    }
+    const novaSaida = {
+         codigo:
+        indiceEdicao !== null
+            ? db_saidas.saidas[indiceEdicao].codigo
+            : Date.now(),
 
-            // Popula a tabela com os registros do banco de dados
-            let listaUsuarios = '';
-            const filtro = document.getElementById("busca-usuarios")?.value.trim().toLowerCase() || "";
-            const usuariosFiltrados = (db_usuarios.usuarios || []).filter(usuario => {
-                const textoBusca = `${usuario.nome || ""} ${usuario.email || ""} ${usuario.login || ""}`.toLowerCase();
+    produto,
+    quantidade,
+    preco,
+    fornecedor,
+    nf,
+    data,
+    observacoes
+    };
+   const estaEditando = indiceEdicao !== null;
 
-                return textoBusca.includes(filtro);
-            });
+   if (indiceEdicao !== null) {
 
-            if (usuariosFiltrados.length === 0) {
-                document.getElementById("table-usuarios").innerHTML = `
-                    <tr class="empty-row">
-                        <td colspan="5">Nenhum usuário encontrado</td>
-                    </tr>
-                `;
-                return;
-            }
+    db_saidas.saidas[indiceEdicao] = novaSaida;
 
-            for (let i = 0; i < usuariosFiltrados.length; i++) {
-                let usuario = usuariosFiltrados[i];
-                const status = formataStatus(usuario);
-                const statusClasse = status.toLowerCase().includes("inat") ? "inactive" : "active";
+    indiceEdicao = null;
 
-                listaUsuarios += `<tr>
-                    <td class="cell-strong">${escapeHtml(usuario.nome || usuario.login || "-")}</td>
-                    <td>${escapeHtml(usuario.email || usuario.login || "-")}</td>
-                    <td><span class="user-tag">${escapeHtml(formataGrupo(usuario))}</span></td>
-                    <td><span class="user-status user-status-${statusClasse}">${escapeHtml(status)}</span></td>
-                    <td>${escapeHtml(formataDataUsuario(usuario))}</td>
-                    <td><button type="button">Editar</button></td>
-                    <td><button type="button">Excluir</button></td>
-                </tr>`;
-            }
+    document.querySelector(
+        "#btnRegistrarSaida span"
+    ).textContent = "Registrar Saída";
 
-            // Substitui as linhas do corpo da tabela
-            document.getElementById("table-usuarios").innerHTML = listaUsuarios
+   } else {
 
-        }
+       db_saidas.saidas.push(novaSaida);
+   }
 
-        function initPage() {
+ localStorage.setItem(
+   "db_saidas",
+   JSON.stringify(db_saidas)
+ );
+ if(!estaEditando) {
+        produtoEncontrado.quantidade =
+        Number(produtoEncontrado.quantidade) -
+        Number(quantidade);
 
-            // Associa a função de logout ao botão fica logo abaixo
-            //---botão de logout para configurar em js depois---
+    localStorage.setItem(
+        "db_produtos",
+        JSON.stringify(db_produtos)
+    );
+ }
 
-            // Verifica se o usuário já esta logado e se negativo, redireciona para tela de login
-        if (!usuarioCorrente.login) {
-            window.location.href = LOGIN_URL;
-        }
 
-            // Lista os usuários
-            exibeUsuarios ();
 
-            const campoBusca = document.getElementById("busca-usuarios");
+    document.getElementById("busca-produtos").value = "";
+    document.getElementById("quantidade").value = "";
+    document.getElementById("preco").value = "";
+    document.getElementById("fornecedor").value = "";
+    document.getElementById("nf").value = "";
+    document.getElementById("data").value = "";
+    document.getElementById("obs").value = "";
 
-            if (campoBusca) {
-                campoBusca.addEventListener("input", exibeUsuarios);
-            }
-        }
+    exibeSaidas();
+   }
 
-        // Associa ao evento de carga da página a função para verificar se o usuário está logado
-        window.addEventListener('load', initPage);
+
+
+   function escapeHtml(valor) {
+
+    const mapa = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    };
+
+    return String(valor ?? "")
+        .replace(/[&<>"']/g, caractere => mapa[caractere]);
+   }
+
+   function exibeSaidas() {
+
+    let listaSaidas = "";
+
+    if (db_saidas.saidas.length === 0) {
+
+        document.getElementById("table-saidas").innerHTML = `
+            <tr class="empty-row">
+                <td colspan="9">
+                    Nenhuma saída cadastrada
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+    for (let i = 0; i < db_saidas.saidas.length; i++) {
+
+        const saida = db_saidas.saidas[i];
+
+        listaSaidas += `
+            <tr>
+                <td>${saida.codigo}</td>
+                <td>${escapeHtml(saida.produto)}</td>
+                <td>-</td>
+                <td>${escapeHtml(saida.quantidade)}</td>
+                <td>R$ ${escapeHtml(saida.preco)}</td>
+                <td>${escapeHtml(saida.nf)}</td>
+                <td>${escapeHtml(saida.data)}</td>
+                <td>
+                    <button type="button" onclick="editarSaida(${i})">Editar
+                    </button>
+                </td>
+                <td>
+                    <button type="button" onclick="excluirSaida(${i})">
+                    Excluir
+                    </button>
+                </td>
+            </tr>
+        `;
+    }
+
+    document.getElementById("table-saidas").innerHTML = listaSaidas;
+   }
+   
+   let indiceEdicao = null;
+   function editarSaida(indice) {
+    const saida = db_saidas.saidas[indice];
+    document.getElementById("busca-produtos").value =
+    saida.produto;
+        document.getElementById("quantidade").value =
+        saida.quantidade;
+
+    document.getElementById("preco").value =
+        saida.preco;
+
+    document.getElementById("fornecedor").value =
+        saida.fornecedor;
+
+    document.getElementById("nf").value =
+        saida.nf;
+
+    document.getElementById("data").value =
+        saida.data;
+
+    document.getElementById("obs").value =
+        saida.observacoes;
+
+    indiceEdicao = indice;
+
+    document.querySelector(
+        "#btnRegistrarSaida span"
+    ).textContent = "Salvar Alterações";
+
+   }
+   function excluirSaida(indice){
+    const confirmar = confirm(
+        "Deseja realmente exlcuir esta saída?"
+    );
+    if (!confirmar) {
+        return;
+    }
+    const saida = db_saidas.saidas[indice];
+
+    const produto = db_produtos.produtos.find(
+        p => p.nome === saida.produto
+    );
+
+    if (produto) {
+
+        produto.quantidade =
+            Number(produto.quantidade) +
+            Number(saida.quantidade);
+
+        localStorage.setItem(
+            "db_produtos",
+            JSON.stringify(db_produtos)
+        );
+    }
+
+    db_saidas.saidas.splice(indice,1);
+
+    localStorage.setItem(
+        "db_saidas",
+        JSON.stringify(db_saidas)
+    );
+
+    exibeSaidas();
+
+   }
+   function initPage() {
+
+   
+    document
+        .getElementById("btnRegistrarSaida")
+        ?.addEventListener(
+            "click",
+            registrarSaida
+        );
+
+    document
+        .getElementById("busca-produtos")
+        ?.addEventListener(
+            "change",
+            preencherDadosProduto
+        );
+
+    carregarProdutos();
+    
+    exibeSaidas();
+   }
+
+   window.addEventListener("load", initPage);
 
     </script>
 </head>
@@ -171,7 +333,7 @@
                         <span class="app-sidebar-nav-label">Relatórios</span>
                     </a>
 
-                    <a class="app-sidebar-nav-item" href="./usuarios.html" >
+                    <a class="app-sidebar-nav-item" href="./usuarios.html">
                         <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Usuários</span>
                     </a>
@@ -188,7 +350,8 @@
                 </nav>
                 <div class="app-sidebar-footer">
                     <div class="app-sidebar-user-card">
-                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg" alt="Foto do usuário">
+                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg"
+                            alt="Foto do usuário">
 
                         <div class="app-sidebar-user-info">
                             <span class="app-sidebar-user-label">Seu grupo:</span>
@@ -207,10 +370,6 @@
         <main class="app-main">
             <header class="app-header">
                 <div class="app-header-panel">
-                    <div>
-                        <h1 class="app-header-title">Saídas</h1>
-                        <p class="app-header-subtitle">Gerenciamento de saídas</p>
-                    </div>
 
                     <div class="app-header-profile">
                         <img src="../../docs/img/15_foto_perfil.svg" alt="Foto do perfil">
@@ -219,70 +378,111 @@
             </header>
 
             <section class="app-content produtos-content" aria-label="Conteúdo de produtos">
+     
 
-                <div class="product-page-panel">
                     <div class="product-toolbar">
                         <div class="product-header">
-                        <img  id = "exit-icon" src="../../docs/img/icons/012-exit-yellow.svg.svg">
-                        <h1 class="product-toolbar-title">Nova saída de produto</h1>
+                            <img id="exit-icon" src="../../docs/img/icons/012-exit-yellow.svg.svg">
+                            <h1 class="product-toolbar-title">Nova saída de produto</h1>
                         </div>
+
                         <div class="product-search-field">
-                         <label for="busca-produtos">Produto</label>
-                                <div class="product-search-box">
-                                <input id="busca-produtos" type="search" placeholder="Biscoito Globo" autocomplete="off">
+
+                            <label for="busca-produtos">Produto</label>
+                            <div class="product-search-box">
+
+                                <input id="busca-produtos" type="search" placeholder="Digite o produto"
+                                list="lista-produtos"
+                                autocomplete="off">
                                 <img src="../../docs/img/icons/search.svg" alt="">
+
+                                <datalist id="lista-produtos"></datalist>
+                            </div>
+                        </div>
+
+                        <div class="product-row">
+                            <div class="product-field">
+                                <label for="quantidade">Quantidade</label>
+                                <input id="quantidade" type="number" placeholder="0">
                             </div>
 
-
-                            <div class="product-info">
-                            <span>Quantidade</span>
-                            <span class="quantity-badge">
-                                <input type="number" placeholder="0">
-                            </span>
-                            <span>Preço Unitário</span>
-                            <span
-                                class="price-badge">
-                                <input type="number" placeholder="R$ 0,00" step="0.01">
-                            </span>
-                            <span>Fornecedor</span>
-                            <span
-                                class="supplier-badge">
-                                <input type="text"
-                                placeholder="Nome do Fornecedor">
-                            </span>
-                            <span>Nota Fiscal</span>
-                            <span
-                                class="invoice-badge">
-                                <input type="text"
-                                placeholder="Nº da NF">
-                            </span>
-                            <span>
-                                Data
-                            </span>
-                            <span>
-                                <input type="date">
-                            </span>
-                            <span>
-                                Observações
-                            </span>
-                            <span>
-                                <input type="text"
-                                placeholder="Observações adicionais">
-                            </span>
-                             </div>
-                     </div>
-                        <div class="product-actions">
-                        <a href="./em-breve.html" class="btn-new-product">
-                            <img src="../../docs/img/icons/add-circle.svg" alt="">
-                            <span>Registrar Saída</span>
-                        </a>
+                            <div class="product-field">
+                                <label for="preco">Preço Unitário</label>
+                                <input id="preco" type="number" placeholder="R$ 0,00" step="0.01">
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </section>
 
-        </main>
+                        <div class="product-field">
+                            <label for="fornecedor">Fornecedor</label>
+                            <input id="fornecedor" type="text" placeholder="Nome do Fornecedor">
+                        </div>
+
+                        <div class="product-row">
+                            <div class="product-field">
+                                <label for="nota-fiscal">Nota Fiscal</label>
+                                <input id="nf" type="text" placeholder="Nº da NF">
+                            </div>
+
+                            <div class="product-field">
+                                <label for="data">Data</label>
+                                <input id="data" type="date">
+                            </div>
+                        </div>
+
+                        <div class="product-search-field">
+                            <label for="obs"></label>Observações
+
+                            <input id="obs" type="text" placeholder="Observações adicionais">
+                        </div>
+
+
+                        <div class="product-actions">
+                            <button id="btnRegistrarSaida" class="btn-new-product">
+                                <img src="../../docs/img/icons/add-circle.svg" alt="">
+                                <span>Registrar Saída</span>
+                            </button>
+                        </div>
+                
     </div>
+
+    <div class="recent-exits">
+
+        <div class="recent-exit-header">
+            <img id="recent-icon" src="../../docs/img/icons/013-recent-icon.svg" alt="">
+            <h1 class="recent-title">Saídas recentes</h1>
+        </div>
+    
+
+    <div class="product-recent-table-card">
+        <div class="product-table-wrap">
+            <table id="grid-products">
+                <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">QTD</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">NF</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Excluir</th>
+                    </tr>
+                </thead>
+                      <tbody id="table-saidas">
+                       <tr class="empty-row">
+                        <td colspan="19">Carregando saídas...</td>
+                       </tr>
+                      </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+</main>
+</div>
 </body>
 
 </html>

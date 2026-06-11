@@ -1,0 +1,226 @@
+.relatorio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+.rel-filtros {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 20px;
+}
+
+.rel-filtro-grupo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rel-filtros label {
+  font-size: 0.88rem;
+  color: #64748b;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.rel-filtros select {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 0.88rem;
+  color: #1e293b;
+  background: #f8fafc;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+  min-width: 160px;
+}
+
+.rel-filtros select:focus {
+  border-color: #7b98bb;
+}
+
+.rel-btn-filtrar,
+.rel-btn-exportar {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.rel-btn-filtrar {
+  background: #7b98bb;
+  color: #ffffff;
+}
+
+.rel-btn-exportar {
+  background: #f0f2f5;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.rel-btn-filtrar:hover  { opacity: 0.88; }
+.rel-btn-exportar:hover { background: #e2e8f0; }
+
+.rel-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.rel-card-resumo {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top-width: 3px;
+}
+
+.rel-card-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rel-card-valor {
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.rel-card-entrada { border-top-color: #7b98bb; }
+.rel-card-entrada .rel-card-valor { color: #7b98bb; }
+
+.rel-card-saida { border-top-color: #f5a855; }
+.rel-card-saida .rel-card-valor { color: #e08c2a; }
+
+.rel-card-valor-card { border-top-color: #10b981; }
+.rel-card-valor-card .rel-card-valor { color: #059669; }
+
+.rel-card-valor { border-top-color: #10b981; }
+#resumoValor { color: #059669; }
+
+.rel-card-produtos { border-top-color: #8b5cf6; }
+.rel-card-produtos .rel-card-valor { color: #7c3aed; }
+
+.rel-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.rel-card-titulo {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 20px;
+}
+
+.rel-grafico-container {
+  position: relative;
+  height: 280px;
+  width: 100%;
+}
+
+.rel-tabela-wrapper {
+  overflow-x: auto;
+}
+
+.rel-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.rel-tabela thead tr {
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.rel-tabela th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.rel-tabela td {
+  padding: 13px 14px;
+  color: #374151;
+  border-bottom: 1px solid #f1f5f9;
+  white-space: nowrap;
+}
+
+.rel-tabela tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rel-tabela tbody tr:hover {
+  background: #f8fafc;
+}
+
+.td-cinza  { color: #94a3b8; }
+
+.td-total  { font-weight: 700; color: #1e293b; }
+
+.td-vazio {
+  text-align: center;
+  color: #94a3b8;
+  padding: 40px 20px !important;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.badge-entrada {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.badge-saida {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+@media (max-width: 900px) {
+  .rel-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .rel-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .relatorio-content {
+    padding: 16px;
+    gap: 16px;
+  }
+  .rel-grafico-container {
+    height: 200px;
+  }
+}

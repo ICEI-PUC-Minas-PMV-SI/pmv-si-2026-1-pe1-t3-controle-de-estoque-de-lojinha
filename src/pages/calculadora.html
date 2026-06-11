@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora - Estoque Search</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        /* Estilos específicos da Calculadora */
+        .calculator-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            height: 100%;
+        }
+
+        .calculator {
+            background: #ffffff;
+            width: 100%;
+            max-width: 320px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid #e0e6ed;
+        }
+
+        .calc-display {
+            background: #f8fafc;
+            padding: 30px 20px;
+            text-align: right;
+            font-size: 2.5rem;
+            color: #2d3748;
+            border-bottom: 1px solid #e2e8f0;
+            min-height: 90px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            word-break: break-all;
+            font-family: monospace;
+        }
+
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .calc-btn {
+            border: none;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            background: #ffffff;
+            padding: 20px;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .calc-btn:active {
+            transform: scale(0.95);
+        }
+
+        .calc-btn:hover {
+            background: #edf2f7;
+        }
+
+        /* Removendo bordas das últimas colunas e linhas para não bugar o grid */
+        .calc-btn:nth-child(4n) { border-right: none; }
+        .calc-btn:nth-last-child(-n+4) { border-bottom: none; }
+
+        /* Botões de Ação e Operadores */
+        .calc-btn.operator {
+            background: #f1f5f9;
+            color: #7b98bb;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .calc-btn.operator:hover {
+            background: #e2e8f0;
+        }
+
+        .calc-btn.clear {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+
+        .calc-btn.equal {
+            background: #7b98bb;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-bottom: none; /* Ajuste para o canto arredondado inferior direito */
+        }
+
+        .calc-btn.equal:hover {
+            background: #6581a3;
+        }
+        
+        .calc-btn.zero {
+            grid-column: span 2;
+            border-bottom: none; /* Ajuste para o canto arredondado inferior esquerdo */
+        }
+    </style>
+</head>
+
+<body class="app-page dashboard-page" style="--app-active-color: #7b98bb;">
+    <div class="app-shell">
+        <aside class="app-sidebar" aria-label="Navegação principal">
+            <a class="app-sidebar-brand" href="./dashboard.html" aria-label="Ir para o dashboard">
+                <img src="../../docs/img/logo.header.svg" alt="Logo Estoque Search">
+                <span class="app-sidebar-brand-title">Estoque<br>Search</span>
+            </a>
+
+            <div class="app-sidebar-panel">
+                <nav class="app-sidebar-nav" aria-label="Menu principal">
+                    <a class="app-sidebar-nav-item" href="./dashboard.html">
+                        <img src="../../docs/img/icons/00-abas-off-dashboard.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Dashboard</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./produtos.html">
+                        <img src="../../docs/img/icons/01-abas-produtos.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Produtos</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./saidas.html">
+                        <img src="../../docs/img/icons/02-abas-saidas.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Saídas</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./relatorios.html">
+                        <img src="../../docs/img/icons/03-abas-relatorios.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Relatórios</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./usuarios.html">
+                        <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Usuários</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./calculadora.html" aria-current="page">
+                        <img src="../../docs/img/icons/05-abas-calculadora.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Calculadora</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./configuracoes.html">
+                        <img src="../../docs/img/icons/06-abas-config.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Configurações</span>
+                    </a>
+                </nav>
+                <div class="app-sidebar-footer">
+                    <div class="app-sidebar-user-card">
+                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg" alt="Foto do usuário">
+                        <div class="app-sidebar-user-info">
+                            <span class="app-sidebar-user-label">Seu grupo:</span>
+                            <strong class="app-sidebar-user-group">Gerentes</strong>
+                        </div>
+                    </div>
+
+                    <a class="app-sidebar-logout" href="./login.html">
+                        <img class="app-sidebar-logout-icon" src="../../docs/img/icons/011-exit.svg" alt="">
+                        <span>Sair</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="app-main">
+            <header class="app-header">
+                <div class="app-header-panel">
+                    <div>
+                        <h1 class="app-header-title">Calculadora</h1>
+                        <p class="app-header-subtitle">Ferramenta de apoio para conferência de estoque</p>
+                    </div>
+
+                    <div class="app-header-profile">
+                        <img src="../../docs/img/15_foto_perfil.svg" alt="Foto do perfil">
+                    </div>
+                </div>
+            </header>
+
+            <section class="app-content" aria-label="Conteúdo da calculadora">
+                <div class="calculator-wrapper">
+                    <div class="calculator">
+                        <div class="calc-display" id="display">0</div>
+                        <div class="calc-buttons">
+                            <button class="calc-btn clear" onclick="clearDisplay()">C</button>
+                            <button class="calc-btn operator" onclick="appendCharacter('(')">(</button>
+                            <button class="calc-btn operator" onclick="appendCharacter(')')">)</button>
+                            <button class="calc-btn operator" onclick="appendCharacter('/')">÷</button>
+                            
+                            <button class="calc-btn" onclick="appendCharacter('7')">7</button>
+                            <button class="calc-btn" onclick="appendCharacter('8')">8</button>
+                            <button class="calc-btn" onclick="appendCharacter('9')">9</button>
+                            <button class="calc-btn operator" onclick="appendCharacter('*')">×</button>
+                            
+                            <button class="calc-btn" onclick="appendCharacter('4')">4</button>
+                            <button class="calc-btn" onclick="appendCharacter('5')">5</button>
+                            <button class="calc-btn" onclick="appendCharacter('6')">6</button>
+                            <button class="calc-btn operator" onclick="appendCharacter('-')">-</button>
+                            
+                            <button class="calc-btn" onclick="appendCharacter('1')">1</button>
+                            <button class="calc-btn" onclick="appendCharacter('2')">2</button>
+                            <button class="calc-btn" onclick="appendCharacter('3')">3</button>
+                            <button class="calc-btn operator" onclick="appendCharacter('+')">+</button>
+                            
+                            <button class="calc-btn zero" onclick="appendCharacter('0')">0</button>
+                            <button class="calc-btn" onclick="appendCharacter('.')">.</button>
+                            <button class="calc-btn equal" onclick="calculateResult()">=</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        let currentExpression = '';
+
+        function updateDisplay(value) {
+            // Substitui os símbolos no display para ficarem mais amigáveis (ex: * vira ×)
+            let displayValue = value.replace(/\*/g, '×').replace(/\//g, '÷');
+            display.innerText = displayValue || '0';
+        }
+
+        function appendCharacter(char) {
+            // Evita iniciar a conta com operadores inválidos ou zeros à esquerda sem necessidade
+            if (currentExpression === '' && (char === '*' || char === '/')) return;
+            
+            currentExpression += char;
+            updateDisplay(currentExpression);
+        }
+
+        function clearDisplay() {
+            currentExpression = '';
+            updateDisplay('');
+        }
+
+        function calculateResult() {
+            try {
+                if (currentExpression === '') return;
+                
+                // O eval processa a string como matemática (ex: '2+2' vira 4)
+                let result = eval(currentExpression);
+                
+                // Limita casas decimais para evitar números gigantes (ex: 0.1 + 0.2)
+                if (!Number.isInteger(result)) {
+                    result = parseFloat(result.toFixed(4));
+                }
+                
+                currentExpression = result.toString();
+                updateDisplay(currentExpression);
+            } catch (error) {
+                display.innerText = 'Erro';
+                currentExpression = '';
+            }
+        }
+    </script>
+</body>
+
+</html>
