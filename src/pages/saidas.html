@@ -10,13 +10,65 @@
     <link rel="stylesheet" href="../css/saidas.css">
     <script src="../java-script/login.js" defer></script>
     <script defer>
-let db_saidas = JSON.parse(localStorage.getItem("db_saidas")) || {
+   let db_saidas = JSON.parse(localStorage.getItem("db_saidas")) || {
     saidas: []
-};
+   };
+   let db_produtos = JSON.parse(
+    localStorage.getItem("db_produtos")
+    ) || {
+    produtos: []
+    };
+   function carregarProdutos() {
 
-function registrarSaida() {
+    const lista =
+        document.getElementById("lista-produtos");
+
+    lista.innerHTML = "";
+
+    db_produtos.produtos.forEach(produto => {
+
+        lista.innerHTML += `
+            <option value="${produto.nome}">
+        `;
+    });
+   }
+   function preencherDadosProduto() {
+
+    const nomeProduto =
+        document.getElementById("busca-produtos").value;
+
+    const produto = db_produtos.produtos.find(
+        p => p.nome.toLowerCase() ===
+             nomeProduto.toLowerCase()
+    );
+
+    if (!produto) {
+        return;
+    }
+
+    document.getElementById("preco").value =
+        produto.preco || "";
+
+    document.getElementById("fornecedor").value =
+        produto.fornecedor || "";
+
+    document.getElementById("nf").value =
+        produto.notaFiscal || "";
+ }
+   function registrarSaida() {
 
     const produto = document.getElementById("busca-produtos").value;
+    const produtoEncontrado =
+    db_produtos.produtos.find(
+        p => p.nome.toLowerCase() ===
+             produto.toLowerCase()
+    );
+
+    if (!produtoEncontrado) {
+
+       alert("Produto não encontrado.");
+       return;
+    }
     const quantidade = document.getElementById("quantidade").value;
     const preco = document.getElementById("preco").value;
     const fornecedor = document.getElementById("fornecedor").value;
@@ -28,29 +80,77 @@ function registrarSaida() {
         alert("Preencha produto e quantidade.");
         return;
     }
+    
 
+    if (
+       Number(quantidade) >
+       Number(produtoEncontrado.quantidade)
+   )  {
+       alert("Estoque insuficiente.");
+       return;
+    }
     const novaSaida = {
-        codigo: Date.now(),
-        produto,
-        quantidade,
-        preco,
-        fornecedor,
-        nf,
-        data,
-        observacoes
-    };
+         codigo:
+        indiceEdicao !== null
+            ? db_saidas.saidas[indiceEdicao].codigo
+            : Date.now(),
 
-    db_saidas.saidas.push(novaSaida);
+    produto,
+    quantidade,
+    preco,
+    fornecedor,
+    nf,
+    data,
+    observacoes
+    };
+   const estaEditando = indiceEdicao !== null;
+
+   if (indiceEdicao !== null) {
+
+    db_saidas.saidas[indiceEdicao] = novaSaida;
+
+    indiceEdicao = null;
+
+    document.querySelector(
+        "#btnRegistrarSaida span"
+    ).textContent = "Registrar Saída";
+
+   } else {
+
+       db_saidas.saidas.push(novaSaida);
+   }
+
+ localStorage.setItem(
+   "db_saidas",
+   JSON.stringify(db_saidas)
+ );
+ if(!estaEditando) {
+        produtoEncontrado.quantidade =
+        Number(produtoEncontrado.quantidade) -
+        Number(quantidade);
 
     localStorage.setItem(
-        "db_saidas",
-        JSON.stringify(db_saidas)
+        "db_produtos",
+        JSON.stringify(db_produtos)
     );
+ }
+
+
+
+    document.getElementById("busca-produtos").value = "";
+    document.getElementById("quantidade").value = "";
+    document.getElementById("preco").value = "";
+    document.getElementById("fornecedor").value = "";
+    document.getElementById("nf").value = "";
+    document.getElementById("data").value = "";
+    document.getElementById("obs").value = "";
 
     exibeSaidas();
-}
+   }
 
-function escapeHtml(valor) {
+
+
+   function escapeHtml(valor) {
 
     const mapa = {
         "&": "&amp;",
@@ -62,9 +162,9 @@ function escapeHtml(valor) {
 
     return String(valor ?? "")
         .replace(/[&<>"']/g, caractere => mapa[caractere]);
-}
+   }
 
-function exibeSaidas() {
+   function exibeSaidas() {
 
     let listaSaidas = "";
 
@@ -94,25 +194,110 @@ function exibeSaidas() {
                 <td>R$ ${escapeHtml(saida.preco)}</td>
                 <td>${escapeHtml(saida.nf)}</td>
                 <td>${escapeHtml(saida.data)}</td>
-                <td><button type="button">Editar</button></td>
-                <td><button type="button">Excluir</button></td>
+                <td>
+                    <button type="button" onclick="editarSaida(${i})">Editar
+                    </button>
+                </td>
+                <td>
+                    <button type="button" onclick="excluirSaida(${i})">
+                    Excluir
+                    </button>
+                </td>
             </tr>
         `;
     }
 
     document.getElementById("table-saidas").innerHTML = listaSaidas;
-}
+   }
+   
+   let indiceEdicao = null;
+   function editarSaida(indice) {
+    const saida = db_saidas.saidas[indice];
+    document.getElementById("busca-produtos").value =
+    saida.produto;
+        document.getElementById("quantidade").value =
+        saida.quantidade;
 
-function initPage() {
+    document.getElementById("preco").value =
+        saida.preco;
 
-    document
-        .getElementById("btnRegistrarSaida")
-        ?.addEventListener("click", registrarSaida);
+    document.getElementById("fornecedor").value =
+        saida.fornecedor;
+
+    document.getElementById("nf").value =
+        saida.nf;
+
+    document.getElementById("data").value =
+        saida.data;
+
+    document.getElementById("obs").value =
+        saida.observacoes;
+
+    indiceEdicao = indice;
+
+    document.querySelector(
+        "#btnRegistrarSaida span"
+    ).textContent = "Salvar Alterações";
+
+   }
+   function excluirSaida(indice){
+    const confirmar = confirm(
+        "Deseja realmente exlcuir esta saída?"
+    );
+    if (!confirmar) {
+        return;
+    }
+    const saida = db_saidas.saidas[indice];
+
+    const produto = db_produtos.produtos.find(
+        p => p.nome === saida.produto
+    );
+
+    if (produto) {
+
+        produto.quantidade =
+            Number(produto.quantidade) +
+            Number(saida.quantidade);
+
+        localStorage.setItem(
+            "db_produtos",
+            JSON.stringify(db_produtos)
+        );
+    }
+
+    db_saidas.saidas.splice(indice,1);
+
+    localStorage.setItem(
+        "db_saidas",
+        JSON.stringify(db_saidas)
+    );
 
     exibeSaidas();
-}
 
-window.addEventListener("load", initPage);
+   }
+   function initPage() {
+
+   
+    document
+        .getElementById("btnRegistrarSaida")
+        ?.addEventListener(
+            "click",
+            registrarSaida
+        );
+
+    document
+        .getElementById("busca-produtos")
+        ?.addEventListener(
+            "change",
+            preencherDadosProduto
+        );
+
+    carregarProdutos();
+    
+    exibeSaidas();
+   }
+
+   window.addEventListener("load", initPage);
 
     </script>
 </head>
@@ -206,9 +391,12 @@ window.addEventListener("load", initPage);
                             <label for="busca-produtos">Produto</label>
                             <div class="product-search-box">
 
-                                <input id="busca-produtos" type="search" placeholder="Biscoito Globo"
-                                    autocomplete="off">
+                                <input id="busca-produtos" type="search" placeholder="Digite o produto"
+                                list="lista-produtos"
+                                autocomplete="off">
                                 <img src="../../docs/img/icons/search.svg" alt="">
+
+                                <datalist id="lista-produtos"></datalist>
                             </div>
                         </div>
 
