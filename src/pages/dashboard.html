@@ -18,12 +18,14 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
+
         .chart-card h2 {
             font-size: 1.1rem;
             color: #333;
             margin-bottom: 15px;
             font-weight: 600;
         }
+
         .chart-container {
             position: relative;
             width: 100%;
@@ -79,7 +81,8 @@
                 </nav>
                 <div class="app-sidebar-footer">
                     <div class="app-sidebar-user-card">
-                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg" alt="Foto do usuário">
+                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg"
+                            alt="Foto do usuário">
                         <div class="app-sidebar-user-info">
                             <span class="app-sidebar-user-label">Seu grupo:</span>
                             <strong class="app-sidebar-user-group">Gerentes</strong>
@@ -112,22 +115,22 @@
                 <div class="dashboard-summary-grid">
                     <article class="summary-card">
                         <h2 class="summary-card-title">Total de produtos</h2>
-                        <p class="summary-card-number">653</p>
+                        <p id="total-produtos" class="summary-card-number">0</p>
                     </article>
 
                     <article class="summary-card">
                         <h2 class="summary-card-title">Entradas hoje</h2>
-                        <p class="summary-card-number">2832</p>
+                        <p id="entradas-hoje" class="summary-card-number">0</p>
                     </article>
 
                     <article class="summary-card">
                         <h2 class="summary-card-title">Saídas hoje</h2>
-                        <p class="summary-card-number">1568</p>
+                        <p id="saidas-hoje" class="summary-card-number">0</p>
                     </article>
 
                     <article class="summary-card">
                         <h2 class="summary-card-title">Alertas</h2>
-                        <p class="summary-card-number">5</p>
+                        <p id="alertas" class="summary-card-number">0</p>
                     </article>
                 </div>
 
@@ -172,73 +175,130 @@
 
         // Gráfico de Entradas (Histórico fictício culminando no total de hoje)
         const ctxEntries = document.getElementById('entriesChart').getContext('2d');
-        new Chart(ctxEntries, {
-            type: 'line',
-            data: {
-                labels: ['08:00', '11:00', '14:00', '17:00', '20:00', 'Atual'],
-                datasets: [{
-                    label: 'Entradas',
-                    data: [420, 850, 1200, 1900, 2400, 2832], // Total de 2832 hoje
-                    borderColor: '#7b98bb',
-                    backgroundColor: 'rgba(123, 152, 187, 0.1)',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.3,
-                    pointBackgroundColor: '#7b98bb'
-                }]
-            },
-            options: chartOptions
-        });
+        const entriesChart =
+            new Chart(ctxEntries, {
+                type: 'line',
+                data: {
+                    labels: ['08:00', '11:00', '14:00', '17:00', '20:00', 'Atual'],
+                    datasets: [{
+                        label: 'Entradas',
+                        data: [420, 850, 1200, 1900, 2400, 2832], // Total de 2832 hoje
+                        borderColor: '#7b98bb',
+                        backgroundColor: 'rgba(123, 152, 187, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3,
+                        pointBackgroundColor: '#7b98bb'
+                    }]
+                },
+                options: chartOptions
+            });
 
         // Gráfico de Saídas (Histórico fictício culminando no total de hoje)
         const ctxExits = document.getElementById('exitsChart').getContext('2d');
-        new Chart(ctxExits, {
-            type: 'bar',
-            data: {
-                labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Hoje'],
-                datasets: [{
-                    label: 'Saídas',
-                    data: [1100, 1340, 1020, 1450, 1290, 1568], // Total de 1568 hoje
-                    backgroundColor: '#a3b8cc',
-                    borderRadius: 4,
-                    barPercentage: 0.6
-                }]
-            },
-            options: chartOptions
-        });
+        const exitsChart =
+            new Chart(ctxExits, {
+                type: 'bar',
+                data: {
+                    labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Hoje'],
+                    datasets: [{
+                        label: 'Saídas',
+                        data: [1100, 1340, 1020, 1450, 1290, 1568], // Total de 1568 hoje
+                        backgroundColor: '#a3b8cc',
+                        borderRadius: 4,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: chartOptions
+            });
 
     </script>
     <script>
-    // Substitui 'idDoTeuFormulario' pelo ID real do teu <form> de produtos
-    document.getElementById('idDoTeuFormulario').addEventListener('submit', function(event) {
-        // Se o teu formulário já envia dados para algum lugar, podes manter o comportamento,
-        // mas adiciona esta lógica para atualizar o Dashboard localmente.
-        
-        
-        const qtdInput = document.getElementById('idDoInputQuantidade');
-        const qtd = qtdInput ? parseInt(qtdInput.value) : 1;
+        function carregarDashboard() {
+            const db_produtos =
+                JSON.parse(
+                    localStorage.getItem("db_produtos")
+                ) || { produtos: [] };
 
-        
-        const tipoMovimentacao = 'entrada'; // ou 'saida', dependendo do teu fluxo
+            const db_saidas =
+                JSON.parse(
+                    localStorage.getItem("db_saidas")
+                ) || { saidas: [] };
 
-        // 3. Procura os dados atuais do Dashboard no localStorage
-        let estoqueData = JSON.parse(localStorage.getItem('estoqueData')) || { entradas: 2832, saidas: 1568, totalProdutos: 653 };
+            const totalProdutos =
+                db_produtos.produtos.length;
 
-        // 4. Atualiza os valores com base no novo cadastro
-        if (tipoMovimentacao === 'entrada') {
-            estoqueData.entradas += qtd;
-        } else {
-            estoqueData.saidas += qtd;
+            const estoqueAtual =
+                db_produtos.produtos.reduce(
+                    (total, produto) =>
+                        total + Number(produto.quantidade || 0),
+                    0
+                );
+
+            const saidasHoje =
+                db_saidas.saidas.reduce(
+                    (total, saida) =>
+                        total + Number(saida.quantidade || 0),
+                    0
+                );
+
+            const entradasHoje =
+                estoqueAtual + saidasHoje;
+            const alertas =
+                db_produtos.produtos.filter(
+                    produto =>
+                        Number(produto.quantidade) <= 5
+                ).length;
+            document.getElementById(
+                "total-produtos"
+            ).textContent =
+                totalProdutos;
+
+            document.getElementById(
+                "entradas-hoje"
+            ).textContent =
+                entradasHoje;
+
+            document.getElementById(
+                "saidas-hoje"
+            ).textContent =
+                saidasHoje;
+
+            document.getElementById(
+                "alertas"
+            ).textContent =
+                alertas;
+
+            entriesChart.data.datasets[0].data = [
+                0,
+                Math.round(entradasHoje * 0.25),
+                Math.round(entradasHoje * 0.45),
+                Math.round(entradasHoje * 0.70),
+                Math.round(entradasHoje * 0.90),
+                entradasHoje
+            ];
+
+            entriesChart.update();
+            exitsChart.data.datasets[0].data = [
+                saidasHoje * 0.2,
+                saidasHoje * 0.4,
+                saidasHoje * 0.6,
+                saidasHoje * 0.8,
+                saidasHoje * 0.9,
+                saidasHoje
+            ];
+
+            exitsChart.update();
+
         }
-        estoqueData.totalProdutos += 1; // Soma +1 no card de "Total de produtos"
 
-        // 5. Grava os novos valores de volta no navegador
-        localStorage.setItem('estoqueData', JSON.stringify(estoqueData));
-        
-        // Opcional: Mostra um aviso ao utilizador
-        alert('Produto registado! O Dashboard foi atualizado.');
-    });
-</script>
+        window.addEventListener(
+            "load",
+            carregarDashboard
+        );
+
+
+    </script>
 </body>
 
 </html>
