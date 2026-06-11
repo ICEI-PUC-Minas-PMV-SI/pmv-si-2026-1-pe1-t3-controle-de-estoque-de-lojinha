@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurações</title>
     <link rel="stylesheet" href="../css/global.css">
-    <!-- <link rel="stylesheet" href="../css/dashboard.css"> -->
     <link rel="stylesheet" href="../css/configuracoes.css">
+    <script src="../java-script/configuracoes.js" defer></script>
+    <script src="../java-script/login.js" defer></script>
+    <script src="../java-script/acesso.js" defer></script>
 </head>
 
 <body class="app-page settings-page" style="--app-active-color: #7b98bb;">
@@ -97,16 +99,20 @@
 
                         <div class="settings-permissions-panel">
                             <div class="permissions-tabs" aria-label="Perfis de acesso">
-                                <button class="permissions-tab permissions-tab-active" type="button" aria-pressed="true">
-                                    Administradores
+                                <button class="permissions-tab permissions-tab-active" type="button" aria-pressed="true"
+                                    data-permission-group="administradores">
+                                    Adm
                                 </button>
-                                <button class="permissions-tab" type="button" aria-pressed="false">
+                                <button class="permissions-tab" type="button" aria-pressed="false"
+                                    data-permission-group="gerentes">
                                     Gerentes
                                 </button>
-                                <button class="permissions-tab" type="button" aria-pressed="false">
+                                <button class="permissions-tab" type="button" aria-pressed="false"
+                                    data-permission-group="operadores">
                                     Operadores
                                 </button>
-                                <button class="permissions-tab" type="button" aria-pressed="false">
+                                <button class="permissions-tab" type="button" aria-pressed="false"
+                                    data-permission-group="visitantes">
                                     Visitantes
                                 </button>
                             </div>
@@ -115,7 +121,7 @@
                                 <div class="permission-row">
                                     <span class="permission-label">Visualizar Dashboard</span>
                                     <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
-                                        aria-label="Visualizar Dashboard">
+                                        aria-label="Visualizar Dashboard" data-permission-key="visualizarDashboard">
                                         <span class="settings-switch-knob"></span>
                                     </button>
                                 </div>
@@ -124,7 +130,7 @@
                                 <div class="permission-row">
                                     <span class="permission-label">Gerenciar Produtos</span>
                                     <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
-                                        aria-label="Gerenciar Produtos">
+                                        aria-label="Gerenciar Produtos" data-permission-key="gerenciarProdutos">
                                         <span class="settings-switch-knob"></span>
                                     </button>
                                 </div>
@@ -133,7 +139,7 @@
                                 <div class="permission-row">
                                     <span class="permission-label">Registrar Entrada / Saída</span>
                                     <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
-                                        aria-label="Registrar Entrada / Saída">
+                                        aria-label="Registrar Entrada / Saída" data-permission-key="registrarEntradaSaida">
                                         <span class="settings-switch-knob"></span>
                                     </button>
                                 </div>
@@ -142,7 +148,7 @@
                                 <div class="permission-row">
                                     <span class="permission-label">Acessar Relatórios</span>
                                     <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
-                                        aria-label="Acessar Relatórios">
+                                        aria-label="Acessar Relatórios" data-permission-key="acessarRelatorios">
                                         <span class="settings-switch-knob"></span>
                                     </button>
                                 </div>
@@ -151,7 +157,7 @@
                                 <div class="permission-row">
                                     <span class="permission-label">Gerenciar Usuários</span>
                                     <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
-                                        aria-label="Gerenciar Usuários">
+                                        aria-label="Gerenciar Usuários" data-permission-key="gerenciarUsuarios">
                                         <span class="settings-switch-knob"></span>
                                     </button>
                                 </div>
@@ -160,7 +166,7 @@
                                 <div class="permission-row">
                                     <span class="permission-label">Acessar Calculadora</span>
                                     <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
-                                        aria-label="Acessar Calculadora">
+                                        aria-label="Acessar Calculadora" data-permission-key="acessarCalculadora">
                                         <span class="settings-switch-knob"></span>
                                     </button>
                                 </div>
@@ -169,7 +175,7 @@
                                 <div class="permission-row">
                                     <span class="permission-label">Alterar Configurações</span>
                                     <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
-                                        aria-label="Alterar Configurações">
+                                        aria-label="Alterar Configurações" data-permission-key="alterarConfiguracoes">
                                         <span class="settings-switch-knob"></span>
                                     </button>
                                 </div>
@@ -178,7 +184,7 @@
                                 <div class="permission-row">
                                     <span class="permission-label">Gerar Backup</span>
                                     <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
-                                        aria-label="Gerar Backup">
+                                        aria-label="Gerar Backup" data-permission-key="gerarBackup">
                                         <span class="settings-switch-knob"></span>
                                     </button>
                                 </div>
@@ -198,7 +204,7 @@
                                     <p class="preference-description">Confirmar antes de registrar saída</p>
                                 </div>
                                 <button class="settings-switch" type="button" aria-pressed="false"
-                                    aria-label="Confirmação de Saída">
+                                    aria-label="Confirmação de Saída" data-preference-key="confirmacaoSaida">
                                     <span class="settings-switch-knob"></span>
                                 </button>
                             </div>
@@ -210,7 +216,7 @@
                                     <p class="preference-description">Ativar tema escuro no sistema</p>
                                 </div>
                                 <button class="settings-switch" type="button" aria-pressed="false"
-                                    aria-label="Modo Escuro">
+                                    aria-label="Modo Escuro" data-preference-key="modoEscuro">
                                     <span class="settings-switch-knob"></span>
                                 </button>
                             </div>
@@ -222,7 +228,7 @@
                                     <p class="preference-description">Receber alertas de estoque baixo</p>
                                 </div>
                                 <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
-                                    aria-label="Notificações por E-mail">
+                                    aria-label="Notificações por E-mail" data-preference-key="notificacoesEmail">
                                     <span class="settings-switch-knob"></span>
                                 </button>
                             </div>
@@ -234,13 +240,15 @@
                                     <p class="preference-description">Gerar relatório semanal</p>
                                 </div>
                                 <button class="settings-switch settings-switch-on" type="button" aria-pressed="true"
-                                    aria-label="Relatórios Automáticos">
+                                    aria-label="Relatórios Automáticos" data-preference-key="relatoriosAutomaticos">
                                     <span class="settings-switch-knob"></span>
                                 </button>
                             </div>
                         </div>
                     </article>
                 </div>
+
+                <p class="settings-feedback" role="status" aria-live="polite"></p>
 
                 <article class="settings-card settings-about-card">
                     <header class="settings-card-header">

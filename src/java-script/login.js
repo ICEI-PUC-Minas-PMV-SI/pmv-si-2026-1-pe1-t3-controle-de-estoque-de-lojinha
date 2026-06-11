@@ -28,9 +28,9 @@ function generateUUID() { // Public Domain/MIT
 
 const dadosIniciais = {
     usuarios: [
-        { "id": generateUUID (), "login": "Admilson@gmail.com", "senha": "123", "nome": "Administrador do Sistema", "email": "Admilson@gmail.com"},
+        { "id": generateUUID (), "login": "Admilson@gmail.com", "senha": "123", "nome": "Administrador do Sistema", "email": "Admilson@gmail.com", "grupo": "administradores", "grupoDePermissoes": "administradores"},
 
-        { "id": generateUUID (), "login": "user@gmail.com", "senha": "123", "nome": "Usuario Comum", "email": "user@gmail.com"},
+        { "id": generateUUID (), "login": "user@gmail.com", "senha": "123", "nome": "Usuario Comum", "email": "user@gmail.com", "grupo": "operadores", "grupoDePermissoes": "operadores"},
     ]
 };
 
@@ -43,6 +43,20 @@ function initLoginApp() {
             usuarioCorrente = JSON.parse(usuarioCorrenteJSON);
         }
 
+        if (usuarioCorrente && usuarioCorrente.login && !usuarioCorrente.grupo) {
+            var usuariosJSON = localStorage.getItem("db_usuarios");
+            if (usuariosJSON) {
+                var db = JSON.parse(usuariosJSON);
+                var usuarioEncontrado = db.usuarios.find(function(u) {
+                    return u.login === usuarioCorrente.login;
+                });
+                if (usuarioEncontrado) {
+                    usuarioCorrente.grupo = usuarioEncontrado.grupo || usuarioEncontrado.grupoDePermissoes || "visitantes";
+                    sessionStorage.setItem("usuarioCorrente", JSON.stringify(usuarioCorrente));
+                }
+            }
+        }
+
 // A partir dos dados salvos no LocalStorage, ele obtem uma string //
 
 var usuariosJSON = localStorage.getItem("db_usuarios");
@@ -52,6 +66,19 @@ if (!usuariosJSON) { alert("Dados não encontrados no LocalStorage. \n ----> Faz
         localStorage.setItem("db_usuarios", JSON.stringify(dadosIniciais));
 } else { db_usuarios = JSON.parse(usuariosJSON);
        }
+
+db_usuarios.usuarios.forEach(function(u) {
+    if (!u.grupo && !u.grupoDePermissoes) {
+        if (u.login && u.login.toLowerCase().indexOf("adm") !== -1) {
+            u.grupo = "administradores";
+            u.grupoDePermissoes = "administradores";
+        } else {
+            u.grupo = "operadores";
+            u.grupoDePermissoes = "operadores";
+        }
+    }
+});
+
 const existeAdmin = db_usuarios.usuarios.find(
             usuario =>
                 usuario.login === "Admilson@gmail.com"
@@ -63,7 +90,9 @@ if (!existeAdmin) {
                 login: "Admilson@gmail.com",
                 senha: "123",
                 nome: "Administrador do Sistema",
-                email: "Admilson@gmail.com"
+                email: "Admilson@gmail.com",
+                grupo: "administradores",
+                grupoDePermissoes: "administradores"
             });
         }
 const existeUser = db_usuarios.usuarios.find(
@@ -77,7 +106,9 @@ if (!existeUser) {
                 login: "user@gmail.com",
                 senha: "123",
                 nome: "Usuario Comum",
-                email: "user@gmail.com"
+                email: "user@gmail.com",
+                grupo: "operadores",
+                grupoDePermissoes: "operadores"
             });
         }
 localStorage.setItem(
@@ -96,6 +127,7 @@ function loginUser (login, senha) {
          usuarioCorrente.login = usuario.login;
          usuarioCorrente.email = usuario.email;
          usuarioCorrente.nome = usuario.nome;
+         usuarioCorrente.grupo = usuario.grupo || usuario.grupoDePermissoes || "visitantes";
     
         sessionStorage.setItem("usuarioCorrente", JSON.stringify(usuarioCorrente));
         return true;
@@ -115,10 +147,10 @@ function logoutUser() {
 }
 
 // Função para criar um novo usuário contendo as informações necessárias //
-function addUser (login, senha, nome, email) {
+function addUser (login, senha, nome, email, grupo) {
     let newId = generateUUID ();
     let usuario = { "id": newId, "login": login, "senha": senha,
-    "nome": nome, "email": email };
+    "nome": nome, "email": email, "grupo": grupo || "operadores", "grupoDePermissoes": grupo || "operadores" };
        db_usuarios.usuarios.push (usuario);
        localStorage.setItem("db_usuarios", JSON.stringify (db_usuarios));
     }
