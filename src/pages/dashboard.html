@@ -7,6 +7,29 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Ajustes sutis para garantir que os gráficos fiquem responsivos e bem alinhados */
+        .chart-card {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .chart-card h2 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+        }
+    </style>
 </head>
 
 <body class="app-page dashboard-page" style="--app-active-color: #7b98bb;">
@@ -18,7 +41,7 @@
             </a>
 
             <div class="app-sidebar-panel">
-                <nav class="app-sidebar-nav" aria-label="Menu principal" >
+                <nav class="app-sidebar-nav" aria-label="Menu principal">
                     <a class="app-sidebar-nav-item" href="./dashboard.html" aria-current="page">
                         <img src="../../docs/img/icons/00-abas-off-dashboard.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Dashboard</span>
@@ -39,12 +62,12 @@
                         <span class="app-sidebar-nav-label">Relatórios</span>
                     </a>
 
-                    <a class="app-sidebar-nav-item" href="./usuarios.html" >
+                    <a class="app-sidebar-nav-item" href="./usuarios.html">
                         <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Usuários</span>
                     </a>
 
-                    <a class="app-sidebar-nav-item" href="em-breve.html">
+                    <a class="app-sidebar-nav-item" href="./calculadora.html">
                         <img src="../../docs/img/icons/05-abas-calculadora.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Calculadora</span>
                     </a>
@@ -57,7 +80,6 @@
                 <div class="app-sidebar-footer">
                     <div class="app-sidebar-user-card">
                         <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg" alt="Foto do usuário">
-
                         <div class="app-sidebar-user-info">
                             <span class="app-sidebar-user-label">Seu grupo:</span>
                             <strong class="app-sidebar-user-group">Gerentes</strong>
@@ -112,17 +134,111 @@
                 <div class="dashboard-chart-grid">
                     <article class="chart-card chart-card-entries">
                         <h2>Gráfico de entradas</h2>
-                        <p>Bem-vindo ao Dashboard do Estoque Search!</p>
+                        <div class="chart-container">
+                            <canvas id="entriesChart"></canvas>
+                        </div>
                     </article>
 
                     <article class="chart-card chart-card-exits">
                         <h2>Gráfico de saídas</h2>
-                        <p>Bem-vindo ao Dashboard do Estoque Search!</p>
+                        <div class="chart-container">
+                            <canvas id="exitsChart"></canvas>
+                        </div>
                     </article>
                 </div>
             </section>
         </main>
     </div>
+
+    <script>
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: {
+                    grid: { display: false },
+                    ticks: { color: '#666666', font: { family: 'sans-serif' } }
+                },
+                y: {
+                    grid: { color: '#f0f0f0' },
+                    ticks: { color: '#666666', font: { family: 'sans-serif' } },
+                    border: { dash: [5, 5] }
+                }
+            }
+        };
+
+        // Gráfico de Entradas (Histórico fictício culminando no total de hoje)
+        const ctxEntries = document.getElementById('entriesChart').getContext('2d');
+        new Chart(ctxEntries, {
+            type: 'line',
+            data: {
+                labels: ['08:00', '11:00', '14:00', '17:00', '20:00', 'Atual'],
+                datasets: [{
+                    label: 'Entradas',
+                    data: [420, 850, 1200, 1900, 2400, 2832], // Total de 2832 hoje
+                    borderColor: '#7b98bb',
+                    backgroundColor: 'rgba(123, 152, 187, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3,
+                    pointBackgroundColor: '#7b98bb'
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Gráfico de Saídas (Histórico fictício culminando no total de hoje)
+        const ctxExits = document.getElementById('exitsChart').getContext('2d');
+        new Chart(ctxExits, {
+            type: 'bar',
+            data: {
+                labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Hoje'],
+                datasets: [{
+                    label: 'Saídas',
+                    data: [1100, 1340, 1020, 1450, 1290, 1568], // Total de 1568 hoje
+                    backgroundColor: '#a3b8cc',
+                    borderRadius: 4,
+                    barPercentage: 0.6
+                }]
+            },
+            options: chartOptions
+        });
+
+    </script>
+    <script>
+    // Substitui 'idDoTeuFormulario' pelo ID real do teu <form> de produtos
+    document.getElementById('idDoTeuFormulario').addEventListener('submit', function(event) {
+        // Se o teu formulário já envia dados para algum lugar, podes manter o comportamento,
+        // mas adiciona esta lógica para atualizar o Dashboard localmente.
+        
+        
+        const qtdInput = document.getElementById('idDoInputQuantidade');
+        const qtd = qtdInput ? parseInt(qtdInput.value) : 1;
+
+        
+        const tipoMovimentacao = 'entrada'; // ou 'saida', dependendo do teu fluxo
+
+        // 3. Procura os dados atuais do Dashboard no localStorage
+        let estoqueData = JSON.parse(localStorage.getItem('estoqueData')) || { entradas: 2832, saidas: 1568, totalProdutos: 653 };
+
+        // 4. Atualiza os valores com base no novo cadastro
+        if (tipoMovimentacao === 'entrada') {
+            estoqueData.entradas += qtd;
+        } else {
+            estoqueData.saidas += qtd;
+        }
+        estoqueData.totalProdutos += 1; // Soma +1 no card de "Total de produtos"
+
+        // 5. Grava os novos valores de volta no navegador
+        localStorage.setItem('estoqueData', JSON.stringify(estoqueData));
+        
+        // Opcional: Mostra um aviso ao utilizador
+        alert('Produto registado! O Dashboard foi atualizado.');
+    });
+</script>
 </body>
 
 </html>
