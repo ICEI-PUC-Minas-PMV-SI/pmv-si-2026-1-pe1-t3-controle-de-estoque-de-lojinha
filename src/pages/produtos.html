@@ -8,9 +8,32 @@
     <script src="../java-script/acesso.js" defer></script>
     <script defer>
          
-          const db_produtos = JSON.parse(localStorage.getItem('db_produtos')) || {
+          let db_produtos = JSON.parse(localStorage.getItem('db_produtos')) || {
         produtos: []
     };
+
+    if (!db_produtos.produtos || db_produtos.produtos.length === 0) {
+        db_produtos = {
+            produtos: [
+                { id: 'p1', nome: 'Biscoito Recheado Chocolate 150g', quantidade: '45', preco: '3,50', fornecedor: 'Fabrica de Biscoitos', notaFiscal: 'NF-2025-001', data: '2026-06-01', observacoes: '' },
+                { id: 'p2', nome: 'Arroz Tipo 1 5kg', quantidade: '30', preco: '24,90', fornecedor: 'Cereal Distribuidora', notaFiscal: 'NF-2025-002', data: '2026-06-02', observacoes: '' },
+                { id: 'p3', nome: 'Feijão Carioca 1kg', quantidade: '60', preco: '7,80', fornecedor: 'Cereal Distribuidora', notaFiscal: 'NF-2025-003', data: '2026-06-02', observacoes: '' },
+                { id: 'p4', nome: 'Óleo de Soja 900ml', quantidade: '40', preco: '6,50', fornecedor: 'Alimentos Sul Ltda', notaFiscal: 'NF-2025-004', data: '2026-06-03', observacoes: '' },
+                { id: 'p5', nome: 'Açúcar Cristal 2kg', quantidade: '25', preco: '4,20', fornecedor: 'Usina Doce Vida', notaFiscal: 'NF-2025-005', data: '2026-06-03', observacoes: '' },
+                { id: 'p6', nome: 'Café Torrado Moído 500g', quantidade: '20', preco: '14,90', fornecedor: 'Café São Paulo', notaFiscal: 'NF-2025-006', data: '2026-06-04', observacoes: '' },
+                { id: 'p7', nome: 'Macarrão Espaguete 500g', quantidade: '50', preco: '4,30', fornecedor: 'Massa Boa Indústria', notaFiscal: 'NF-2025-007', data: '2026-06-04', observacoes: '' },
+                { id: 'p8', nome: 'Molho de Tomate 340g', quantidade: '35', preco: '3,90', fornecedor: 'Alimentos Sul Ltda', notaFiscal: 'NF-2025-008', data: '2026-06-05', observacoes: '' },
+                { id: 'p9', nome: 'Leite Integral 1L', quantidade: '0', preco: '5,20', fornecedor: 'Laticínios Minas', notaFiscal: 'NF-2025-009', data: '2026-06-05', observacoes: 'Produto em falta' },
+                { id: 'p10', nome: 'Biscoito Recheado Morango 150g', quantidade: '30', preco: '3,50', fornecedor: 'Fabrica de Biscoitos', notaFiscal: 'NF-2025-010', data: '2026-06-06', observacoes: '' },
+                { id: 'p11', nome: 'Biscoito Recheado Baunilha 150g', quantidade: '28', preco: '3,50', fornecedor: 'Fabrica de Biscoitos', notaFiscal: 'NF-2025-011', data: '2026-06-06', observacoes: '' },
+                { id: 'p12', nome: 'Arroz Parboilizado 5kg', quantidade: '22', preco: '26,50', fornecedor: 'Cereal Distribuidora', notaFiscal: 'NF-2025-012', data: '2026-06-07', observacoes: '' },
+                { id: 'p13', nome: 'Feijão Preto 1kg', quantidade: '40', preco: '8,20', fornecedor: 'Cereal Distribuidora', notaFiscal: 'NF-2025-013', data: '2026-06-07', observacoes: '' },
+                { id: 'p14', nome: 'Sal Refinado 1kg', quantidade: '55', preco: '2,10', fornecedor: 'Usina Doce Vida', notaFiscal: 'NF-2025-014', data: '2026-06-08', observacoes: '' },
+                { id: 'p15', nome: 'Achocolatado em Pó 400g', quantidade: '15', preco: '8,90', fornecedor: 'Cereal Distribuidora', notaFiscal: 'NF-2025-015', data: '2026-06-08', observacoes: '' },
+            ]
+        };
+        localStorage.setItem('db_produtos', JSON.stringify(db_produtos));
+    }
 
     function escapeHtml(valor) {
 
@@ -55,7 +78,7 @@
 
             document.getElementById("table-produtos").innerHTML = `
                 <tr class="empty-row">
-                    <td colspan="6">Nenhum produto encontrado</td>
+                    <td colspan="7">Nenhum produto encontrado</td>
                 </tr>
             `;
 
@@ -102,16 +125,14 @@
                         </span>
                     </td>
                     <td>
-                        <button
-                           type="button"
-                           onclick="editarProduto('${produto.id}')">
-                           Editar
-                        </button>
-                        <button
-                           type="button"
-                           onclick="excluirProduto('${produto.id}')">
-                           Excluir
-                        </button>
+                        <span class="actions-group">
+                            <button type="button" class="btn-action btn-action-edit" onclick="editarProduto('${produto.id}')" title="Editar produto">
+                                <img src="../../docs/img/icons/edit-pencil.svg" alt="Editar">
+                            </button>
+                            <button type="button" class="btn-action btn-action-delete" onclick="excluirProduto('${produto.id}')" title="Excluir produto">
+                                <img src="../../docs/img/icons/trash-delete.svg" alt="Excluir">
+                            </button>
+                        </span>
                     </td>
 
                 </tr>
@@ -251,7 +272,7 @@
 
                         <a href="./cadastrop.html" class="btn-new-user">
                             <img src="../../docs/img/icons/add-circle.svg" alt="">
-                            <span>Novo Produto</span>
+                            <span>Nova Entrada de Produto</span>
                         </a>
                     </div>
 
@@ -267,7 +288,7 @@
                                     <tr>
                                         <th scope="col">Produto</th>
                                         <th scope="col">Quantidade</th>
-                                        <th scope="col">Preço</th>
+                                        <th scope="col">Preço Unitário</th>
                                         <th scope="col">Fornecedor</th>
                                         <th scope="col">Nota Fiscal</th>
                                         <th scope="col">Status</th>

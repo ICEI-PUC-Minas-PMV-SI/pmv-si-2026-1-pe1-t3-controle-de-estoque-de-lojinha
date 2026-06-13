@@ -366,3 +366,52 @@ body.app-page {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Botões de ação com ícones (padrão para todas as tabelas) ===== */
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  color: var(--app-muted-text);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-action:hover {
+  color: var(--app-text);
+  border-color: var(--app-active-color);
+  background-color: #f5f5fa;
+}
+
+.btn-action.btn-action-edit:hover {
+  color: #4a90e2;
+  border-color: #4a90e2;
+  background-color: #f0f6ff;
+}
+
+.btn-action.btn-action-delete:hover {
+  color: #ff1d2d;
+  border-color: #ff1d2d;
+  background-color: #fff5f5;
+}
+
+.btn-action img,
+.btn-action svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+/* Grupo de ações lado a lado */
+.actions-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}

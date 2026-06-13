@@ -199,29 +199,29 @@
 
 #grid-usuarios th:nth-child(1),
 #grid-usuarios td:nth-child(1) {
-    width: 18%;
+    width: 28%;
 }
 
 #grid-usuarios th:nth-child(2),
 #grid-usuarios td:nth-child(2) {
-    width: 28%;
+    width: 12%;
 }
 
 #grid-usuarios th:nth-child(3),
 #grid-usuarios td:nth-child(3) {
-    width: 20%;
+    width: 16%;
     text-align: center;
 }
 
 #grid-usuarios th:nth-child(4),
 #grid-usuarios td:nth-child(4) {
-    width: 17%;
+    width: 18%;
     text-align: center;
 }
 
 #grid-usuarios th:nth-child(5),
 #grid-usuarios td:nth-child(5) {
-    width: 17%;
+    width: 14%;
     text-align: right;
 }
 
@@ -301,24 +301,12 @@
 }
 #grid-usuarios th:nth-child(6),
 #grid-usuarios td:nth-child(6) {
-    width: 10%;
+    width: 8%;
     text-align: center;
 }
 
 #grid-usuarios th:nth-child(7),
 #grid-usuarios td:nth-child(7) {
-    width: 17%;
+    width: 12%;
     text-align: center;
-}
-#grid-usuarios td button {
-    padding: 6px 10px;
-    margin: 0 4px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-#grid-usuarios td button:hover {
-    opacity: 0.8;
 }

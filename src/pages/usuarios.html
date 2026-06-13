@@ -87,7 +87,7 @@
             if (usuariosFiltrados.length === 0) {
                 document.getElementById("table-usuarios").innerHTML = `
                     <tr class="empty-row">
-                        <td colspan="5">Nenhum usuário encontrado</td>
+                        <td colspan="6">Nenhum usuário encontrado</td>
                     </tr>
                 `;
                 return;
@@ -105,20 +105,15 @@
                     <td><span class="user-status user-status-${statusClasse}">${escapeHtml(status)}</span></td>
                     <td>${escapeHtml(formataDataUsuario(usuario))}</td>
                     <td>
-    <button
-        type="button"
-        onclick="editarUsuario('${usuario.id}')">
-        Editar
-    </button>
-</td>
-
-<td>
-    <button
-        type="button"
-        onclick="excluirUsuario('${usuario.id}')">
-        Excluir
-    </button>
-</td>
+                        <span class="actions-group">
+                            <button type="button" class="btn-action btn-action-edit" onclick="editarUsuario('${usuario.id}')" title="Editar usuário">
+                                <img src="../../docs/img/icons/edit-pencil.svg" alt="Editar">
+                            </button>
+                            <button type="button" class="btn-action btn-action-delete" onclick="excluirUsuario('${usuario.id}')" title="Excluir usuário">
+                                <img src="../../docs/img/icons/trash-delete.svg" alt="Excluir">
+                            </button>
+                        </span>
+                    </td>
                 </tr>`;
             }
 
@@ -287,19 +282,18 @@ function editarUsuario(id) {
                         <div class="users-table-wrap">
                             <table id="grid-usuarios">
                                 <thead>
-                                    <tr>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">E-mail</th>
-                                        <th scope="col">Grupo</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Criado em</th>
-                                        <th scope="col">Editar</th>
-                                        <th scope="col">Excluir</th>
-                                    </tr>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Grupo</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Criado em</th>
+                        <th scope="col">Ações</th>
+                    </tr>
                                 </thead>
                                 <tbody id="table-usuarios">
                                     <tr class="empty-row">
-                                        <td colspan="7">Carregando usuários...</td>
+                                        <td colspan="6">Carregando usuários...</td>
                                     </tr>
                                 </tbody>
                             </table>

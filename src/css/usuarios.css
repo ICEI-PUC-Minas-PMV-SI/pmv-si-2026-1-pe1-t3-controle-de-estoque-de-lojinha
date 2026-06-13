@@ -215,18 +215,9 @@
 }
 
 #grid-usuarios th:nth-child(6),
-#grid-usuarios td:nth-child(6),
-#grid-usuarios th:nth-child(7),
-#grid-usuarios td:nth-child(7) {
-    width: 9%;
-    padding-right: 10px;
-    padding-left: 10px;
+#grid-usuarios td:nth-child(6) {
+    width: 10%;
     text-align: center;
-}
-
-#grid-usuarios th:nth-child(7),
-#grid-usuarios td:nth-child(7) {
-    padding-right: 20px;
 }
 
 .cell-strong {
@@ -263,28 +254,7 @@
     border-color: #ff1d2d;
 }
 
-#grid-usuarios button {
-    min-width: 56px;
-    min-height: 28px;
-    padding: 0 10px;
-    color: var(--app-muted-text);
-    background-color: var(--app-surface);
-    border: 1px solid var(--app-border);
-    border-radius: 8px;
-    font-family: "Inter", var(--app-font);
-    font-size: 12px;
-    font-weight: 500;
-}
 
-#grid-usuarios button:hover {
-    color: var(--app-text);
-    border-color: var(--app-active-color);
-}
-
-#grid-usuarios td:nth-child(7) button:hover {
-    color: #ff1d2d;
-    border-color: #ff1d2d;
-}
 
 .empty-row td {
     color: var(--app-subtle-text);
