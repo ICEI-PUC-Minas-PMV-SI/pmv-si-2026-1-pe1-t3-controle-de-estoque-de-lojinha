@@ -11,148 +11,148 @@
     <script src="../java-script/login.js" defer></script>
     <script src="../java-script/acesso.js" defer></script>
     <script defer>
-   let db_saidas = JSON.parse(localStorage.getItem("db_saidas")) || {
-    saidas: []
-   };
-   let db_produtos = JSON.parse(
-    localStorage.getItem("db_produtos")
-    ) || {
-    produtos: []
-    };
-   function carregarProdutos() {
+        let db_saidas = JSON.parse(localStorage.getItem("db_saidas")) || {
+            saidas: []
+        };
+        let db_produtos = JSON.parse(
+            localStorage.getItem("db_produtos")
+        ) || {
+            produtos: []
+        };
+        function carregarProdutos() {
 
-    const lista =
-        document.getElementById("lista-produtos");
+            const lista =
+                document.getElementById("lista-produtos");
 
-    lista.innerHTML = "";
+            lista.innerHTML = "";
 
-    db_produtos.produtos.forEach(produto => {
+            db_produtos.produtos.forEach(produto => {
 
-        lista.innerHTML += `
+                lista.innerHTML += `
             <option value="${produto.nome}">
         `;
-    });
-   }
-   function preencherDadosProduto() {
+            });
+        }
+        function preencherDadosProduto() {
 
-    const nomeProduto =
-        document.getElementById("busca-produtos").value;
+            const nomeProduto =
+                document.getElementById("busca-produtos").value;
 
-    const produto = db_produtos.produtos.find(
-        p => p.nome.toLowerCase() ===
-             nomeProduto.toLowerCase()
-    );
+            const produto = db_produtos.produtos.find(
+                p => p.nome.toLowerCase() ===
+                    nomeProduto.toLowerCase()
+            );
 
-    if (!produto) {
-        return;
-    }
+            if (!produto) {
+                return;
+            }
 
-    document.getElementById("preco").value =
-        produto.preco || "";
+            document.getElementById("preco").value =
+                produto.preco || "";
 
-    document.getElementById("fornecedor").value =
-        produto.fornecedor || "";
+            document.getElementById("fornecedor").value =
+                produto.fornecedor || "";
 
-    document.getElementById("nf").value =
-        produto.notaFiscal || "";
- }
-   function registrarSaida() {
+            document.getElementById("nf").value =
+                produto.notaFiscal || "";
+        }
+        function registrarSaida() {
 
-    const produto = document.getElementById("busca-produtos").value;
-    const produtoEncontrado =
-    db_produtos.produtos.find(
-        p => p.nome.toLowerCase() ===
-             produto.toLowerCase()
-    );
+            const produto = document.getElementById("busca-produtos").value;
+            const produtoEncontrado =
+                db_produtos.produtos.find(
+                    p => p.nome.toLowerCase() ===
+                        produto.toLowerCase()
+                );
 
-    if (!produtoEncontrado) {
+            if (!produtoEncontrado) {
 
-       alert("Produto não encontrado.");
-       return;
-    }
-    const quantidade = document.getElementById("quantidade").value;
-    const preco = document.getElementById("preco").value;
-    const fornecedor = document.getElementById("fornecedor").value;
-    const nf = document.getElementById("nf").value;
-    const data = document.getElementById("data").value;
-    const observacoes = document.getElementById("obs").value;
+                alert("Produto não encontrado.");
+                return;
+            }
+            const quantidade = document.getElementById("quantidade").value;
+            const preco = document.getElementById("preco").value;
+            const fornecedor = document.getElementById("fornecedor").value;
+            const nf = document.getElementById("nf").value;
+            const data = document.getElementById("data").value;
+            const observacoes = document.getElementById("obs").value;
 
-    if (!produto || !quantidade) {
-        alert("Preencha produto e quantidade.");
-        return;
-    }
-    
-
-    if (
-       Number(quantidade) >
-       Number(produtoEncontrado.quantidade)
-   )  {
-       alert("Estoque insuficiente.");
-       return;
-    }
-    const novaSaida = {
-         codigo: Date.now(),
-    produto,
-    quantidade,
-    preco,
-    fornecedor,
-    nf,
-    data,
-    observacoes
-    };
-
-   db_saidas.saidas.push(novaSaida);
-
- localStorage.setItem(
-   "db_saidas",
-   JSON.stringify(db_saidas)
- );
-
-        produtoEncontrado.quantidade =
-        Number(produtoEncontrado.quantidade) -
-        Number(quantidade);
-
-    localStorage.setItem(
-        "db_produtos",
-        JSON.stringify(db_produtos)
-    );
+            if (!produto || !quantidade) {
+                alert("Preencha produto e quantidade.");
+                return;
+            }
 
 
+            if (
+                Number(quantidade) >
+                Number(produtoEncontrado.quantidade)
+            ) {
+                alert("Estoque insuficiente.");
+                return;
+            }
+            const novaSaida = {
+                codigo: Date.now(),
+                produto,
+                quantidade,
+                preco,
+                fornecedor,
+                nf,
+                data,
+                observacoes
+            };
 
-    document.getElementById("busca-produtos").value = "";
-    document.getElementById("quantidade").value = "";
-    document.getElementById("preco").value = "";
-    document.getElementById("fornecedor").value = "";
-    document.getElementById("nf").value = "";
-    document.getElementById("data").value = "";
-    document.getElementById("obs").value = "";
+            db_saidas.saidas.push(novaSaida);
 
-    exibeSaidas();
-   }
+            localStorage.setItem(
+                "db_saidas",
+                JSON.stringify(db_saidas)
+            );
+
+            produtoEncontrado.quantidade =
+                Number(produtoEncontrado.quantidade) -
+                Number(quantidade);
+
+            localStorage.setItem(
+                "db_produtos",
+                JSON.stringify(db_produtos)
+            );
 
 
 
-   function escapeHtml(valor) {
+            document.getElementById("busca-produtos").value = "";
+            document.getElementById("quantidade").value = "";
+            document.getElementById("preco").value = "";
+            document.getElementById("fornecedor").value = "";
+            document.getElementById("nf").value = "";
+            document.getElementById("data").value = "";
+            document.getElementById("obs").value = "";
 
-    const mapa = {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-    };
+            exibeSaidas();
+        }
 
-    return String(valor ?? "")
-        .replace(/[&<>"']/g, caractere => mapa[caractere]);
-   }
 
-   function exibeSaidas() {
 
-    let listaSaidas = "";
+        function escapeHtml(valor) {
 
-    if (db_saidas.saidas.length === 0) {
+            const mapa = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            };
 
-        document.getElementById("table-saidas").innerHTML = `
+            return String(valor ?? "")
+                .replace(/[&<>"']/g, caractere => mapa[caractere]);
+        }
+
+        function exibeSaidas() {
+
+            let listaSaidas = "";
+
+            if (db_saidas.saidas.length === 0) {
+
+                document.getElementById("table-saidas").innerHTML = `
 <tr class="empty-row">
     <td colspan="8">
         Nenhuma saída cadastrada
@@ -160,14 +160,14 @@
 </tr>
         `;
 
-        return;
-    }
+                return;
+            }
 
-    for (let i = 0; i < db_saidas.saidas.length; i++) {
+            for (let i = 0; i < db_saidas.saidas.length; i++) {
 
-        const saida = db_saidas.saidas[i];
+                const saida = db_saidas.saidas[i];
 
-        listaSaidas += `
+                listaSaidas += `
             <tr>
                 <td>${saida.codigo}</td>
                 <td>${escapeHtml(saida.produto)}</td>
@@ -185,69 +185,69 @@
                 </td>
             </tr>
         `;
-    }
+            }
 
-    document.getElementById("table-saidas").innerHTML = listaSaidas;
-   }
+            document.getElementById("table-saidas").innerHTML = listaSaidas;
+        }
 
-   function excluirSaida(indice){
-    const confirmar = confirm(
-        "Deseja realmente exlcuir esta saída?"
-    );
-    if (!confirmar) {
-        return;
-    }
-    const saida = db_saidas.saidas[indice];
+        function excluirSaida(indice) {
+            const confirmar = confirm(
+                "Deseja realmente exlcuir esta saída?"
+            );
+            if (!confirmar) {
+                return;
+            }
+            const saida = db_saidas.saidas[indice];
 
-    const produto = db_produtos.produtos.find(
-        p => p.nome === saida.produto
-    );
+            const produto = db_produtos.produtos.find(
+                p => p.nome === saida.produto
+            );
 
-    if (produto) {
+            if (produto) {
 
-        produto.quantidade =
-            Number(produto.quantidade) +
-            Number(saida.quantidade);
+                produto.quantidade =
+                    Number(produto.quantidade) +
+                    Number(saida.quantidade);
 
-        localStorage.setItem(
-            "db_produtos",
-            JSON.stringify(db_produtos)
-        );
-    }
+                localStorage.setItem(
+                    "db_produtos",
+                    JSON.stringify(db_produtos)
+                );
+            }
 
-    db_saidas.saidas.splice(indice,1);
+            db_saidas.saidas.splice(indice, 1);
 
-    localStorage.setItem(
-        "db_saidas",
-        JSON.stringify(db_saidas)
-    );
+            localStorage.setItem(
+                "db_saidas",
+                JSON.stringify(db_saidas)
+            );
 
-    exibeSaidas();
+            exibeSaidas();
 
-   }
-   function initPage() {
+        }
+        function initPage() {
 
-   
-    document
-        .getElementById("btnRegistrarSaida")
-        ?.addEventListener(
-            "click",
-            registrarSaida
-        );
 
-    document
-        .getElementById("busca-produtos")
-        ?.addEventListener(
-            "change",
-            preencherDadosProduto
-        );
+            document
+                .getElementById("btnRegistrarSaida")
+                ?.addEventListener(
+                    "click",
+                    registrarSaida
+                );
 
-    carregarProdutos();
-    
-    exibeSaidas();
-   }
+            document
+                .getElementById("busca-produtos")
+                ?.addEventListener(
+                    "change",
+                    preencherDadosProduto
+                );
 
-   window.addEventListener("load", initPage);
+            carregarProdutos();
+
+            exibeSaidas();
+        }
+
+        window.addEventListener("load", initPage);
 
     </script>
 </head>
@@ -328,110 +328,107 @@
             </header>
 
             <section class="app-content produtos-content" aria-label="Conteúdo de produtos">
-     
 
-                    <div class="product-toolbar">
-                        <div class="product-header">
-                            <img id="exit-icon" src="../../docs/img/icons/012-exit-yellow.svg.svg">
-                            <h1 class="product-toolbar-title">Nova saída de produto</h1>
+
+                <div class="product-toolbar">
+                    <div class="product-header">
+                        <img id="exit-icon" src="../../docs/img/icons/012-exit-yellow.svg.svg">
+                        <h1 class="product-toolbar-title">Nova saída de produto</h1>
+                    </div>
+
+                    <div class="product-search-field">
+
+                        <label for="busca-produtos">Produto</label>
+                        <div class="product-search-box">
+
+                            <input id="busca-produtos" type="search" placeholder="Digite o produto"
+                                list="lista-produtos" autocomplete="off">
+                            <img src="../../docs/img/icons/search.svg" alt="">
+
+                            <datalist id="lista-produtos"></datalist>
                         </div>
+                    </div>
 
-                        <div class="product-search-field">
-
-                            <label for="busca-produtos">Produto</label>
-                            <div class="product-search-box">
-
-                                <input id="busca-produtos" type="search" placeholder="Digite o produto"
-                                list="lista-produtos"
-                                autocomplete="off">
-                                <img src="../../docs/img/icons/search.svg" alt="">
-
-                                <datalist id="lista-produtos"></datalist>
-                            </div>
-                        </div>
-
-                        <div class="product-row">
-                            <div class="product-field">
-                                <label for="quantidade">Quantidade</label>
-                                <input id="quantidade" type="number" placeholder="0">
-                            </div>
-
-                            <div class="product-field">
-                                <label for="preco">Preço Unitário</label>
-                                <input id="preco" type="number" placeholder="R$ 0,00" step="0.01">
-                            </div>
+                    <div class="product-row">
+                        <div class="product-field">
+                            <label for="quantidade">Quantidade</label>
+                            <input id="quantidade" type="number" placeholder="0">
                         </div>
 
                         <div class="product-field">
-                            <label for="fornecedor">Fornecedor</label>
-                            <input id="fornecedor" type="text" placeholder="Nome do Fornecedor">
+                            <label for="preco">Preço Unitário</label>
+                            <input id="preco" type="number" placeholder="R$ 0,00" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="product-field">
+                        <label for="fornecedor">Fornecedor</label>
+                        <input id="fornecedor" type="text" placeholder="Nome do Fornecedor">
+                    </div>
+
+                    <div class="product-row">
+                        <div class="product-field">
+                            <label for="nota-fiscal">Nota Fiscal</label>
+                            <input id="nf" type="text" placeholder="Nº da NF">
                         </div>
 
-                        <div class="product-row">
-                            <div class="product-field">
-                                <label for="nota-fiscal">Nota Fiscal</label>
-                                <input id="nf" type="text" placeholder="Nº da NF">
-                            </div>
-
-                            <div class="product-field">
-                                <label for="data">Data</label>
-                                <input id="data" type="date">
-                            </div>
+                        <div class="product-field">
+                            <label for="data">Data</label>
+                            <input id="data" type="date">
                         </div>
+                    </div>
 
-                        <div class="product-search-field">
-                            <label for="obs"></label>Observações
+                    <div class="product-search-field">
+                        <label for="obs">Observações</label>
+                        <input id="obs" type="text" placeholder="Observações adicionais">
+                    </div>
 
-                            <input id="obs" type="text" placeholder="Observações adicionais">
+
+                    <div class="product-actions">
+                        <button id="btnRegistrarSaida" class="btn-new-product">
+                            <img src="../../docs/img/icons/add-circle.svg" alt="">
+                            <span>Registrar Saída</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="recent-exits">
+
+                    <div class="recent-exit-header">
+                        <img id="recent-icon" src="../../docs/img/icons/013-recent-icon.svg" alt="">
+                        <h1 class="recent-title">Saídas recentes</h1>
+                    </div>
+
+
+                    <div class="product-recent-table-card">
+                        <div class="product-table-wrap">
+                            <table id="grid-products">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Código</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Categoria</th>
+                                        <th scope="col">QTD</th>
+                                        <th scope="col">Preço</th>
+                                        <th scope="col">NF</th>
+                                        <th scope="col">Data</th>
+                                        <th scope="col">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-saidas">
+                                    <tr class="empty-row">
+                                        <td colspan="8">Carregando saídas...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
+                </div>
+    </section>
 
-
-                        <div class="product-actions">
-                            <button id="btnRegistrarSaida" class="btn-new-product">
-                                <img src="../../docs/img/icons/add-circle.svg" alt="">
-                                <span>Registrar Saída</span>
-                            </button>
-                        </div>
-                
+    </main>
     </div>
-
-    <div class="recent-exits">
-
-        <div class="recent-exit-header">
-            <img id="recent-icon" src="../../docs/img/icons/013-recent-icon.svg" alt="">
-            <h1 class="recent-title">Saídas recentes</h1>
-        </div>
-    
-
-    <div class="product-recent-table-card">
-        <div class="product-table-wrap">
-            <table id="grid-products">
-                <thead>
-                    <tr>
-                        <th scope="col">Código</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">QTD</th>
-                        <th scope="col">Preço</th>
-                        <th scope="col">NF</th>
-                        <th scope="col">Data</th>
-                        <th scope="col">Ações</th>
-                    </tr>
-                </thead>
-                       <tbody id="table-saidas">
-                        <tr class="empty-row">
-                         <td colspan="8">Carregando saídas...</td>
-                        </tr>
-                      </tbody>
-            </table>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-
-</main>
-</div>
 </body>
 
 </html>
