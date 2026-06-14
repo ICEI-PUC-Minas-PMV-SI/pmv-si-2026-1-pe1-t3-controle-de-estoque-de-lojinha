@@ -136,17 +136,71 @@
                     </article>
 
                 </div>
-                <div class="dash-graphs">
-                    <div class="dash-low">
-                        <h1>Alerta de Estoque Baixo</h1>
-                    </div>
-                    <div class="dash-recent-movement">
-                        <h1>Movimentações Recentes</h1>
-                    </div>
-               
+                <div class="dashboard-tables">
 
-                </div>               
+                    <div class="dashboard-card">
+
+                        <div class="dashboard-card-header">
+                             <img src="../../docs/img/icons/014-yellow-alert.svg">
+                            <h2>Alerta de Estoque Baixo</h2>
+                        </div>
+
+                        <table class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nome</th>
+                                    <th>Qtd</th>
+                                    <th>Mínimo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-alertas">
+                                <tr>
+                                    <td colspan="2">
+                                        Nenhum alerta encontrado
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-header">
+                            <img src="../../docs/img/icons/015-cube-sync.svg">
+                            <h2>Movimentações Recentes</h2>
+                        </div>
+
+                        <table class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Produto</th>
+                                    <th>Tipo</th>
+                                    <th>Qtd</th>
+                                    <th>Data</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-movimentos">
+                                <tr>
+                                    <td colspan="4">
+                                        Nenhuma movimentação
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>          
             </section>
+            <div class="dashboard-footer-card">
+
+                        <h2>Horário de Funcionamento</h2>
+
+                        <p>
+                            Seg-Sex: 08:00–18:00 |
+                            Sáb: 08:00–12:00 |
+                            Dom: Fechado
+                        </p>
+
+                    </div>
         </main>
     </div>
 
@@ -186,6 +240,49 @@
                     produto =>
                         Number(produto.quantidade) <= 5
                 ).length;
+            let htmlAlertas = "";
+
+            db_produtos.produtos
+                .filter(produto => Number(produto.quantidade) <= 5)
+                .forEach(produto => {
+
+                    htmlAlertas += `
+        <tr>
+            <td>${produto.id}</td>
+            <td>${produto.nome}</td>
+            <td>${produto.quantidade}</td>
+            <td>5</td>
+        </tr>
+    `;
+                });
+
+            document.getElementById(
+                "tabela-alertas"
+            ).innerHTML = htmlAlertas;
+
+            let htmlMov = "";
+
+            db_saidas.saidas
+                .slice()
+                .reverse()
+                .slice(0, 10)
+                .forEach(saida => {
+
+                    htmlMov += `
+        <tr>
+            <td>${saida.codigo}</td>
+            <td>${saida.produto}</td>
+            <td>Saída</td>
+            <td>${saida.quantidade}</td>
+            <td>${saida.data}</td>
+        </tr>
+    `;
+                });
+
+            document.getElementById(
+                "tabela-movimentos"
+            ).innerHTML = htmlMov;
+
             document.getElementById(
                 "tipos-produtos"
             ).textContent =
@@ -205,27 +302,6 @@
                 "alertas"
             ).textContent =
                 alertas;
-
-            entriesChart.data.datasets[0].data = [
-                0,
-                Math.round(itensEstoque * 0.25),
-                Math.round(itensEstoque * 0.45),
-                Math.round(itensEstoque * 0.70),
-                Math.round(itensEstoque * 0.90),
-                itensEstoque
-            ];
-
-            entriesChart.update();
-            exitsChart.data.datasets[0].data = [
-                saidasHoje * 0.2,
-                saidasHoje * 0.4,
-                saidasHoje * 0.6,
-                saidasHoje * 0.8,
-                saidasHoje * 0.9,
-                saidasHoje
-            ];
-
-            exitsChart.update();
 
         }
 
