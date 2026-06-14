@@ -5,18 +5,18 @@
 }
 
 .app-content {
-     display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    flex-wrap: nowrap;
-    padding-left: 16px;
-
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 20px;
+  min-height: 526px;
+  align-items: start;
 }
 
 #exit-icon {
 
     display: block;
 }
+
 .product-field{
     display:flex;
     flex-direction:column;
@@ -42,6 +42,7 @@
     font-weight: 400;
     color: #737385;
 }
+
 #tit-produtos{
     align-self: flex-start;
 }
@@ -132,10 +133,8 @@
     display:flex;
     flex-direction:column;
 
-    width:349px;
-    flex-shrink: 0;
-
-    gap:15px;
+    width:400px;
+    gap:20px;
 
     padding:20px;
 
@@ -154,7 +153,6 @@
 .product-actions{
     display:flex;
     width:100%;
-    margin-top:10px;
 }
 .btn-new-product{
         display:flex;
@@ -193,8 +191,6 @@
 .recent-exits {
     display:flex;
     flex-direction:column;
-
-    flex:1 1 550px;
 
     gap:12px;
 
@@ -270,7 +266,7 @@
 @media (max-width: 900px) {
 
     .app-content {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 20px;
     }
 
