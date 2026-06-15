@@ -1,26 +1,28 @@
-# This CITATION.cff file was generated with cffinit.
-# Visit https://bit.ly/cffinit to generate yours today!
-
 cff-version: 1.2.0
-title: Web Application Template
+title: Controle de Estoque de Lojinha
 message: >-
-  Repositório padrão para o Eixo 1 - Projeto 1: Aplicações
-  Web da PUC Minas.
+  If you use this software, please cite it using the
+  metadata from this file.
 type: software
 authors:
-  - given-names: Aluno 1
-    family-names: Nome Completo
-    email: aluno@pucminas.br
+  - given-names: Gabriel Gonçalves de
+    family-names: Lana
+    email: gabriel.lana.1660482@sga.pucminas.br
     affiliation: PUC Minas
-  - given-names: Hugo
-    name-particle: 'B '
-    family-names: de Paula
-    name-suffix: Prof.
-    email: hugo@pucminas.br
+  - given-names: Gabriel Yuri Silva Alves dos
+    family-names: Santos
+    email: gabriel.santos.1658464@sga.pucminas.br
     affiliation: PUC Minas
-    orcid: 'https://orcid.org/0000-0002-6193-3205'
+  - given-names: Maria Luiza Duarte
+    family-names: Parreiras
+    email: maria.parreiras.1660015@sga.pucminas.br
+    affiliation: PUC Minas
+  - given-names: Samuel Henrique dos Santos
+    family-names: Souza
+    email: samuel.souza.1659443@sga.pucminas.br
+    affiliation: PUC Minas
 repository-code: >-
-  https://github.com/ICEI-PUC-Minas-PMV-SI/WebApplicationProject-Template
+  https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t3-controle-de-estoque-de-lojinha
 abstract: >-
   Descrever resumidamente, em um ou dois parágrafos, o
   projeto que foi desenvolvido.
@@ -29,5 +31,5 @@ keywords:
   - HTML
   - CSS
   - JavaScript
-  - Template
-date-released: '2024-06-23'
+  - Controle de Estoque
+date-released: '2026-06-14'
