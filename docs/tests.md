@@ -22,125 +22,111 @@ Nesta seção o grupo deverá documentar os testes de software que verificam a c
 
 ## Plano de Testes de Software
 
-Preencha a tabela com o plano dos testes. Para cada Caso de Teste (CT), associe qual o Requisito Funcional ou não funcional que ele está verificando. Associe também a página (ou artefato) onde o teste será realizado e descreva o cenário do teste. Veja a tabela de exemplo.
-
-
-**Caso de Teste** | **CT01 - Criar conta parte 1**
+**Caso de Teste** | **CT01 - Login de usuário**
  :--------------: | ------------
-**Procedimento**  | 1) Acesse o endereço www.teste.com.br <br> 2) Clique em criar conta <br> 2) Preencha todos os campos do formulário <br> 3) Clique no botão "Continuar".
-**Requisitos associados** | RF-001
-**Resultado esperado** | Prosseguir para a parte 2 do cadastro
-**Dados de entrada** | Inserção de dados válidos no formulário de cadastro
+**Procedimento**  | 1) Acesse o sistema pelo endereço da aplicação <br> 2) Informe um e-mail e senha válidos cadastrados no sistema <br> 3) Clique no botão "Entrar"
+**Requisitos associados** | RF-06
+**Resultado esperado** | Usuário autenticado e redirecionado para a tela principal conforme seu perfil
+**Dados de entrada** | E-mail e senha válidos de um usuário cadastrado
 **Resultado obtido** | Sucesso
 
-**Caso de Teste** | **CT02 - Criar conta parte 2**
+**Caso de Teste** | **CT02 - Cadastro de usuário**
  :--------------: | ------------
-**Procedimento**  | 1) Preencha todos os campos do formulário <br> 2) Clique no botão "Criar conta" <br> 
-**Requisitos associados** | RF-001
-**Resultado esperado** | Usuário cadastrado
-**Dados de entrada** | Inserção de dados válidos no formulário de cadastro
+**Procedimento**  | 1) Acesse a página de cadastro de usuários <br> 2) Preencha todos os campos obrigatórios (nome, e-mail, senha, perfil) <br> 3) Clique no botão "Cadastrar"
+**Requisitos associados** | RF-08
+**Resultado esperado** | Novo usuário criado e disponível no sistema
+**Dados de entrada** | Dados válidos de um novo usuário
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT03 - Cadastro de produto**
+ :--------------: | ------------
+**Procedimento**  | 1) Faça login como Administrador <br> 2) Acesse a página de cadastro de produtos <br> 3) Preencha os campos: nome, quantidade, preço, fornecedor, nota fiscal e data <br> 4) Clique em "Salvar"
+**Requisitos associados** | RF-01
+**Resultado esperado** | Produto cadastrado e exibido na listagem de produtos
+**Dados de entrada** | Dados válidos de um novo produto
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT04 - Edição de produto**
+ :--------------: | ------------
+**Procedimento**  | 1) Faça login como Administrador <br> 2) Acesse a listagem de produtos <br> 3) Selecione um produto existente e clique em "Editar" <br> 4) Altere as informações desejadas <br> 5) Clique em "Salvar"
+**Requisitos associados** | RF-05
+**Resultado esperado** | Informações do produto atualizadas corretamente no sistema
+**Dados de entrada** | Novos dados válidos para o produto selecionado
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT05 - Registro de entrada de produtos**
+ :--------------: | ------------
+**Procedimento**  | 1) Faça login como Funcionário ou Administrador <br> 2) Acesse a funcionalidade de entrada de produtos <br> 3) Selecione o produto e informe a quantidade a ser adicionada <br> 4) Confirme a operação
+**Requisitos associados** | RF-02
+**Resultado esperado** | Quantidade do produto incrementada corretamente no estoque
+**Dados de entrada** | Produto existente e quantidade válida
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT06 - Registro de saída de produtos**
+ :--------------: | ------------
+**Procedimento**  | 1) Faça login como Funcionário ou Administrador <br> 2) Acesse a funcionalidade de saída de produtos <br> 3) Selecione o produto e informe a quantidade a ser retirada <br> 4) Confirme a operação
+**Requisitos associados** | RF-03
+**Resultado esperado** | Quantidade do produto decrementada corretamente no estoque
+**Dados de entrada** | Produto existente com estoque suficiente e quantidade válida
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT07 - Consulta de produto**
+ :--------------: | ------------
+**Procedimento**  | 1) Faça login no sistema <br> 2) Acesse a listagem de produtos <br> 3) Utilize o campo de busca para pesquisar por nome, categoria ou código
+**Requisitos associados** | RF-04
+**Resultado esperado** | Sistema exibe os produtos correspondentes ao termo pesquisado
+**Dados de entrada** | Nome, categoria ou código de um produto cadastrado
+**Resultado obtido** | Sucesso
+
+**Caso de Teste** | **CT08 - Gerenciamento de usuários**
+ :--------------: | ------------
+**Procedimento**  | 1) Faça login como Administrador <br> 2) Acesse a página de gerenciamento de usuários <br> 3) Visualize, edite ou altere o status de um usuário existente
+**Requisitos associados** | RF-07
+**Resultado esperado** | Alterações aplicadas e refletidas na listagem de usuários
+**Dados de entrada** | Dados atualizados de um usuário existente
 **Resultado obtido** | Sucesso
 
 ## Registro dos Testes de Software
 
-Esta seção deve apresentar o relatório com as evidências dos testes de software realizados no sistema pela equipe, baseado no plano de testes pré-definido. Documente cada caso de teste apresentando um vídeo ou animação que comprove o funcionamento da funcionalidade. Veja os exemplos a seguir.
-
-|*Caso de Teste*                                 |*CT01 - Criar conta parte 1*                                         |
+|*Caso de Teste*                                 |*CT01 - Login de usuário*                                         |
 |---|---|
-|Requisito Associado | RF-001 - A aplicação deve permitir que os usuários criem uma conta e gerenciem seu cadastro|
-|Link do vídeo do teste realizado: | https://1drv.ms/u/s!AhD2JqpOUvJChapRtRSQ9vPzbNLwGA?e=mxZs6t| 
+|Requisito Associado | RF-06 - O sistema deve permitir o login de usuários para acesso ao sistema conforme seu perfil|
+|Link do vídeo do teste realizado: | (https://drive.google.com/drive/folders/1ael638Tw_PjIzGg9Ecs-myAEdocY3Rfz?usp=sharing)
 
-|*Caso de Teste*                                 |*CT02 - Criar conta parte 2*                                        |
+|*Caso de Teste*                                 |*CT02 - Cadastro de usuário*                                         |
 |---|---|
-|Requisito Associado | RF-001 - A aplicação deve permitir que os usuários criem uma conta e gerenciem seu cadastro|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Requisito Associado | RF-08 - O sistema deve permitir o cadastro de novos usuários|
+|Link do vídeo do teste realizado: | (https://drive.google.com/file/d/1OwvYNBx4M7FkthkM6cc2-kNowwAUvngo/view?usp=drive_link)|
 
+|*Caso de Teste*                                 |*CT03 - Cadastro de produto*                                         |
+|---|---|
+|Requisito Associado | RF-01 - O sistema deve permitir o cadastro de produtos no estoque|
+|Link do vídeo do teste realizado: | a preencher|
 
-## Avaliação dos Testes de Software
+|*Caso de Teste*                                 |*CT04 - Edição de produto*                                         |
+|---|---|
+|Requisito Associado | RF-05 - O sistema deve permitir alterar informações dos produtos cadastrados|
+|Link do vídeo do teste realizado: | a preencher|
 
-Discorra sobre os resultados do teste. Ressaltando pontos fortes e fracos identificados na solução. Comente como o grupo pretende atacar esses pontos nas próximas iterações. Apresente as falhas detectadas e as melhorias geradas a partir dos resultados obtidos nos testes.
+|*Caso de Teste*                                 |*CT05 - Registro de entrada de produtos*                                         |
+|---|---|
+|Requisito Associado | RF-02 - O sistema deve permitir registrar a entrada de produtos no estoque|
+|Link do vídeo do teste realizado: | a preencher|
 
-## Testes de unidade automatizados (Opcional)
+|*Caso de Teste*                                 |*CT06 - Registro de saída de produtos*                                         |
+|---|---|
+|Requisito Associado | RF-03 - O sistema deve permitir registrar a saída de produtos do estoque|
+|Link do vídeo do teste realizado: | (https://drive.google.com/file/d/1o3iDk7uxY3CyWyc4LGaFkTo2u-XcdvxJ/view?usp=drive_link)
 
-Se o grupo tiver interesse em se aprofundar no desenvolvimento de testes de software, ele podera desenvolver testes automatizados de software que verificam o funcionamento das funções JavaScript desenvolvidas. Para conhecer sobre testes unitários em JavaScript, leia 0 documento  [Ferramentas de Teste para Java Script](https://geekflare.com/javascript-unit-testing/).
+|*Caso de Teste*                                 |*CT07 - Consulta de produto*                                         |
+|---|---|
+|Requisito Associado | RF-04 - O sistema deve permitir a consulta da quantidade disponível de cada produto, buscando por nome, categoria ou código|
+|Link do vídeo do teste realizado: | a preencher|
 
-# Testes de Usabilidade
-
-O objetivo do Plano de Testes de Usabilidade é obter informações quanto à expectativa dos usuários em relação à  funcionalidade da aplicação de forma geral.
-
-Para tanto, elaboramos quatro cenários, cada um baseado na definição apresentada sobre as histórias dos usuários, definido na etapa das especificações do projeto.
-
-Foram convidadas quatro pessoas que os perfis se encaixassem nas definições das histórias apresentadas na documentação, visando averiguar os seguintes indicadores:
-
-Taxa de sucesso: responde se o usuário conseguiu ou não executar a tarefa proposta;
-
-Satisfação subjetiva: responde como o usuário avalia o sistema com relação à execução da tarefa proposta, conforme a seguinte escala:
-
-1. Péssimo; 
-2. Ruim; 
-3. Regular; 
-4. Bom; 
-5. Ótimo.
-
-Tempo para conclusão da tarefa: em segundos, e em comparação com o tempo utilizado quando um especialista (um desenvolvedor) realiza a mesma tarefa.
-
-Objetivando respeitar as diretrizes da Lei Geral de Proteção de Dados, as informações pessoais dos usuários que participaram do teste não foram coletadas, tendo em vista a ausência de Termo de Consentimento Livre e Esclarecido.
-
-Apresente os cenários de testes utilizados na realização dos testes de usabilidade da sua aplicação. Escolha cenários de testes que demonstrem as principais histórias de usuário sendo realizadas. Neste tópico o grupo deve detalhar quais funcionalidades avaliadas, o grupo de usuários que foi escolhido para participar do teste e as ferramentas utilizadas.
-
-> - [UX Tools](https://uxdesign.cc/ux-user-research-and-user-testing-tools-2d339d379dc7)
-
-
-## Cenários de Teste de Usabilidade
-
-| Nº do Cenário | Descrição do cenário |
-|---------------|----------------------|
-| 1             | Você é uma pessoa que deseja comprar um iphone. Encontre no site um iphone e veja detalhes de localização e contato da loja que anunciando. |
-| 2             | Você é uma pessoa que deseja comprar um smartphone até R$ 2.000,00. Encontre no site smartphone's nessa faixa de preço. |
-
-
-
-## Registro de Testes de Usabilidade
-
-Cenário 1: Você é uma pessoa que deseja comprar um iphone. Encontre no site um iphone e veja detalhes de localização e contato da loja que anunciando.
-
-| Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
-|---------|-----------------|----------------------|---------------------------------|
-| 1       | SIM             | 5                    | 27.87 segundos                  |
-| 2       | SIM             | 5                    | 17.11 segundos                  |
-| 3       | SIM             | 5                    | 39.09 segundos                  |
-|  |  |  |  |
-| **Média**     | 100%           | 5                | 28.02 segundos                           |
-| **Tempo para conclusão pelo especialista** | SIM | 5 | 8.66 segundos |
-
-
-    Comentários dos usuários: Achei o site muito bom e intuitivo. 
-    Não tive dificuldades e acho que ficou bem intuitivo.
-
-
-Cenário 2: Você é uma pessoa que deseja comprar um smartphone até R$ 2.000,00. Encontre no site smartphone's nessa faixa de preço.
-
-| Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
-|---------|-----------------|----------------------|---------------------------------|
-| 1       | SIM             | 5                    | 22.54 segundos                          |
-| 2       | SIM             | 5                    | 31.42 segundos                          |
-| 3       | SIM             | 4                    | 36.21 segundos                          |
-|  |  |  |  |
-| **Média**     | 100%           | 4.67                | 30.05 segundos                           |
-| **Tempo para conclusão pelo especialista** | SIM | 5 | 13.57 segundos |
-
-
-    Comentários dos usuários: O site é fácil de acessar, mas algumas páginas poderiam 
-    redirecionar a gente automaticamente para outras. Senti a falta de mais opções de filtros, 
-    tanto na hora da pesquisa, quanto depois dela, nos resultados.
-
-## Avaliação dos Testes de Usabilidade
-
-Tomando como base os resultados obtidos, foi possível verificar que a aplicação web apresenta bons resultados quanto à taxa de sucesso na interação dos usuários, tendo em vista que os cenários propostos foram concluídos com sucesso.
-
-Além disso, a aplicação obteve também uma elevada satisfação subjetiva dos usuários no momento que realizavam os cenários propostos. Prova são as médias das avaliações em cada um dos cenários, que variou entre 4 (bom) e 5 (ótimo).
-
-Com relação ao tempo para conclusão de cada tarefa/cenário, notamos discrepância entre a média de tempo dos usuários e o tempo do especialista/desenvolvedor em todos os cenários. Tal discrepância, em certa medida, é esperada, tendo em vista que o desenvolvedor já tem prévio conhecimento de toda a interface da aplicação, do posicionamento dos elementos, lógica de organização das páginas, etc.
+|*Caso de Teste*                                 |*CT08 - Gerenciamento de usuários*                                         |
+|---|---|
+|Requisito Associado | RF-07 - O sistema deve permitir o gerenciamento de usuários pelo administrador|
+|Link do vídeo do teste realizado: |(https://drive.google.com/file/d/1OwvYNBx4M7FkthkM6cc2-kNowwAUvngo/view?usp=drive_link)
 
 Contudo, tendo em vista que a diferença foi relevante (por exemplo, 113 segundos — média usuários — contra 25 segundos — especialista — no cenário três), e ainda os comentários feitos por alguns usuários, entendemos haver oportunidades de melhoria na usabilidade da aplicação.
 
