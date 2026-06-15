@@ -432,7 +432,6 @@
     grid-row: auto;
   }
 }
-/* Variáveis de Cores - Facilita o Dark Mode e Manutenção */
 :root {
     --bg-color: #f4f7f6;
     --card-bg: #ffffff;
@@ -468,7 +467,6 @@ body {
     transition: background-color 1.2s, color 1.2s;
     padding: 0px;
 }
-    /* Botões */
 button[type="submit"], #btnDarkMode {
     width: 50%;
     padding: 2px;
