@@ -116,105 +116,94 @@
             <section class="app-content dashboard-content" aria-label="Conteúdo do dashboard">
                 <div class="dashboard-summary-grid">
                     <article class="summary-card">
-                        <h2 class="summary-card-title">Total de produtos</h2>
-                        <p id="total-produtos" class="summary-card-number">0</p>
+                        <h2 class="summary-card-title">Tipos de produtos</h2>
+                        <p id="tipos-produtos" class="summary-card-number">0</p>
                     </article>
 
                     <article class="summary-card">
-                        <h2 class="summary-card-title">Entradas hoje</h2>
-                        <p id="entradas-hoje" class="summary-card-number">0</p>
+                        <h2 class="summary-card-title">Itens em estoque</h2>
+                        <p id="itens-estoque" class="summary-card-number">0</p>
                     </article>
 
                     <article class="summary-card">
-                        <h2 class="summary-card-title">Saídas hoje</h2>
+                        <h2 class="summary-card-title">Saídas registradas</h2>
                         <p id="saidas-hoje" class="summary-card-number">0</p>
                     </article>
 
                     <article class="summary-card">
-                        <h2 class="summary-card-title">Alertas</h2>
+                        <h2 class="summary-card-title">Estoque baixo</h2>
                         <p id="alertas" class="summary-card-number">0</p>
                     </article>
-                </div>
 
-                <div class="dashboard-chart-grid">
-                    <article class="chart-card chart-card-entries">
-                        <h2>Gráfico de entradas</h2>
-                        <div class="chart-container">
-                            <canvas id="entriesChart"></canvas>
-                        </div>
-                    </article>
-
-                    <article class="chart-card chart-card-exits">
-                        <h2>Gráfico de saídas</h2>
-                        <div class="chart-container">
-                            <canvas id="exitsChart"></canvas>
-                        </div>
-                    </article>
                 </div>
+                <div class="dashboard-tables">
+
+                    <div class="dashboard-card">
+
+                        <div class="dashboard-card-header">
+                             <img src="../../docs/img/icons/014-yellow-alert.svg">
+                            <h2>Alerta de Estoque Baixo</h2>
+                        </div>
+
+                        <table class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nome</th>
+                                    <th>Qtd</th>
+                                    <th>Mínimo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-alertas">
+                                <tr>
+                                    <td colspan="2">
+                                        Nenhum alerta encontrado
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-header">
+                            <img src="../../docs/img/icons/015-cube-sync.svg">
+                            <h2>Movimentações Recentes</h2>
+                        </div>
+
+                        <table class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Produto</th>
+                                    <th>Tipo</th>
+                                    <th>Qtd</th>
+                                    <th>Data</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-movimentos">
+                                <tr>
+                                    <td colspan="4">
+                                        Nenhuma movimentação
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>          
             </section>
+            <div class="dashboard-footer-card">
+
+                        <h2>Horário de Funcionamento</h2>
+
+                        <p>
+                            Seg-Sex: 08:00–18:00 |
+                            Sáb: 08:00–12:00 |
+                            Dom: Fechado
+                        </p>
+
+                    </div>
         </main>
     </div>
 
-    <script>
-        const chartOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false }
-            },
-            scales: {
-                x: {
-                    grid: { display: false },
-                    ticks: { color: '#666666', font: { family: 'sans-serif' } }
-                },
-                y: {
-                    grid: { color: '#f0f0f0' },
-                    ticks: { color: '#666666', font: { family: 'sans-serif' } },
-                    border: { dash: [5, 5] }
-                }
-            }
-        };
-
-        // Gráfico de Entradas (Histórico fictício culminando no total de hoje)
-        const ctxEntries = document.getElementById('entriesChart').getContext('2d');
-        const entriesChart =
-            new Chart(ctxEntries, {
-                type: 'line',
-                data: {
-                    labels: ['08:00', '11:00', '14:00', '17:00', '20:00', 'Atual'],
-                    datasets: [{
-                        label: 'Entradas',
-                        data: [420, 850, 1200, 1900, 2400, 2832], // Total de 2832 hoje
-                        borderColor: '#7b98bb',
-                        backgroundColor: 'rgba(123, 152, 187, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.3,
-                        pointBackgroundColor: '#7b98bb'
-                    }]
-                },
-                options: chartOptions
-            });
-
-        // Gráfico de Saídas (Histórico fictício culminando no total de hoje)
-        const ctxExits = document.getElementById('exitsChart').getContext('2d');
-        const exitsChart =
-            new Chart(ctxExits, {
-                type: 'bar',
-                data: {
-                    labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Hoje'],
-                    datasets: [{
-                        label: 'Saídas',
-                        data: [1100, 1340, 1020, 1450, 1290, 1568], // Total de 1568 hoje
-                        backgroundColor: '#a3b8cc',
-                        borderRadius: 4,
-                        barPercentage: 0.6
-                    }]
-                },
-                options: chartOptions
-            });
-
-    </script>
     <script>
         function carregarDashboard() {
             const db_produtos =
@@ -227,10 +216,10 @@
                     localStorage.getItem("db_saidas")
                 ) || { saidas: [] };
 
-            const totalProdutos =
+            const tiposProdutos =
                 db_produtos.produtos.length;
 
-            const estoqueAtual =
+            const itensEstoque =
                 db_produtos.produtos.reduce(
                     (total, produto) =>
                         total + Number(produto.quantidade || 0),
@@ -244,22 +233,65 @@
                     0
                 );
 
-            const entradasHoje =
-                estoqueAtual + saidasHoje;
+            /**const entradasHoje =
+                estoqueAtual + saidasHoje; **/
             const alertas =
                 db_produtos.produtos.filter(
                     produto =>
                         Number(produto.quantidade) <= 5
                 ).length;
-            document.getElementById(
-                "total-produtos"
-            ).textContent =
-                totalProdutos;
+            let htmlAlertas = "";
+
+            db_produtos.produtos
+                .filter(produto => Number(produto.quantidade) <= 5)
+                .forEach(produto => {
+
+                    htmlAlertas += `
+        <tr>
+            <td>${produto.id}</td>
+            <td>${produto.nome}</td>
+            <td>${produto.quantidade}</td>
+            <td>5</td>
+        </tr>
+    `;
+                });
 
             document.getElementById(
-                "entradas-hoje"
+                "tabela-alertas"
+            ).innerHTML = htmlAlertas;
+
+            let htmlMov = "";
+
+            db_saidas.saidas
+                .slice()
+                .reverse()
+                .slice(0, 10)
+                .forEach(saida => {
+
+                    htmlMov += `
+        <tr>
+            <td>${saida.codigo}</td>
+            <td>${saida.produto}</td>
+            <td>Saída</td>
+            <td>${saida.quantidade}</td>
+            <td>${saida.data}</td>
+        </tr>
+    `;
+                });
+
+            document.getElementById(
+                "tabela-movimentos"
+            ).innerHTML = htmlMov;
+
+            document.getElementById(
+                "tipos-produtos"
             ).textContent =
-                entradasHoje;
+                tiposProdutos;
+
+            document.getElementById(
+                "itens-estoque"
+            ).textContent =
+                itensEstoque;
 
             document.getElementById(
                 "saidas-hoje"
@@ -270,27 +302,6 @@
                 "alertas"
             ).textContent =
                 alertas;
-
-            entriesChart.data.datasets[0].data = [
-                0,
-                Math.round(entradasHoje * 0.25),
-                Math.round(entradasHoje * 0.45),
-                Math.round(entradasHoje * 0.70),
-                Math.round(entradasHoje * 0.90),
-                entradasHoje
-            ];
-
-            entriesChart.update();
-            exitsChart.data.datasets[0].data = [
-                saidasHoje * 0.2,
-                saidasHoje * 0.4,
-                saidasHoje * 0.6,
-                saidasHoje * 0.8,
-                saidasHoje * 0.9,
-                saidasHoje
-            ];
-
-            exitsChart.update();
 
         }
 
