@@ -1,55 +1,155 @@
-'<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrada de produtos</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/saidas.css">
     <link rel="stylesheet" href="../css/cadastrop.css">
+    <script src="../java-script/login.js" defer></script>
+    <script src="../java-script/acesso.js" defer></script>
+    <script src="../java-script/cadastrop.js" defer></script>
 </head>
-<body>
 
-    <div class="container">
-        <h1>Nova Entrada de Produto</h1>
+<body class="app-page saidas-page" style="--app-active-color: #7b98bb;">
+    <div class="app-shell">
+        <aside class="app-sidebar" aria-label="Navegação principal">
+            <a class="app-sidebar-brand" href="./cadastrop.html" aria-label="Ir para cadastro de produtos">
+                <img src="../../docs/img/logo.header.svg" alt="Logo Estoque Search">
+                <span class="app-sidebar-brand-title">Estoque<br>Search</span>
+            </a>
 
-        <div>
-            <label>Produto</label>
-            <input id="produto" type="text" placeholder="Buscar produto por nome ou código...">
-        </div>
-        
-        <div>
-            <label>Quantidade</label>
-            <input id="quantidade" type="number" placeholder="0">
-        </div>
+            <div class="app-sidebar-panel">
+                <nav class="app-sidebar-nav" aria-label="Menu principal">
 
-        <div>
-            <label>Preço Unitário</label>
-            <input id="preco" type="number" placeholder="R$0.00" step="R$0.01">
-        </div>
+                    <a class="app-sidebar-nav-item" href="./dashboard.html">
+                        <img src="../../docs/img/icons/00-abas-dashboard.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Dashboard</span>
+                    </a>
 
-        <div>
-            <label>Fornecedor</label>
-           <input id="fornecedor" type="text" placeholder="Nome do Fornecedor">
-        </div>
+                    <a class="app-sidebar-nav-item" href="./produtos.html">
+                        <img src="../../docs/img/icons/01-abas-produtos.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Produtos</span>
+                    </a>
 
-        <div>
-            <label>Nota Fiscal</label>
-            <input id="notaFiscal" type="text" placeholder="N° da NF">
-        </div>
+                    <a class="app-sidebar-nav-item" href="./saidas.html">
+                        <img src="../../docs/img/icons/02-abas-saidas.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Saídas</span>
+                    </a>
 
-        <div>
-            <label>Data</label>
-           <input id="data" type="date">
-        </div>
+                    <a class="app-sidebar-nav-item" href="./relatorios.html">
+                        <img src="../../docs/img/icons/03-abas-relatorios.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Relatórios</span>
+                    </a>
 
-        <div>
-            <label>Observações</label>
-           <input id="observacoes" type="text" placeholder="Observações opcionais...">
-        </div>
- 
-       <button id="btnCadastrar">Registrar Entrada</button>
+                    <a class="app-sidebar-nav-item" href="./usuarios.html">
+                        <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Usuários</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./calculadora.html">
+                        <img src="../../docs/img/icons/05-abas-calculadora.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Calculadora</span>
+                    </a>
+
+                    <a class="app-sidebar-nav-item" href="./configuracoes.html">
+                        <img src="../../docs/img/icons/06-abas-config.svg" alt="" class="app-sidebar-nav-icon">
+                        <span class="app-sidebar-nav-label">Configurações</span>
+                    </a>
+                </nav>
+                <div class="app-sidebar-footer">
+                    <div class="app-sidebar-user-card">
+                        <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg"
+                            alt="Foto do usuário">
+
+                        <div class="app-sidebar-user-info">
+                            <span class="app-sidebar-user-label">Seu grupo:</span>
+                            <strong class="app-sidebar-user-group">Gerentes</strong>
+                        </div>
+                    </div>
+
+                    <a class="app-sidebar-logout" href="./login.html">
+                        <img class="app-sidebar-logout-icon" src="../../docs/img/icons/011-exit.svg" alt="">
+                        <span>Sair</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="app-main">
+            <header class="app-header">
+                <div class="app-header-panel">
+                    <div>
+                        <h1 class="app-header-title">Entrada de Produtos</h1>
+                        <p class="app-header-subtitle">Cadastro e edição de produtos</p>
+                    </div>
+
+                    <div class="app-header-profile">
+                        <img src="../../docs/img/15_foto_perfil.svg" alt="Foto do perfil">
+                    </div>
+                </div>
+            </header>
+
+            <section class="app-content cadastro-content" aria-label="Formulário de cadastro de produto">
+
+                <div class="product-toolbar cadastro-toolbar">
+                    <div class="product-header">
+                        <img id="toolbar-icon" src="../../docs/img/icons/add-circle.svg" alt="">
+                        <h1 class="product-toolbar-title">Nova Entrada de Produto</h1>
+                    </div>
+
+                    <div class="product-field">
+                        <label for="produto">Produto</label>
+                        <input id="produto" type="text" placeholder="Buscar produto por nome ou código...">
+                    </div>
+
+                    <div class="product-row">
+                        <div class="product-field">
+                            <label for="quantidade">Quantidade</label>
+                            <input id="quantidade" type="number" placeholder="0">
+                        </div>
+
+                        <div class="product-field">
+                            <label for="preco">Preço Unitário</label>
+                            <input id="preco" type="number" placeholder="R$ 0,00" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="product-field">
+                        <label for="fornecedor">Fornecedor</label>
+                        <input id="fornecedor" type="text" placeholder="Nome do Fornecedor">
+                    </div>
+
+                    <div class="product-row">
+                        <div class="product-field">
+                            <label for="notaFiscal">Nota Fiscal</label>
+                            <input id="notaFiscal" type="text" placeholder="Nº da NF">
+                        </div>
+
+                        <div class="product-field">
+                            <label for="data">Data</label>
+                            <input id="data" type="date">
+                        </div>
+                    </div>
+
+                    <div class="product-search-field">
+                        <label for="observacoes">Observações</label>
+                        <input id="observacoes" type="text" placeholder="Observações adicionais...">
+                    </div>
+
+                    <div class="product-actions">
+                        <button id="btnCadastrar" class="btn-new-product">
+                            <img src="../../docs/img/icons/add-circle.svg" alt="">
+                            <span>Registrar Entrada</span>
+                        </button>
+                    </div>
+                </div>
+
+            </section>
+        </main>
     </div>
-<script src="../java-script/login.js"></script>    
-<script src="../java-script/cadastrop.js"></script>
-
 </body>
+
 </html>

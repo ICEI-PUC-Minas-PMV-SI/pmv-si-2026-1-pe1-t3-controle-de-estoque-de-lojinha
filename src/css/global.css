@@ -367,7 +367,6 @@ body.app-page {
   }
 }
 
-/* ===== Botões de ação com ícones (padrão para todas as tabelas) ===== */
 .btn-action {
   display: inline-flex;
   align-items: center;
@@ -409,7 +408,6 @@ body.app-page {
   pointer-events: none;
 }
 
-/* Grupo de ações lado a lado */
 .actions-group {
   display: inline-flex;
   align-items: center;

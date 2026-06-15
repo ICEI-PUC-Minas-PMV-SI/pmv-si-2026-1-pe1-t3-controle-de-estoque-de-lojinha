@@ -1,11 +1,7 @@
-/*variavel para chamar o login.html*/
 const LOGIN_URL= "login.html";
 
-/*Criação do "banco de dados" de usuários*/
 var db_usuarios = {};
 
-
-/*Guardar os usuários no LocalStorage*/
 var usuarioCorrente = {};
 
 /* Função para criar usuários randomicos, o professor disse que aprederemos melhor mais tarde */
@@ -33,8 +29,6 @@ const dadosIniciais = {
         { "id": generateUUID (), "login": "user@gmail.com", "senha": "123", "nome": "Usuario Comum", "email": "user@gmail.com", "grupo": "operadores", "grupoDePermissoes": "operadores"},
     ]
 };
-
-/* Função abre uma sessionStorage no LocalStorage e transforma a escrita em Objeto JSON */
 
 function initLoginApp() {
      usuarioCorrenteJSON = 

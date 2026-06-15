@@ -1,242 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos</title>
+    <title>Produtos — Estoque Search</title>
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/produtos.css">
+    <link rel="stylesheet" href="../css/saidas.css">
     <script src="../java-script/login.js" defer></script>
     <script src="../java-script/acesso.js" defer></script>
-    <script defer>
-         
-          let db_produtos = JSON.parse(localStorage.getItem('db_produtos')) || {
-        produtos: []
-    };
-
-    if (!db_produtos.produtos || db_produtos.produtos.length === 0) {
-        db_produtos = {
-            produtos: [
-                { id: 'p1', nome: 'Biscoito Recheado Chocolate 150g', quantidade: '45', preco: '3,50', fornecedor: 'Fabrica de Biscoitos', notaFiscal: 'NF-2025-001', data: '2026-06-01', observacoes: '' },
-                { id: 'p2', nome: 'Arroz Tipo 1 5kg', quantidade: '30', preco: '24,90', fornecedor: 'Cereal Distribuidora', notaFiscal: 'NF-2025-002', data: '2026-06-02', observacoes: '' },
-                { id: 'p3', nome: 'Feijão Carioca 1kg', quantidade: '60', preco: '7,80', fornecedor: 'Cereal Distribuidora', notaFiscal: 'NF-2025-003', data: '2026-06-02', observacoes: '' },
-                { id: 'p4', nome: 'Óleo de Soja 900ml', quantidade: '40', preco: '6,50', fornecedor: 'Alimentos Sul Ltda', notaFiscal: 'NF-2025-004', data: '2026-06-03', observacoes: '' },
-                { id: 'p5', nome: 'Açúcar Cristal 2kg', quantidade: '25', preco: '4,20', fornecedor: 'Usina Doce Vida', notaFiscal: 'NF-2025-005', data: '2026-06-03', observacoes: '' },
-                { id: 'p6', nome: 'Café Torrado Moído 500g', quantidade: '20', preco: '14,90', fornecedor: 'Café São Paulo', notaFiscal: 'NF-2025-006', data: '2026-06-04', observacoes: '' },
-                { id: 'p7', nome: 'Macarrão Espaguete 500g', quantidade: '50', preco: '4,30', fornecedor: 'Massa Boa Indústria', notaFiscal: 'NF-2025-007', data: '2026-06-04', observacoes: '' },
-                { id: 'p8', nome: 'Molho de Tomate 340g', quantidade: '35', preco: '3,90', fornecedor: 'Alimentos Sul Ltda', notaFiscal: 'NF-2025-008', data: '2026-06-05', observacoes: '' },
-                { id: 'p9', nome: 'Leite Integral 1L', quantidade: '0', preco: '5,20', fornecedor: 'Laticínios Minas', notaFiscal: 'NF-2025-009', data: '2026-06-05', observacoes: 'Produto em falta' },
-                { id: 'p10', nome: 'Biscoito Recheado Morango 150g', quantidade: '30', preco: '3,50', fornecedor: 'Fabrica de Biscoitos', notaFiscal: 'NF-2025-010', data: '2026-06-06', observacoes: '' },
-                { id: 'p11', nome: 'Biscoito Recheado Baunilha 150g', quantidade: '28', preco: '3,50', fornecedor: 'Fabrica de Biscoitos', notaFiscal: 'NF-2025-011', data: '2026-06-06', observacoes: '' },
-                { id: 'p12', nome: 'Arroz Parboilizado 5kg', quantidade: '22', preco: '26,50', fornecedor: 'Cereal Distribuidora', notaFiscal: 'NF-2025-012', data: '2026-06-07', observacoes: '' },
-                { id: 'p13', nome: 'Feijão Preto 1kg', quantidade: '40', preco: '8,20', fornecedor: 'Cereal Distribuidora', notaFiscal: 'NF-2025-013', data: '2026-06-07', observacoes: '' },
-                { id: 'p14', nome: 'Sal Refinado 1kg', quantidade: '55', preco: '2,10', fornecedor: 'Usina Doce Vida', notaFiscal: 'NF-2025-014', data: '2026-06-08', observacoes: '' },
-                { id: 'p15', nome: 'Achocolatado em Pó 400g', quantidade: '15', preco: '8,90', fornecedor: 'Cereal Distribuidora', notaFiscal: 'NF-2025-015', data: '2026-06-08', observacoes: '' },
-            ]
-        };
-        localStorage.setItem('db_produtos', JSON.stringify(db_produtos));
-    }
-
-    function escapeHtml(valor) {
-
-        const mapa = {
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#39;"
-        };
-
-        return String(valor ?? "").replace(/[&<>"']/g, caractere => mapa[caractere]);
-    }
-
-    function formataStatus(produto) {
-
-        if (!produto.quantidade || Number(produto.quantidade) <= 0) {
-            return "Sem estoque";
-        }
-
-        return "Disponível";
-    }
-
-    function exibeProdutos() {
-
-        let listaProdutos = '';
-
-        const filtro = document.getElementById("busca-produtos")?.value.trim().toLowerCase() || "";
-
-        const produtosFiltrados = (db_produtos.produtos || []).filter(produto => {
-
-            const textoBusca = `
-                ${produto.nome || ""}
-                ${produto.fornecedor || ""}
-                ${produto.notaFiscal || ""}
-            `.toLowerCase();
-
-            return textoBusca.includes(filtro);
-        });
-
-        if (produtosFiltrados.length === 0) {
-
-            document.getElementById("table-produtos").innerHTML = `
-                <tr class="empty-row">
-                    <td colspan="7">Nenhum produto encontrado</td>
-                </tr>
-            `;
-
-            return;
-        }
-
-        for (let i = 0; i < produtosFiltrados.length; i++) {
-
-            let produto = produtosFiltrados[i];
-
-            const status = formataStatus(produto);
-
-            const statusClasse =
-                status.toLowerCase().includes("sem")
-                    ? "inactive"
-                    : "active";
-
-            listaProdutos += `
-                <tr>
-
-                    <td class="cell-strong">
-                        ${escapeHtml(produto.nome || "-")}
-                    </td>
-
-                    <td>
-                        ${escapeHtml(produto.quantidade || "-")}
-                    </td>
-
-                    <td>
-                        R$ ${escapeHtml(produto.preco || "-")}
-                    </td>
-
-                    <td>
-                        ${escapeHtml(produto.fornecedor || "-")}
-                    </td>
-
-                    <td>
-                        ${escapeHtml(produto.notaFiscal || "-")}
-                    </td>
-
-                    <td>
-                        <span class="user-status user-status-${statusClasse}">
-                            ${escapeHtml(status)}
-                        </span>
-                    </td>
-                    <td>
-                        <span class="actions-group">
-                            <button type="button" class="btn-action btn-action-edit" onclick="editarProduto('${produto.id}')" title="Editar produto">
-                                <img src="../../docs/img/icons/edit-pencil.svg" alt="Editar">
-                            </button>
-                            <button type="button" class="btn-action btn-action-delete" onclick="excluirProduto('${produto.id}')" title="Excluir produto">
-                                <img src="../../docs/img/icons/trash-delete.svg" alt="Excluir">
-                            </button>
-                        </span>
-                    </td>
-
-                </tr>
-            `;
-        }
-
-        document.getElementById("table-produtos").innerHTML = listaProdutos;
-    }
-    function excluirProduto(id){
-        const confirmar = confirm("Deseja excluir este produto?");
-        if(!confirmar){
-            return; 
-        }
-        db_produtos.produtos = db_produtos.produtos.filter(produto => produto.id !== id);
-        localStorage.setItem('db_produtos', JSON.stringify(db_produtos));
-        exibeProdutos();    
-    }
-    function editarProduto(id) {
-
-    localStorage.setItem(
-        'produtoEdicao',
-        id
-    );
-
-    window.location.href =
-        './cadastrop.html';
-}
-    function initPage() {
-
-        if (!usuarioCorrente.login) {
-            window.location.href = LOGIN_URL;
-        }
-
-        exibeProdutos();
-
-        const campoBusca = document.getElementById("busca-produtos");
-
-        if (campoBusca) {
-            campoBusca.addEventListener("input", exibeProdutos);
-        }
-    }
-
-    window.addEventListener('load', initPage);
-
-        
-    </script>
+    <script src="../java-script/produtos.js" defer></script>
 </head>
 
 <body class="app-page usuarios-page" style="--app-active-color: #7b98bb;">
     <div class="app-shell">
+
         <aside class="app-sidebar" aria-label="Navegação principal">
-            <a class="app-sidebar-brand" href="./usuarios.html" aria-label="Ir para o usuarios">
+            <a class="app-sidebar-brand" href="./usuarios.html" aria-label="Ir para usuários">
                 <img src="../../docs/img/logo.header.svg" alt="Logo Estoque Search">
                 <span class="app-sidebar-brand-title">Estoque<br>Search</span>
             </a>
 
             <div class="app-sidebar-panel">
                 <nav class="app-sidebar-nav" aria-label="Menu principal">
-
                     <a class="app-sidebar-nav-item" href="./dashboard.html">
                         <img src="../../docs/img/icons/00-abas-dashboard.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Dashboard</span>
                     </a>
-
                     <a class="app-sidebar-nav-item" href="./produtos.html" aria-current="page">
                         <img src="../../docs/img/icons/01-abas-off_produtos.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Produtos</span>
                     </a>
-
                     <a class="app-sidebar-nav-item" href="./saidas.html">
                         <img src="../../docs/img/icons/02-abas-saidas.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Saídas</span>
                     </a>
-
                     <a class="app-sidebar-nav-item" href="./relatorios.html">
                         <img src="../../docs/img/icons/03-abas-relatorios.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Relatórios</span>
                     </a>
-
                     <a class="app-sidebar-nav-item" href="./usuarios.html">
                         <img src="../../docs/img/icons/04-abas-usuarios.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Usuários</span>
                     </a>
-
                     <a class="app-sidebar-nav-item" href="./calculadora.html">
                         <img src="../../docs/img/icons/05-abas-calculadora.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Calculadora</span>
                     </a>
-
                     <a class="app-sidebar-nav-item" href="./configuracoes.html">
                         <img src="../../docs/img/icons/06-abas-config.svg" alt="" class="app-sidebar-nav-icon">
                         <span class="app-sidebar-nav-label">Configurações</span>
                     </a>
                 </nav>
+
                 <div class="app-sidebar-footer">
                     <div class="app-sidebar-user-card">
                         <img class="app-sidebar-user-avatar" src="../../docs/img/icons/010-group-mini-icon.svg" alt="Foto do usuário">
-
                         <div class="app-sidebar-user-info">
                             <span class="app-sidebar-user-label">Seu grupo:</span>
-                            <strong class="app-sidebar-user-group">Gerentes</strong>
+                            <strong class="app-sidebar-user-group" id="sidebar-grupo">—</strong>
                         </div>
                     </div>
-
                     <a class="app-sidebar-logout" href="./login.html">
                         <img class="app-sidebar-logout-icon" src="../../docs/img/icons/011-exit.svg" alt="">
                         <span>Sair</span>
@@ -250,9 +74,8 @@
                 <div class="app-header-panel">
                     <div>
                         <h1 class="app-header-title">Produtos</h1>
-                        <p class="app-header-subtitle">Gerenciamento de produtos</p>
+                        <p class="app-header-subtitle">Gerenciamento de estoque e compras</p>
                     </div>
-
                     <div class="app-header-profile">
                         <img src="../../docs/img/15_foto_perfil.svg" alt="Foto do perfil">
                     </div>
@@ -260,55 +83,242 @@
             </header>
 
             <section class="app-content produtos-content" aria-label="Conteúdo de produtos">
-                <div class="users-page-panel">
-                    <div class="users-toolbar">
-                        <label class="users-search-field" for="busca-produtos">
-                            <span>Produto:</span>
-                            <span class="users-search-box">
-                                <input id="busca-produtos" type="search" placeholder="Biscoito" autocomplete="off">
-                                <img src="../../docs/img/icons/search.svg" alt="">
-                            </span>
-                        </label>
 
-                        <a href="./cadastrop.html" class="btn-new-user">
-                            <img src="../../docs/img/icons/add-circle.svg" alt="">
-                            <span>Nova Entrada de Produto</span>
-                        </a>
+                <div class="product-toolbar">
+
+                    <div class="toolbar-header">
+                        <div class="toolbar-header-left">
+                            <img id="toolbar-icon" src="../../docs/img/icons/add-circle.svg" alt="" class="toolbar-icon">
+                            <h2 class="toolbar-title" id="toolbar-title">Nova Compra</h2>
+                        </div>
+                        <div class="modo-switcher" id="modoSwitcher">
+                            <button class="modo-tab modo-tab-ativo" data-modo="compra">Compra</button>
+                            <button class="modo-tab" data-modo="produto">Produto</button>
+                        </div>
                     </div>
 
-                    <div class="users-table-card">
-                        <div class="users-table-title">
-                            <img src="../../docs/img/icons/01-abas-produtos.svg" alt="">
-                            <span>Produtos cadastrados</span>
+                    <div id="modo-compra-fields" class="modo-panel">
+
+                        <div class="panel-section">
+                            <!-- <p class="panel-section-label">Dados da Nota Fiscal</p> -->
+                            <div class="product-field">
+                                <label for="nf-compra">Nota Fiscal</label>
+                                <input id="nf-compra" type="text" placeholder="Ex: NF-2026-001">
+                            </div>
+                            <div class="product-field">
+                                <label for="fornecedor-compra">Fornecedor</label>
+                                <input id="fornecedor-compra" type="text" placeholder="Nome do fornecedor">
+                            </div>
+                            <div class="product-field">
+                                <label for="data-compra">Data da Compra</label>
+                                <input id="data-compra" type="date">
+                            </div>
                         </div>
 
-                        <div class="users-table-wrap">
-                            <table id="grid-usuarios">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Produto</th>
-                                        <th scope="col">Quantidade</th>
-                                        <th scope="col">Preço Unitário</th>
-                                        <th scope="col">Fornecedor</th>
-                                        <th scope="col">Nota Fiscal</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Ações</th>
-                                        </tr>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-produtos">
-                                    <tr class="empty-row">
-                                        <td colspan="7">Carregando produtos...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="panel-divider"></div>
+
+                        <div class="panel-section">
+                            <!-- <p class="panel-section-label">Itens da Compra</p> -->
+                            <div class="product-field">
+                                <label for="produto-compra">Produto</label>
+                                <input id="produto-compra" type="text" placeholder="Digite ou selecione o produto" list="lista-produtos" autocomplete="off">
+                                <datalist id="lista-produtos"></datalist>
+                            </div>
+                            <div class="product-row">
+                                <div class="product-field">
+                                    <label for="qtd-compra">Quantidade</label>
+                                    <input id="qtd-compra" type="number" placeholder="0" min="1">
+                                </div>
+                                <div class="product-field">
+                                    <label for="preco-compra">Preço Unit. (R$)</label>
+                                    <input id="preco-compra" type="number" placeholder="0,00" step="0.01" min="0">
+                                </div>
+                                <div class="product-field field-btn-add">
+                                    <label>&nbsp;</label>
+                                    <button id="btnAdicionarItem" class="btn-add-item" title="Adicionar item">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+
+                        <div id="lista-itens-compra" class="itens-lista"></div>
+
+                        <button id="btnFinalizarCompra" class="btn-action-primary btn-finalizar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Finalizar Compra
+                        </button>
+                    </div>
+
+                    <div id="modo-produto-fields" class="modo-panel" style="display:none;">
+
+                        <div class="panel-section">
+                            <!-- <p class="panel-section-label">Informações do Produto</p> -->
+                            <div class="product-field">
+                                <label for="cad-nome">Nome do Produto</label>
+                                <input id="cad-nome" type="text" placeholder="Ex: Biscoito Recheado Chocolate 150g">
+                            </div>
+                            <div class="product-field">
+                                <label for="cad-preco-venda">Preço de Venda (R$)</label>
+                                <input id="cad-preco-venda" type="number" placeholder="0,00" step="0.01" min="0">
+                            </div>
+                            <div class="product-field">
+                                <label for="cad-estoque-minimo">Estoque Mínimo</label>
+                                <input id="cad-estoque-minimo" type="number" placeholder="0" min="0">
+                            </div>
+                            <div class="product-field">
+                                <label for="cad-obs">Observações</label>
+                                <input id="cad-obs" type="text" placeholder="Observações opcionais...">
+                            </div>
+                        </div>
+
+                        <button id="btnCadastrarProduto" class="btn-action-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Cadastrar Produto
+                        </button>
                     </div>
                 </div>
-            </section>
 
+                <div class="recent-exits">
+
+                    <label class="product-search-field" for="busca-produtos">
+                        <span>Buscar:</span>
+                        <span class="product-search-box">
+                            <input id="busca-produtos" type="search" placeholder="Nome do produto..." autocomplete="off">
+                            <img src="../../docs/img/icons/search.svg" alt="">
+                        </span>
+                    </label>
+
+                    <div class="painel-card">
+                        <div class="painel-card-header">
+                            <div class="painel-card-header-left">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7b98bb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                                <h2 class="painel-card-titulo" id="painel-titulo">Estoque</h2>
+                            </div>
+                            <div class="modo-switcher" id="abaSwitcher">
+                                <button class="modo-tab modo-tab-ativo" data-aba="estoque">Estoque</button>
+                                <button class="modo-tab" data-aba="entradas">Entradas</button>
+                            </div>
+                        </div>
+
+                        <div id="aba-estoque">
+                            <div class="tabela-wrap">
+                                <table class="tabela-padrao" id="grid-estoque">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col" class="col-center">Quantidade</th>
+                                            <th scope="col" class="col-center">Est. Mínimo</th>
+                                            <th scope="col" class="col-center">Preço</th>
+                                            <th scope="col" class="col-center">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-estoque">
+                                        <tr class="empty-row">
+                                            <td colspan="5">Carregando produtos...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="aba-entradas" style="display:none;">
+                            <div class="tabela-wrap">
+                                <table class="tabela-padrao" id="grid-entradas">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col" class="col-center">Qtd</th>
+                                            <th scope="col" class="col-center">Valor Unit.</th>
+                                            <th scope="col" class="col-center">Data</th>
+                                            <th scope="col" class="col-center">NF</th>
+                                            <th scope="col">Fornecedor</th>
+                                            <th scope="col" class="col-center">Ver</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-entradas">
+                                        <tr class="empty-row">
+                                            <td colspan="7">Nenhuma entrada registrada.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
         </main>
     </div>
-</body>
 
+    <div id="modal-detalhes" class="modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-titulo" id="modal-titulo">Detalhes da Compra</h3>
+                <button class="modal-fechar" id="btnFecharModal" aria-label="Fechar">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-conteudo"></div>
+        </div>
+    </div>
+
+    <div id="modal-editar" class="modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="modal-editar-titulo">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-titulo" id="modal-editar-titulo">Editar Produto</h3>
+                <button class="modal-fechar" id="btnFecharModalEditar" aria-label="Fechar">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="edit-id">
+
+                <div class="product-field">
+                    <label for="edit-nome">Nome do Produto</label>
+                    <input id="edit-nome" type="text" placeholder="Nome do produto">
+                </div>
+
+                <div class="product-row">
+                    <div class="product-field">
+                        <label for="edit-preco">Preço de Venda (R$)</label>
+                        <input id="edit-preco" type="number" step="0.01" min="0" placeholder="0,00">
+                    </div>
+                    <div class="product-field">
+                        <label for="edit-quantidade">Quantidade</label>
+                        <input id="edit-quantidade" type="number" min="0" placeholder="0">
+                    </div>
+                </div>
+
+                <div class="product-row">
+                    <div class="product-field">
+                        <label for="edit-estoque-minimo">Estoque Mínimo</label>
+                        <input id="edit-estoque-minimo" type="number" min="0" placeholder="0">
+                    </div>
+                    <div class="product-field">
+                        <label for="edit-data">Data</label>
+                        <input id="edit-data" type="date">
+                    </div>
+                </div>
+
+                <div class="product-row">
+                    <div class="product-field">
+                        <label for="edit-fornecedor">Fornecedor</label>
+                        <input id="edit-fornecedor" type="text" placeholder="Fornecedor">
+                    </div>
+                    <div class="product-field">
+                        <label for="edit-nota-fiscal">Nota Fiscal</label>
+                        <input id="edit-nota-fiscal" type="text" placeholder="Nº da NF">
+                    </div>
+                </div>
+
+                <div class="product-field">
+                    <label for="edit-obs">Observações</label>
+                    <input id="edit-obs" type="text" placeholder="Observações opcionais...">
+                </div>
+
+                <div class="product-actions" style="margin-top:6px;">
+                    <button id="btnSalvarEdicao" class="btn-new-product">Salvar Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
