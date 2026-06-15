@@ -91,42 +91,42 @@ Nesta seção o grupo deverá documentar os testes de software que verificam a c
 |*Caso de Teste*                                 |*CT01 - Login de usuário*                                         |
 |---|---|
 |Requisito Associado | RF-06 - O sistema deve permitir o login de usuários para acesso ao sistema conforme seu perfil|
-|Link do vídeo do teste realizado: | (https://drive.google.com/drive/folders/1ael638Tw_PjIzGg9Ecs-myAEdocY3Rfz?usp=sharing)
+|Link do vídeo do teste realizado: | https://drive.google.com/drive/folders/1ael638Tw_PjIzGg9Ecs-myAEdocY3Rfz?usp=sharing
 
 |*Caso de Teste*                                 |*CT02 - Cadastro de usuário*                                         |
 |---|---|
 |Requisito Associado | RF-08 - O sistema deve permitir o cadastro de novos usuários|
-|Link do vídeo do teste realizado: | (https://drive.google.com/file/d/1OwvYNBx4M7FkthkM6cc2-kNowwAUvngo/view?usp=drive_link)|
+|Link do vídeo do teste realizado: | https://drive.google.com/file/d/1OwvYNBx4M7FkthkM6cc2-kNowwAUvngo/view?usp=drive_link|
 
 |*Caso de Teste*                                 |*CT03 - Cadastro de produto*                                         |
 |---|---|
 |Requisito Associado | RF-01 - O sistema deve permitir o cadastro de produtos no estoque|
-|Link do vídeo do teste realizado: | a preencher|
+|Link do vídeo do teste realizado: | https://drive.google.com/drive/folders/1rRgmm3es5oRHpVmYxDIUcoYCQo1akg79?usp=sharing
 
 |*Caso de Teste*                                 |*CT04 - Edição de produto*                                         |
 |---|---|
 |Requisito Associado | RF-05 - O sistema deve permitir alterar informações dos produtos cadastrados|
-|Link do vídeo do teste realizado: | a preencher|
+|Link do vídeo do teste realizado: | https://drive.google.com/drive/folders/1rRgmm3es5oRHpVmYxDIUcoYCQo1akg79?usp=sharing
 
 |*Caso de Teste*                                 |*CT05 - Registro de entrada de produtos*                                         |
 |---|---|
 |Requisito Associado | RF-02 - O sistema deve permitir registrar a entrada de produtos no estoque|
-|Link do vídeo do teste realizado: | a preencher|
+|Link do vídeo do teste realizado: | https://drive.google.com/drive/folders/1rRgmm3es5oRHpVmYxDIUcoYCQo1akg79?usp=sharing
 
 |*Caso de Teste*                                 |*CT06 - Registro de saída de produtos*                                         |
 |---|---|
 |Requisito Associado | RF-03 - O sistema deve permitir registrar a saída de produtos do estoque|
-|Link do vídeo do teste realizado: | (https://drive.google.com/file/d/1o3iDk7uxY3CyWyc4LGaFkTo2u-XcdvxJ/view?usp=drive_link)
+|Link do vídeo do teste realizado: | https://drive.google.com/file/d/1o3iDk7uxY3CyWyc4LGaFkTo2u-XcdvxJ/view?usp=drive_link
 
 |*Caso de Teste*                                 |*CT07 - Consulta de produto*                                         |
 |---|---|
 |Requisito Associado | RF-04 - O sistema deve permitir a consulta da quantidade disponível de cada produto, buscando por nome, categoria ou código|
-|Link do vídeo do teste realizado: | a preencher|
+|Link do vídeo do teste realizado: | https://drive.google.com/drive/folders/1rRgmm3es5oRHpVmYxDIUcoYCQo1akg79?usp=sharing
 
 |*Caso de Teste*                                 |*CT08 - Gerenciamento de usuários*                                         |
 |---|---|
 |Requisito Associado | RF-07 - O sistema deve permitir o gerenciamento de usuários pelo administrador|
-|Link do vídeo do teste realizado: |(https://drive.google.com/file/d/1OwvYNBx4M7FkthkM6cc2-kNowwAUvngo/view?usp=drive_link)
+|Link do vídeo do teste realizado: | https://drive.google.com/file/d/1OwvYNBx4M7FkthkM6cc2-kNowwAUvngo/view?usp=drive_link
 
 Contudo, tendo em vista que a diferença foi relevante (por exemplo, 113 segundos — média usuários — contra 25 segundos — especialista — no cenário três), e ainda os comentários feitos por alguns usuários, entendemos haver oportunidades de melhoria na usabilidade da aplicação.
 
