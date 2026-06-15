@@ -1,19 +1,9 @@
-// ================================================
-//  relatorios.js  →  pasta java-script/
-//  Lê db_produtos (entradas) e db_saidas (saídas)
-//  e monta: cards, gráfico mensal e tabela.
-// ================================================
-
 let grafico = null;
 
-// -----------------------------------------------
-//  Coleta TODAS as movimentações do localStorage
-// -----------------------------------------------
 function carregarMovimentacoes() {
 
   const lista = [];
 
-  // ENTRADAS → cada produto cadastrado é uma entrada
   const dbProdutos = JSON.parse(
     localStorage.getItem('db_produtos')
   ) || { produtos: [] };
@@ -30,7 +20,6 @@ function carregarMovimentacoes() {
     });
   });
 
-  // SAÍDAS → db_saidas.saidas
   // Atenção: o campo do produto na saída é "produto" (não "nome")
   const dbSaidas = JSON.parse(
     localStorage.getItem('db_saidas')
@@ -39,21 +28,18 @@ function carregarMovimentacoes() {
   dbSaidas.saidas.forEach(function (s) {
     lista.push({
       data:       s.data        || '',
-      produto:    s.produto     || '-',   // campo correto do saidas.js
+      produto:    s.produto     || '-',
       tipo:       'saida',
       qtd:        Number(s.quantidade) || 0,
       preco:      Number(s.preco)      || 0,
       fornecedor: s.fornecedor  || '-',
-      notaFiscal: s.nf          || '-'   // campo correto do saidas.js
+      notaFiscal: s.nf          || '-'
     });
   });
 
   return lista;
 }
 
-// -----------------------------------------------
-//  Aplica filtros de período e tipo
-// -----------------------------------------------
 function filtrar(lista) {
 
   const periodo = document.getElementById('filtroPeriodo').value;
@@ -63,23 +49,18 @@ function filtrar(lista) {
 
   return lista.filter(function (mov) {
 
-    // Filtro de período
     if (periodo !== 'todos' && mov.data) {
       const dataMov   = new Date(mov.data + 'T00:00:00');
       const diasAtras = (hoje - dataMov) / (1000 * 60 * 60 * 24);
       if (diasAtras > Number(periodo)) return false;
     }
 
-    // Filtro de tipo
     if (tipo !== 'todos' && mov.tipo !== tipo) return false;
 
     return true;
   });
 }
 
-// -----------------------------------------------
-//  Formata "2026-04-07" → "07/04/2026"
-// -----------------------------------------------
 function formatarData(iso) {
   if (!iso) return '-';
   const p = iso.split('-');
@@ -87,9 +68,6 @@ function formatarData(iso) {
   return p[2] + '/' + p[1] + '/' + p[0];
 }
 
-// -----------------------------------------------
-//  Número → "R$ 1.645,00"
-// -----------------------------------------------
 function formatarMoeda(v) {
   return Number(v).toLocaleString('pt-BR', {
     style: 'currency',
@@ -97,9 +75,6 @@ function formatarMoeda(v) {
   });
 }
 
-// -----------------------------------------------
-//  Atualiza os 4 cards de resumo
-// -----------------------------------------------
 function renderizarCards(filtradas) {
 
   const entradas = filtradas.filter(m => m.tipo === 'entrada');
@@ -116,9 +91,6 @@ function renderizarCards(filtradas) {
   document.getElementById('resumoProdutos').textContent = prodDistintos;
 }
 
-// -----------------------------------------------
-//  Monta as linhas da tabela
-// -----------------------------------------------
 function renderizarTabela(filtradas) {
 
   const tbody = document.getElementById('corpoTabela');
@@ -134,7 +106,6 @@ function renderizarTabela(filtradas) {
     return;
   }
 
-  // Mais recente primeiro; sem data vai pro final
   const ordenado = [...filtradas].sort(function (a, b) {
     if (!a.data && !b.data) return 0;
     if (!a.data) return 1;
@@ -162,11 +133,6 @@ function renderizarTabela(filtradas) {
   }).join('');
 }
 
-// -----------------------------------------------
-//  Gráfico de barras — agrupa por mês (ano atual)
-//  Usa TODAS as movimentações (sem filtro de tipo)
-//  para manter os dois lados do gráfico visíveis.
-// -----------------------------------------------
 function renderizarGrafico(todas) {
 
   const meses    = ['Jan','Fev','Mar','Abr','Mai','Jun',
@@ -239,9 +205,6 @@ function renderizarGrafico(todas) {
   });
 }
 
-// -----------------------------------------------
-//  Função principal — chamada pelos filtros
-// -----------------------------------------------
 function aplicarFiltros() {
 
   const todas     = carregarMovimentacoes();
@@ -249,12 +212,9 @@ function aplicarFiltros() {
 
   renderizarCards(filtradas);
   renderizarTabela(filtradas);
-  renderizarGrafico(todas); // gráfico sempre exibe o ano todo
+  renderizarGrafico(todas);
 }
 
-// -----------------------------------------------
-//  Exportar CSV
-// -----------------------------------------------
 function exportarCSV() {
 
   const filtradas = filtrar(carregarMovimentacoes());
@@ -285,9 +245,6 @@ function exportarCSV() {
   link.click();
 }
 
-// -----------------------------------------------
-//  Inicialização
-// -----------------------------------------------
 document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('btnFiltrar')
