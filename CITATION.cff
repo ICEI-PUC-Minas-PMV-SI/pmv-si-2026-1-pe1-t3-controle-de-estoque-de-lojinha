@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 title: Controle de Estoque de Lojinha
-message: >-
-  If you use this software, please cite it using the
-  metadata from this file.
+message: >- 
+  Please cite this
+  software using metadata.
 type: software
 authors:
   - given-names: Gabriel Gonçalves de
@@ -21,11 +21,19 @@ authors:
     family-names: Souza
     email: samuel.souza.1659443@sga.pucminas.br
     affiliation: PUC Minas
+  - given-names: Clóvis
+    name-particle: 'L '
+    family-names: Tavares
+    name-suffix: Prof.
+    email: clovis@pucminas.br
+    affiliation: PUC Minas
 repository-code: >-
   https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe1-t3-controle-de-estoque-de-lojinha
 abstract: >-
-  Descrever resumidamente, em um ou dois parágrafos, o
-  projeto que foi desenvolvido.
+  Projeto com objetivo de automatizar e organizar estoques
+  para uma melhor logística de estabelecimentos menores, de
+  modo que permaneçam consolidados na sociedade tecnológica
+  moderna.
 keywords:
   - Desenvolvimento Web
   - HTML
