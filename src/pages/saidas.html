@@ -18,6 +18,59 @@
         ) || {
             produtos: []
         };
+
+        /* ── Seed de saídas históricas (apenas na primeira vez) ── */
+
+        const SEED_SAIDAS = [
+            // Janeiro 2026
+            { codigo: 1001, produto: 'Arroz Tipo 1 5kg',            quantidade: 3,  preco: '24.90', fornecedor: 'Mercado Central',  nf: 'V-0001', data: '2026-01-12', observacoes: '' },
+            { codigo: 1002, produto: 'Feijão Carioca 1kg',           quantidade: 5,  preco: '7.80',  fornecedor: 'Mercado Central',  nf: 'V-0001', data: '2026-01-12', observacoes: '' },
+            { codigo: 1003, produto: 'Óleo de Soja 900ml',           quantidade: 4,  preco: '6.50',  fornecedor: 'Mercado Central',  nf: 'V-0002', data: '2026-01-18', observacoes: '' },
+            { codigo: 1004, produto: 'Açúcar Cristal 2kg',           quantidade: 6,  preco: '4.20',  fornecedor: 'Padaria Pão Quente', nf: 'V-0003', data: '2026-01-22', observacoes: '' },
+            { codigo: 1005, produto: 'Biscoito Recheado Chocolate 150g', quantidade: 8, preco: '3.50', fornecedor: 'Padaria Pão Quente', nf: 'V-0003', data: '2026-01-22', observacoes: '' },
+            // Fevereiro 2026
+            { codigo: 1006, produto: 'Café Torrado Moído 500g',      quantidade: 4,  preco: '14.90', fornecedor: 'Mercado Central',  nf: 'V-0004', data: '2026-02-08', observacoes: '' },
+            { codigo: 1007, produto: 'Macarrão Espaguete 500g',      quantidade: 10, preco: '4.30',  fornecedor: 'Mercado Central',  nf: 'V-0004', data: '2026-02-08', observacoes: '' },
+            { codigo: 1008, produto: 'Molho de Tomate 340g',         quantidade: 6,  preco: '3.90',  fornecedor: 'Mercado Central',  nf: 'V-0005', data: '2026-02-15', observacoes: '' },
+            { codigo: 1009, produto: 'Biscoito Recheado Morango 150g', quantidade: 5, preco: '3.50', fornecedor: 'Padaria Pão Quente', nf: 'V-0006', data: '2026-02-22', observacoes: '' },
+            { codigo: 1010, produto: 'Sal Refinado 1kg',             quantidade: 10, preco: '2.10',  fornecedor: 'Mercado Central',  nf: 'V-0007', data: '2026-02-26', observacoes: '' },
+            // Março 2026
+            { codigo: 1011, produto: 'Arroz Parboilizado 5kg',       quantidade: 3,  preco: '26.50', fornecedor: 'Mercado Central',  nf: 'V-0008', data: '2026-03-06', observacoes: '' },
+            { codigo: 1012, produto: 'Feijão Preto 1kg',             quantidade: 6,  preco: '8.20',  fornecedor: 'Mercado Central',  nf: 'V-0008', data: '2026-03-06', observacoes: '' },
+            { codigo: 1013, produto: 'Achocolatado em Pó 400g',      quantidade: 3,  preco: '8.90',  fornecedor: 'Padaria Pão Quente', nf: 'V-0009', data: '2026-03-14', observacoes: '' },
+            { codigo: 1014, produto: 'Extrato de Tomate 300g',        quantidade: 7,  preco: '3.20',  fornecedor: 'Padaria Pão Quente', nf: 'V-0009', data: '2026-03-14', observacoes: '' },
+            { codigo: 1015, produto: 'Sabonete 90g',                  quantidade: 12, preco: '2.50',  fornecedor: 'Mercado Central',  nf: 'V-0010', data: '2026-03-22', observacoes: '' },
+            // Abril 2026
+            { codigo: 1016, produto: 'Creme Dental 90g',             quantidade: 10, preco: '3.90',  fornecedor: 'Mercado Central',  nf: 'V-0011', data: '2026-04-05', observacoes: '' },
+            { codigo: 1017, produto: 'Detergente Líquido 500ml',      quantidade: 8,  preco: '2.90',  fornecedor: 'Mercado Central',  nf: 'V-0011', data: '2026-04-05', observacoes: '' },
+            { codigo: 1018, produto: 'Água Sanitária 1L',             quantidade: 6,  preco: '3.60',  fornecedor: 'Limpeza Total',    nf: 'V-0012', data: '2026-04-12', observacoes: '' },
+            { codigo: 1019, produto: 'Sabão em Pó 1kg',               quantidade: 4,  preco: '12.90', fornecedor: 'Limpeza Total',    nf: 'V-0013', data: '2026-04-18', observacoes: '' },
+            { codigo: 1020, produto: 'Margarina 500g',                quantidade: 5,  preco: '6.20',  fornecedor: 'Laticínios Minas', nf: 'V-0014', data: '2026-04-25', observacoes: '' },
+            // Maio 2026
+            { codigo: 1021, produto: 'Refrigerante Cola 2L',          quantidade: 12, preco: '7.90',  fornecedor: 'Mercado Central',  nf: 'V-0015', data: '2026-05-06', observacoes: '' },
+            { codigo: 1022, produto: 'Suco de Laranja 1L',            quantidade: 6,  preco: '6.40',  fornecedor: 'Mercado Central',  nf: 'V-0015', data: '2026-05-06', observacoes: '' },
+            { codigo: 1023, produto: 'Água Mineral 500ml',            quantidade: 24, preco: '1.80',  fornecedor: 'Mercado Central',  nf: 'V-0015', data: '2026-05-06', observacoes: '' },
+            { codigo: 1024, produto: 'Cerveja Lata 350ml',            quantidade: 24, preco: '3.50',  fornecedor: 'Bebidas Geladas',  nf: 'V-0016', data: '2026-05-18', observacoes: '' },
+            { codigo: 1025, produto: 'Requeijão Cremoso 200g',        quantidade: 4,  preco: '7.40',  fornecedor: 'Laticínios Minas', nf: 'V-0017', data: '2026-05-25', observacoes: '' },
+            // Junho 2026
+            { codigo: 1026, produto: 'Amaciante 500ml',               quantidade: 6,  preco: '5.80',  fornecedor: 'Mercado Central',  nf: 'V-0018', data: '2026-06-04', observacoes: '' },
+            { codigo: 1027, produto: 'Papel Higiênico 12x 30m',       quantidade: 3,  preco: '14.90', fornecedor: 'Mercado Central',  nf: 'V-0018', data: '2026-06-04', observacoes: '' },
+            { codigo: 1028, produto: 'Biscoito Salgado Cream Cracker 200g', quantidade: 5, preco: '4.10', fornecedor: 'Padaria Pão Quente', nf: 'V-0019', data: '2026-06-10', observacoes: '' },
+            { codigo: 1029, produto: 'Leite Condensado 395g',         quantidade: 4,  preco: '6.90',  fornecedor: 'Padaria Pão Quente', nf: 'V-0019', data: '2026-06-10', observacoes: '' },
+            { codigo: 1030, produto: 'Milho de Pipoca 500g',          quantidade: 8,  preco: '4.70',  fornecedor: 'Cereal Distribuidora', nf: 'V-0020', data: '2026-06-14', observacoes: '' },
+        ];
+
+        const DB_SAIDAS_VERSAO = '2';
+
+        function inicializarSaidas() {
+            const versaoSalva = localStorage.getItem('db_saidas_versao');
+            if (versaoSalva !== DB_SAIDAS_VERSAO) {
+                localStorage.setItem('db_saidas', JSON.stringify({ saidas: SEED_SAIDAS }));
+                localStorage.setItem('db_saidas_versao', DB_SAIDAS_VERSAO);
+                db_saidas.saidas = SEED_SAIDAS;
+            }
+        }
+
         function carregarProdutos() {
 
             const lista =
@@ -226,6 +279,7 @@
         }
         function initPage() {
 
+            inicializarSaidas();
 
             document
                 .getElementById("btnRegistrarSaida")

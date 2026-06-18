@@ -1,20 +1,50 @@
 
 const SEED_PRODUTOS = [
-    { id: 'p1',  nome: 'Biscoito Recheado Chocolate 150g', quantidade: '45', preco: '3.50',  estoqueMinimo: '10', fornecedor: 'Fabrica de Biscoitos',   notaFiscal: 'NF-2025-001', data: '2026-06-01', observacoes: '' },
-    { id: 'p2',  nome: 'Arroz Tipo 1 5kg',                  quantidade: '30', preco: '24.90', estoqueMinimo: '8',  fornecedor: 'Cereal Distribuidora',   notaFiscal: 'NF-2025-002', data: '2026-06-02', observacoes: '' },
-    { id: 'p3',  nome: 'Feijão Carioca 1kg',                quantidade: '60', preco: '7.80',  estoqueMinimo: '15', fornecedor: 'Cereal Distribuidora',   notaFiscal: 'NF-2025-003', data: '2026-06-02', observacoes: '' },
-    { id: 'p4',  nome: 'Óleo de Soja 900ml',                quantidade: '40', preco: '6.50',  estoqueMinimo: '12', fornecedor: 'Alimentos Sul Ltda',     notaFiscal: 'NF-2025-004', data: '2026-06-03', observacoes: '' },
-    { id: 'p5',  nome: 'Açúcar Cristal 2kg',                quantidade: '25', preco: '4.20',  estoqueMinimo: '10', fornecedor: 'Usina Doce Vida',        notaFiscal: 'NF-2025-005', data: '2026-06-03', observacoes: '' },
-    { id: 'p6',  nome: 'Café Torrado Moído 500g',           quantidade: '20', preco: '14.90', estoqueMinimo: '6',  fornecedor: 'Café São Paulo',         notaFiscal: 'NF-2025-006', data: '2026-06-04', observacoes: '' },
-    { id: 'p7',  nome: 'Macarrão Espaguete 500g',           quantidade: '50', preco: '4.30',  estoqueMinimo: '20', fornecedor: 'Massa Boa Indústria',    notaFiscal: 'NF-2025-007', data: '2026-06-04', observacoes: '' },
-    { id: 'p8',  nome: 'Molho de Tomate 340g',              quantidade: '35', preco: '3.90',  estoqueMinimo: '10', fornecedor: 'Alimentos Sul Ltda',     notaFiscal: 'NF-2025-008', data: '2026-06-05', observacoes: '' },
-    { id: 'p9',  nome: 'Leite Integral 1L',                 quantidade: '0',  preco: '5.20',  estoqueMinimo: '15', fornecedor: 'Laticínios Minas',       notaFiscal: 'NF-2025-009', data: '2026-06-05', observacoes: 'Produto em falta' },
-    { id: 'p10', nome: 'Biscoito Recheado Morango 150g',    quantidade: '30', preco: '3.50',  estoqueMinimo: '10', fornecedor: 'Fabrica de Biscoitos',   notaFiscal: 'NF-2025-010', data: '2026-06-06', observacoes: '' },
-    { id: 'p11', nome: 'Biscoito Recheado Baunilha 150g',   quantidade: '28', preco: '3.50',  estoqueMinimo: '10', fornecedor: 'Fabrica de Biscoitos',   notaFiscal: 'NF-2025-011', data: '2026-06-06', observacoes: '' },
-    { id: 'p12', nome: 'Arroz Parboilizado 5kg',            quantidade: '22', preco: '26.50', estoqueMinimo: '8',  fornecedor: 'Cereal Distribuidora',   notaFiscal: 'NF-2025-012', data: '2026-06-07', observacoes: '' },
-    { id: 'p13', nome: 'Feijão Preto 1kg',                  quantidade: '40', preco: '8.20',  estoqueMinimo: '15', fornecedor: 'Cereal Distribuidora',   notaFiscal: 'NF-2025-013', data: '2026-06-07', observacoes: '' },
-    { id: 'p14', nome: 'Sal Refinado 1kg',                  quantidade: '55', preco: '2.10',  estoqueMinimo: '20', fornecedor: 'Usina Doce Vida',        notaFiscal: 'NF-2025-014', data: '2026-06-08', observacoes: '' },
-    { id: 'p15', nome: 'Achocolatado em Pó 400g',           quantidade: '15', preco: '8.90',  estoqueMinimo: '8',  fornecedor: 'Cereal Distribuidora',   notaFiscal: 'NF-2025-015', data: '2026-06-08', observacoes: '' },
+    // --- Janeiro 2026 ---
+    { id: 'p1',  nome: 'Biscoito Recheado Chocolate 150g', quantidade: '45', preco: '3.50',  estoqueMinimo: '10', fornecedor: 'Fabrica de Biscoitos',   notaFiscal: 'NF-2025-001', data: '2026-01-10', observacoes: '' },
+    { id: 'p2',  nome: 'Arroz Tipo 1 5kg',                  quantidade: '20', preco: '24.90', estoqueMinimo: '8',  fornecedor: 'Cereal Distribuidora',   notaFiscal: 'NF-2025-002', data: '2026-01-12', observacoes: '' },
+    { id: 'p3',  nome: 'Feijão Carioca 1kg',                quantidade: '50', preco: '7.80',  estoqueMinimo: '15', fornecedor: 'Cereal Distribuidora',   notaFiscal: 'NF-2025-003', data: '2026-01-18', observacoes: '' },
+    { id: 'p4',  nome: 'Óleo de Soja 900ml',                quantidade: '35', preco: '6.50',  estoqueMinimo: '12', fornecedor: 'Alimentos Sul Ltda',     notaFiscal: 'NF-2025-004', data: '2026-01-22', observacoes: '' },
+    { id: 'p5',  nome: 'Açúcar Cristal 2kg',                quantidade: '25', preco: '4.20',  estoqueMinimo: '10', fornecedor: 'Usina Doce Vida',        notaFiscal: 'NF-2025-005', data: '2026-01-28', observacoes: '' },
+    { id: 'p6',  nome: 'Farinha de Trigo 1kg',              quantidade: '40', preco: '4.50',  estoqueMinimo: '12', fornecedor: 'Moinho Central',         notaFiscal: 'NF-2025-006', data: '2026-01-30', observacoes: '' },
+
+    // --- Fevereiro 2026 ---
+    { id: 'p7',  nome: 'Café Torrado Moído 500g',           quantidade: '18', preco: '14.90', estoqueMinimo: '6',  fornecedor: 'Café São Paulo',         notaFiscal: 'NF-2025-007', data: '2026-02-05', observacoes: '' },
+    { id: 'p8',  nome: 'Macarrão Espaguete 500g',           quantidade: '48', preco: '4.30',  estoqueMinimo: '20', fornecedor: 'Massa Boa Indústria',    notaFiscal: 'NF-2025-008', data: '2026-02-10', observacoes: '' },
+    { id: 'p9',  nome: 'Molho de Tomate 340g',              quantidade: '32', preco: '3.90',  estoqueMinimo: '10', fornecedor: 'Alimentos Sul Ltda',     notaFiscal: 'NF-2025-009', data: '2026-02-14', observacoes: '' },
+    { id: 'p10', nome: 'Leite Integral 1L',                 quantidade: '0',  preco: '5.20',  estoqueMinimo: '15', fornecedor: 'Laticínios Minas',       notaFiscal: 'NF-2025-010', data: '2026-02-18', observacoes: 'Produto em falta' },
+    { id: 'p11', nome: 'Biscoito Recheado Morango 150g',    quantidade: '28', preco: '3.50',  estoqueMinimo: '10', fornecedor: 'Fabrica de Biscoitos',   notaFiscal: 'NF-2025-011', data: '2026-02-22', observacoes: '' },
+    { id: 'p12', nome: 'Sal Refinado 1kg',                  quantidade: '55', preco: '2.10',  estoqueMinimo: '20', fornecedor: 'Usina Doce Vida',        notaFiscal: 'NF-2025-012', data: '2026-02-26', observacoes: '' },
+
+    // --- Março 2026 ---
+    { id: 'p13', nome: 'Biscoito Recheado Baunilha 150g',   quantidade: '26', preco: '3.50',  estoqueMinimo: '10', fornecedor: 'Fabrica de Biscoitos',   notaFiscal: 'NF-2025-013', data: '2026-03-04', observacoes: '' },
+    { id: 'p14', nome: 'Arroz Parboilizado 5kg',            quantidade: '22', preco: '26.50', estoqueMinimo: '8',  fornecedor: 'Cereal Distribuidora',   notaFiscal: 'NF-2025-014', data: '2026-03-08', observacoes: '' },
+    { id: 'p15', nome: 'Feijão Preto 1kg',                  quantidade: '38', preco: '8.20',  estoqueMinimo: '15', fornecedor: 'Cereal Distribuidora',   notaFiscal: 'NF-2025-015', data: '2026-03-12', observacoes: '' },
+    { id: 'p16', nome: 'Achocolatado em Pó 400g',           quantidade: '14', preco: '8.90',  estoqueMinimo: '8',  fornecedor: 'Cereal Distribuidora',   notaFiscal: 'NF-2025-016', data: '2026-03-18', observacoes: '' },
+    { id: 'p17', nome: 'Extrato de Tomate 300g',            quantidade: '28', preco: '3.20',  estoqueMinimo: '10', fornecedor: 'Alimentos Sul Ltda',     notaFiscal: 'NF-2025-017', data: '2026-03-22', observacoes: '' },
+    { id: 'p18', nome: 'Sabonete 90g',                      quantidade: '60', preco: '2.50',  estoqueMinimo: '20', fornecedor: 'Higiene Brasil',         notaFiscal: 'NF-2025-018', data: '2026-03-28', observacoes: '' },
+
+    // --- Abril 2026 ---
+    { id: 'p19', nome: 'Creme Dental 90g',                  quantidade: '40', preco: '3.90',  estoqueMinimo: '10', fornecedor: 'Higiene Brasil',         notaFiscal: 'NF-2025-019', data: '2026-04-03', observacoes: '' },
+    { id: 'p20', nome: 'Detergente Líquido 500ml',          quantidade: '45', preco: '2.90',  estoqueMinimo: '15', fornecedor: 'Limpeza Total',          notaFiscal: 'NF-2025-020', data: '2026-04-08', observacoes: '' },
+    { id: 'p21', nome: 'Água Sanitária 1L',                 quantidade: '30', preco: '3.60',  estoqueMinimo: '10', fornecedor: 'Limpeza Total',          notaFiscal: 'NF-2025-021', data: '2026-04-12', observacoes: '' },
+    { id: 'p22', nome: 'Sabão em Pó 1kg',                   quantidade: '18', preco: '12.90', estoqueMinimo: '6',  fornecedor: 'Limpeza Total',          notaFiscal: 'NF-2025-022', data: '2026-04-18', observacoes: '' },
+    { id: 'p23', nome: 'Margarina 500g',                    quantidade: '22', preco: '6.20',  estoqueMinimo: '8',  fornecedor: 'Laticínios Minas',       notaFiscal: 'NF-2025-023', data: '2026-04-25', observacoes: '' },
+
+    // --- Maio 2026 ---
+    { id: 'p24', nome: 'Refrigerante Cola 2L',              quantidade: '35', preco: '7.90',  estoqueMinimo: '12', fornecedor: 'Bebidas Geladas',        notaFiscal: 'NF-2025-024', data: '2026-05-04', observacoes: '' },
+    { id: 'p25', nome: 'Suco de Laranja 1L',                quantidade: '20', preco: '6.40',  estoqueMinimo: '8',  fornecedor: 'Bebidas Geladas',        notaFiscal: 'NF-2025-025', data: '2026-05-08', observacoes: '' },
+    { id: 'p26', nome: 'Água Mineral 500ml',                quantidade: '80', preco: '1.80',  estoqueMinimo: '30', fornecedor: 'Bebidas Geladas',        notaFiscal: 'NF-2025-026', data: '2026-05-12', observacoes: '' },
+    { id: 'p27', nome: 'Cerveja Lata 350ml',                quantidade: '72', preco: '3.50',  estoqueMinimo: '24', fornecedor: 'Bebidas Geladas',        notaFiscal: 'NF-2025-027', data: '2026-05-18', observacoes: '' },
+    { id: 'p28', nome: 'Requeijão Cremoso 200g',            quantidade: '16', preco: '7.40',  estoqueMinimo: '6',  fornecedor: 'Laticínios Minas',       notaFiscal: 'NF-2025-028', data: '2026-05-25', observacoes: '' },
+
+    // --- Junho 2026 ---
+    { id: 'p29', nome: 'Amaciante 500ml',                   quantidade: '28', preco: '5.80',  estoqueMinimo: '10', fornecedor: 'Limpeza Total',          notaFiscal: 'NF-2025-029', data: '2026-06-01', observacoes: '' },
+    { id: 'p30', nome: 'Papel Higiênico 12x 30m',           quantidade: '48', preco: '14.90', estoqueMinimo: '12', fornecedor: 'Higiene Brasil',         notaFiscal: 'NF-2025-030', data: '2026-06-03', observacoes: '' },
+    { id: 'p31', nome: 'Biscoito Salgado Cream Cracker 200g',quantidade: '32', preco: '4.10',  estoqueMinimo: '10', fornecedor: 'Fabrica de Biscoitos',   notaFiscal: 'NF-2025-031', data: '2026-06-06', observacoes: '' },
+    { id: 'p32', nome: 'Leite Condensado 395g',             quantidade: '24', preco: '6.90',  estoqueMinimo: '8',  fornecedor: 'Laticínios Minas',       notaFiscal: 'NF-2025-032', data: '2026-06-10', observacoes: '' },
+    { id: 'p33', nome: 'Farinha de Mandioca 1kg',           quantidade: '20', preco: '5.30',  estoqueMinimo: '8',  fornecedor: 'Moinho Central',         notaFiscal: 'NF-2025-033', data: '2026-06-14', observacoes: '' },
+    { id: 'p34', nome: 'Milho de Pipoca 500g',              quantidade: '30', preco: '4.70',  estoqueMinimo: '10', fornecedor: 'Cereal Distribuidora',   notaFiscal: 'NF-2025-034', data: '2026-06-18', observacoes: '' },
 ];
 
 function gerarId(prefixo = 'id') {
@@ -52,10 +82,13 @@ const DB = {
     }
 };
 
+const DB_PRODUTOS_VERSAO = '2';
+
 function inicializarDados() {
-    const db = DB.getProdutos();
-    if (!db.produtos || db.produtos.length === 0) {
+    const versaoSalva = localStorage.getItem('db_produtos_versao');
+    if (versaoSalva !== DB_PRODUTOS_VERSAO) {
         DB.saveProdutos({ produtos: SEED_PRODUTOS });
+        localStorage.setItem('db_produtos_versao', DB_PRODUTOS_VERSAO);
     }
 }
 
