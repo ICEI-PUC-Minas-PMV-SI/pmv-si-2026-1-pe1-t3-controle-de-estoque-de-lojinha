@@ -82,10 +82,13 @@ const DB = {
     }
 };
 
+const DB_PRODUTOS_VERSAO = '2';
+
 function inicializarDados() {
-    const db = DB.getProdutos();
-    if (!db.produtos || db.produtos.length === 0) {
+    const versaoSalva = localStorage.getItem('db_produtos_versao');
+    if (versaoSalva !== DB_PRODUTOS_VERSAO) {
         DB.saveProdutos({ produtos: SEED_PRODUTOS });
+        localStorage.setItem('db_produtos_versao', DB_PRODUTOS_VERSAO);
     }
 }
 

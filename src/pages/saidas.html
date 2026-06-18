@@ -60,10 +60,13 @@
             { codigo: 1030, produto: 'Milho de Pipoca 500g',          quantidade: 8,  preco: '4.70',  fornecedor: 'Cereal Distribuidora', nf: 'V-0020', data: '2026-06-14', observacoes: '' },
         ];
 
+        const DB_SAIDAS_VERSAO = '2';
+
         function inicializarSaidas() {
-            const salvos = JSON.parse(localStorage.getItem('db_saidas'));
-            if (!salvos || !salvos.saidas || salvos.saidas.length === 0) {
+            const versaoSalva = localStorage.getItem('db_saidas_versao');
+            if (versaoSalva !== DB_SAIDAS_VERSAO) {
                 localStorage.setItem('db_saidas', JSON.stringify({ saidas: SEED_SAIDAS }));
+                localStorage.setItem('db_saidas_versao', DB_SAIDAS_VERSAO);
                 db_saidas.saidas = SEED_SAIDAS;
             }
         }
