@@ -487,8 +487,8 @@ button[type="submit"], #btnDarkMode {
 }
 .element-login {
   display: flex;
-  width: 1440px;
-  height: 900px;
+  width: 100%;
+  min-height: 100vh;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -506,12 +506,12 @@ button[type="submit"], #btnDarkMode {
   position: relative;
   flex: 1;
   flex-grow: 1;
-  background-color: #f8f8fa;
+  background: linear-gradient(145deg, #f0f3f8 0%, #f9fafb 100%);
 }
 
 .element-login .form-wrapper {
   display: flex;
-  width: 400px;
+  width: 420px;
   align-items: center;
   justify-content: center;
   gap: 100px;
@@ -522,15 +522,31 @@ button[type="submit"], #btnDarkMode {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 37px;
+  gap: 28px;
   position: relative;
   flex: 1;
   flex-grow: 1;
+  background: #ffffff;
+  padding: 40px 36px;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+.login-logo {
+  width: 48px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.login-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .element-login .frame {
-  display: inline-flex;
-  gap: 4px;
+  display: flex;
+  gap: 12px;
   flex-direction: column;
   align-items: flex-start;
   position: relative;
@@ -538,21 +554,21 @@ button[type="submit"], #btnDarkMode {
 }
 
 .element-login .welcome {
-  margin-top: -1px;
-  font-family: "Inter-Bold", Helvetica;
-  font-weight: 700;
-  color: #191926;
-  font-size: 28px;
+  margin: 0;
+  font-family: "Poppins", "Inter", Arial, sans-serif;
+  font-weight: 600;
+  color: var(--app-active-color, #7b98bb);
+  font-size: 24px;
   position: relative;
   width: fit-content;
-  letter-spacing: 0;
-  line-height: normal;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .element-login .welcome-sub {
-  font-family: "Inter-Regular", Helvetica;
+  font-family: "Poppins", "Inter", Arial, sans-serif;
   font-weight: 400;
-  color: #727284;
+  color: var(--app-muted-text, #737385);
   font-size: 14px;
   position: relative;
   width: fit-content;
@@ -566,14 +582,13 @@ button[type="submit"], #btnDarkMode {
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
+  gap: 6px;
   position: relative;
   flex: 0 0 auto;
 }
 
 .element-login .email-label {
-  height: 22px;
-  margin-top: -1px;
-  font-family: "Inter-Medium", Helvetica;
+  font-family: "Poppins", "Inter", Arial, sans-serif;
   font-weight: 500;
   color: #33333f;
   font-size: 13px;
@@ -581,23 +596,55 @@ button[type="submit"], #btnDarkMode {
   line-height: normal;
   position: relative;
   align-self: stretch;
+  margin-bottom: -2px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1.5px solid #d8d8e0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input-group:focus-within {
+  border-color: #7b98bb;
+  box-shadow: 0 0 0 3px rgba(123, 152, 187, 0.12);
+}
+
+.input-icon {
+  flex-shrink: 0;
+  margin-left: 14px;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.input-group:focus-within .input-icon {
+  opacity: 0.8;
 }
 
 .element-login .email-input {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 13px 16px;
-  width: 100%;
-  flex: 0 0 auto;
-  background-color: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid;
-  border-color: #d8d8e0;
-  box-shadow: 0px 4px 4px #00000040;
-  position: relative;
-  align-self: stretch;
+  flex: 1;
+  min-width: 0;
+  padding: 14px 14px 14px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  font-family: "Poppins", "Inter", Arial, sans-serif;
+  font-weight: 400;
+  color: #191926;
+  font-size: 14px;
+  line-height: normal;
+  box-sizing: border-box;
+}
+
+.element-login .div {
+  gap: 6px;
 }
 
 .element-login .placeholder {
@@ -624,64 +671,82 @@ button[type="submit"], #btnDarkMode {
 }
 
 .element-login .placeholder-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 13px 16px;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  flex: 0 0 auto;
-  background-color: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid;
-  border-color: #d8d8e0;
+  flex: 1;
+  min-width: 0;
+  padding: 14px 14px 14px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  font-family: "Poppins", "Inter", Arial, sans-serif;
+  font-weight: 400;
+  color: #191926;
+  font-size: 14px;
+  line-height: normal;
+  box-sizing: border-box;
 }
 
 .element-login .group {
-  position: relative;
-  width: 404px;
-  height: 18px;
-  margin-right: -4px;
-}
-
-.element-login .forgot-password {
-  position: absolute;
-  width: calc(100% - 284px);
-  top: 2px;
-  left: 280px;
-  font-family: "Inter-Medium", Helvetica;
-  font-weight: 500;
-  color: #a0a0a0;
-  font-size: 13px;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.element-login .checkbox {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 18px;
-  height: 18px;
-  background-color: #ffffff;
-  border-radius: 4px;
-  border: 1.5px solid;
-  border-color: #c6c6d1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
 }
 
 .element-login .remember-me {
-  position: absolute;
-  width: calc(100% - 304px);
-  top: 1px;
-  left: 26px;
-  font-family: "Inter-Regular", Helvetica;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Poppins", "Inter", Arial, sans-serif;
   font-weight: 400;
   color: #595966;
   font-size: 13px;
   letter-spacing: 0;
   line-height: normal;
+  cursor: pointer;
+  user-select: none;
+}
+
+.element-login .remember-me input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 1.5px solid #c6c6d1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.element-login .remember-me input[type="checkbox"]:hover {
+  border-color: #7b98bb;
+}
+
+.element-login .remember-me input[type="checkbox"]:checked {
+  background-color: #7b98bb;
+  border-color: #7b98bb;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='10' viewBox='0 0 12 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 5.5L4 8.5L11 1.5' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.element-login .forgot-password {
+  font-family: "Poppins", "Inter", Arial, sans-serif;
+  font-weight: 500;
+  color: #7b98bb;
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: normal;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  text-decoration: none;
+}
+
+.element-login .forgot-password:hover {
+  opacity: 0.7;
 }
 
 .element-login .login-button {
@@ -689,74 +754,50 @@ button[type="submit"], #btnDarkMode {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 11px 146px;
+  padding: 15px 24px;
   position: relative;
   align-self: stretch;
   width: 100%;
   flex: 0 0 auto;
-  background-color: #7b98bb;
+  background: #7b98bb;
   border-radius: 10px;
   overflow: hidden;
+  font-family: "Poppins", "Inter", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.element-login .login-button:hover {
+  background: #6a87a9;
+  box-shadow: 0 6px 20px rgba(123, 152, 187, 0.4);
+  transform: translateY(-2px);
+}
+
+.element-login .login-button:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .element-login .button-text {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Inter-SemiBold", Helvetica;
+  font-family: "Poppins", "Inter", Arial, sans-serif;
   font-weight: 600;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 15px;
   letter-spacing: 0;
   line-height: normal;
   white-space: nowrap;
 }
 
 
-.element-login {
-  width: 100%;
-  min-height: 100vh;
-}
-
-.element-login .right-panel {
-  min-height: 100vh;
-  height: auto;
-  width: 100%;
-}
-
-.element-login .email-input {
-  appearance: none;
-  -webkit-appearance: none;
-  outline: none;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
-  color: #191926;
-  font-size: 14px;
-  line-height: normal;
-}
-
-.element-login .email-input::placeholder {
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
-  color: #adadb7;
-  font-size: 14px;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.element-login .placeholder-wrapper {
-  appearance: none;
-  -webkit-appearance: none;
-  outline: none;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
-  color: #191926;
-  font-size: 14px;
-  line-height: normal;
-}
-
+.element-login .email-input::placeholder,
 .element-login .placeholder-wrapper::placeholder {
-  font-family: "Inter-Regular", Helvetica;
+  font-family: "Poppins", "Inter", Arial, sans-serif;
   font-weight: 400;
   color: #adadb7;
   font-size: 14px;
@@ -766,57 +807,6 @@ button[type="submit"], #btnDarkMode {
 
 .element-login .group {
   width: 100%;
-  margin-right: 0;
-}
-
-.element-login .forgot-password,
-.element-login .remember-me {
-  white-space: nowrap;
-}
-
-.element-login .checkbox {
-  appearance: none;
-  -webkit-appearance: none;
-  margin: 0;
-  cursor: pointer;
-}
-
-.element-login .checkbox:checked {
-  background-color: #7b98bb;
-  border-color: #7b98bb;
-  background-image:
-    linear-gradient(
-      45deg,
-      transparent 45%,
-      #ffffff 45%,
-      #ffffff 55%,
-      transparent 55%
-    ),
-    linear-gradient(
-      -45deg,
-      transparent 35%,
-      #ffffff 35%,
-      #ffffff 45%,
-      transparent 45%
-    ),
-    linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 42%,
-      #ffffff 42%,
-      #ffffff 58%,
-      transparent 58%,
-      transparent 100%
-    );
-  background-size:
-    8px 8px,
-    8px 8px,
-    8px 8px;
-  background-position:
-    6px 7px,
-    3px 7px,
-    4px 5px;
-  background-repeat: no-repeat;
 }
 
 .element-login .login-button {
@@ -829,18 +819,22 @@ button[type="submit"], #btnDarkMode {
 .element-login .placeholder-wrapper:focus-visible,
 .element-login .checkbox:focus-visible,
 .element-login .login-button:focus-visible {
-  outline: 2px solid #4a90e2;
+  outline: 2px solid #7b98bb;
   outline-offset: 2px;
 }
 
 @media (max-width: 768px) {
   .element-login .right-panel {
-    padding: 32px 24px;
+    padding: 40px 24px;
   }
 
   .element-login .form-wrapper {
     width: 100%;
     max-width: 400px;
+  }
+
+  .element-login .welcome {
+    font-size: 22px;
   }
 }
 .grid-duplo {
