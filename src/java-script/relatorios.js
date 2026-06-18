@@ -1,5 +1,18 @@
 let grafico = null;
 
+/* ── Inicialização mínima: só garante que as chaves existem ── */
+
+function inicializarDadosRelatorios() {
+  if (!localStorage.getItem('db_produtos')) {
+    localStorage.setItem('db_produtos', JSON.stringify({ produtos: [] }));
+  }
+  if (!localStorage.getItem('db_saidas')) {
+    localStorage.setItem('db_saidas', JSON.stringify({ saidas: [] }));
+  }
+}
+
+/* ── Leitura / Filtro / Renderização ── */
+
 function carregarMovimentacoes() {
 
   const lista = [];
@@ -246,6 +259,9 @@ function exportarCSV() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+
+  // Garante que há dados no localStorage antes de renderizar
+  inicializarDadosRelatorios();
 
   document.getElementById('btnFiltrar')
     .addEventListener('click', aplicarFiltros);
