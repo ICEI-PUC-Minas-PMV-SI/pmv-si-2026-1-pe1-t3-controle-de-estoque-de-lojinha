@@ -6,7 +6,7 @@ Resumo de todo o processo de desenvolvimento do projeto **Controle de Estoque de
  
 | Arquivo | Localização | Descrição |
 |---------|-------------|-----------|
-| `controle-estoque-lojinha.pptx` | [`./slide-controle-de-estoque.pptx`](./slide-controle-de-estoque.pptx) | Slides da apresentação final do projeto. Contempla introdução, problema, objetivos, personas, requisitos funcionais e não funcionais, interface e user flow, funcionalidades desenvolvidas, testes de software e conclusão. |
+| `controle-estoque-lojinha.pdf` | [`./slide-controle-de-estoque.pdf`](./slide-controle-de-estoque.pdf) | Slides da apresentação final do projeto. Contempla introdução, problema, objetivos, personas, requisitos funcionais e não funcionais, interface e user flow, funcionalidades desenvolvidas, testes de software e conclusão. |
 | `sample-video.mp4` | [`./sample-video.mp4`](./sample-video.mp4) | Vídeo de demonstração do funcionamento do sistema (a ser inserido pela equipe). |
  
 ---
