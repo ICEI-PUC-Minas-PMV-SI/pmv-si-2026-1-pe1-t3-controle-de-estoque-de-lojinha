@@ -1,42 +1,90 @@
 # Apresentação
-
-Faça uma apresentação de um resumo de todos o processo de desenvolvimento e no final apresente a solução desenvolvida, usando um pequeno vídeo.
-
-Liste os arquivos produzidos e postados nesta pasta, com suas localizaçãoes e descrição do conteúdo neste arquivo Readme.md.
-
-
-* [Pitch inicial](./sample-pitch.pdf) -- arquivo com os slides da apresentação inicial
-* [Apresentação final](./sample-presentation.pdf) -- arquivo com os slides da apresentação final
-* [Vídeo de demonstração](./sample-video.mp4) -- arquivo com a demonstração do funcionamento do sistema
-
-O conjunto de slides deve ser apresentado em um arquivo PowerPoint ou PDF. A apresentação do projeto deve contemplar todos os itens trabalhados nos demais artefatos. Alguns aspectos que devem ser contemplados na apresentação são listados a seguir.
-
-## Título do Projeto
-
-Nome e marca do projeto
-
-## Identidade Visual (Marca, Design)
-
-O grupo deve ter o cuidado em utilizar figuras, imagens, e cores dentro do contexto da solução proposta, de forma a manter a temática do problema.
-
-> **Links Úteis**:
-> - [10 dicas de design para slides](https://rockcontent.com/blog/design-para-slides/)
-> - [7 dicas de design para criar apresentações de PowerPoint incríveis e eficientes](https://www.shutterstock.com/pt/blog/7-dicas-de-design-para-criar-apresentacoes-de-powerpoint-incriveis-e-eficientes)
-> - [Especialista do TED dá 10 dicas para criar slides eficazes e bonitos](https://soap.com.br/blog/especialista-do-ted-da-10-dicas-para-criar-slides-eficazes-e-bonitos)
-
-## Conjunto de Slides (Estrutura)
-
-O grupo deve distribuir de forma coerente o conteúdo a ser apresentado, dentro do tempo determinado. Importante ressaltar a importância da descrição clara de todo o andamento do projeto, insumos gerados e requisitos atendidos. Os arquivos devem ser postados na pasta [presentation](../presentation)
  
-> **Links Úteis**:
-> - [A regra 10-20-30 para apresentações de sucesso](https://revistapegn.globo.com/Noticias/noticia/2014/07/regra-10-20-30-para-apresentacoes-de-sucesso.html)
-> - [Top Tips for Effective Presentations](https://www.skillsyouneed.com/present/presentation-tips.html)
-> - [How to make a great presentation](https://www.ted.com/playlists/574/how_to_make_a_great_presentation)
-
+Resumo de todo o processo de desenvolvimento do projeto **Controle de Estoque de uma Lojinha**, contemplando a contextualização do problema, especificação dos requisitos, projeto de interface, desenvolvimento das funcionalidades e resultados dos testes de software. Ao final, é apresentada a solução desenvolvida por meio de um vídeo de demonstração.
+ 
+## Arquivos produzidos
+ 
+| Arquivo | Localização | Descrição |
+|---------|-------------|-----------|
+| `controle-estoque-lojinha.pptx` | [`./controle-estoque-lojinha.pptx`](./controle-estoque-lojinha.pptx) | Slides da apresentação final do projeto. Contempla introdução, problema, objetivos, personas, requisitos funcionais e não funcionais, interface e user flow, funcionalidades desenvolvidas, testes de software e conclusão. |
+| `sample-video.mp4` | [`./sample-video.mp4`](./sample-video.mp4) | Vídeo de demonstração do funcionamento do sistema (a ser inserido pela equipe). |
+ 
+---
+ 
+## Título do Projeto
+ 
+**Controle de Estoque de uma Lojinha**
+ 
+Sistema web para automatização e organização do controle de estoque de pequenos estabelecimentos comerciais.
+ 
+---
+ 
+## Identidade Visual
+ 
+### Nome e Marca
+ 
+O sistema recebeu o nome **Estoque Search**, comunicando de forma direta suas duas funções centrais: gerenciar estoques e permitir a busca ágil de produtos.
+ 
+### Logotipo
+ 
+O logotipo combina dois elementos visuais integrados:
+ 
+- **Caixa fechada (box):** representa produto, armazenamento e organização — a essência de um sistema de controle de estoque.
+- **Lupa fundida à caixa:** simboliza análise, busca e inspeção. A fusão dos dois elementos transmite a mensagem de *"uma solução moderna que analisa e gerencia produtos com eficiência"*.
+O logo adota **flat design** com linhas grossas e formas geométricas, garantindo reconhecimento em qualquer tamanho e transmitindo clareza e profissionalismo.
+ 
+### Paleta de Cores
+ 
+| Cor | Hex | Uso |
+|-----|-----|-----|
+| Azul Aço | `#7B98BB` | Ações principais e elementos interativos |
+| Branco | `#FFFFFF` | Fundo de conteúdo e tipografia sobre fundos escuros |
+| Azul Escuro | `#1A1A26` | Fundo da sidebar e elementos estruturais |
+| Cinza Médio | `#737385` | Textos secundários e rótulos |
+| Cinza Claro | `#A0A0A0` | Bordas e elementos de apoio |
+ 
+O **azul escuro** transmite confiança, tecnologia e profissionalismo. O **azul aço** traz energia e destaque sem perder a seriedade. O contraste entre os dois torna a interface chamativa e funcional. Adicionalmente, **verde** é utilizado para entradas/sucesso e **vermelho** para saídas/alertas, reforçando a comunicação visual das movimentações de estoque.
+ 
+### Tipografia
+ 
+Toda a interface utiliza a família **Inter**, variando o peso conforme a hierarquia:
+ 
+- **Inter Bold** — títulos de seção
+- **Inter SemiBold** — rótulos de destaque
+- **Inter Medium** — rótulos de campos (e-mail, senha)
+- **Inter Regular** — subtítulos e rótulos gerais
+### Componentes
+ 
+- Botões com cantos arredondados (12px)
+- Inputs com bordas finas e cinzas
+- Ícones lineares e minimalistas
+- Logo posicionada no topo da barra lateral esquerda, funcionando também como botão de retorno ao Dashboard
+---
+ 
+## Conjunto de Slides
+ 
+A apresentação está estruturada em **11 slides**, distribuídos para cobrir todo o ciclo de desenvolvimento do projeto:
+ 
+| Slide | Seção | Conteúdo |
+|-------|-------|----------|
+| 1 | Capa | Título, integrantes, orientador e instituição |
+| 2 | Sumário | Visão geral das 8 seções da apresentação |
+| 3 | Introdução | Contextualização, problema e público-alvo |
+| 4 | Problema & Objetivos | Diagnóstico do problema e objetivos geral e específicos |
+| 5 | Personas & Histórias | Perfis de usuário (Proprietário, Administrador, Funcionário) e necessidades |
+| 6 | Requisitos | RF-01 a RF-11 (funcionais) e RNF-01 a RNF-08 (não funcionais) |
+| 7 | Interface & User Flow | Wireframes das 8 telas do sistema e layout padrão |
+| 8 | Desenvolvimento | Tecnologias utilizadas e funcionalidades implementadas por responsável |
+| 9 | Testes de Software | Métricas dos testes e plano com CT-01 a CT-08 |
+| 10 | Conclusão | Resultados alcançados e trabalhos futuros |
+| 11 | Encerramento | Link do sistema, integrantes e abertura para demonstração |
+ 
+---
+ 
 ## Vídeo de demonstração
-
+ 
 O grupo deverá gravar um vídeo de demonstração do site desenvolvido.
-
+ 
 > **Algumas informações úteis**
 > - O vídeo deve se limitar a 5 minutos e deve apresentar os objetivos do projeto antes de mostrar o sistema desenvolvido.
 > - O vídeo deve possuir uma narração que explica o que está sendo apresentado.
@@ -44,4 +92,3 @@ O grupo deverá gravar um vídeo de demonstração do site desenvolvido.
 > - Não é necessário que todos os integrantes do grupo participem da gravação.
 > - Não é necessário que a face de algum integrante do grupo apareça na gravação.
 > - Uma ótima ferramenta open-source para gravação de vídeos é o [OBS](https://obsproject.com/pt-br/download)
-
