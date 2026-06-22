@@ -7,7 +7,7 @@ Resumo de todo o processo de desenvolvimento do projeto **Controle de Estoque de
 | Arquivo | Localização | Descrição |
 |---------|-------------|-----------|
 | `controle-estoque-lojinha.pdf` | [`./slide-controle-de-estoque.pdf`](./slide-controle-de-estoque.pdf) | Slides da apresentação final do projeto. Contempla introdução, problema, objetivos, personas, requisitos funcionais e não funcionais, interface e user flow, funcionalidades desenvolvidas, testes de software e conclusão. |
-| `sample-video.mp4` | [`./sample-video.mp4`](./sample-video.mp4) | Vídeo de demonstração do funcionamento do sistema (a ser inserido pela equipe). |
+| `sample-video.mp4` | [Link para o vídeo](https://drive.google.com/file/d/1Fq1LECM4OH_W0nGKqpxKsjtW7SxmOw-Q/view?usp=drive_link) | Vídeo de demonstração do funcionamento do sistema (a ser inserido pela equipe). |
  
 ---
  
@@ -83,12 +83,4 @@ A apresentação está estruturada em **11 slides**, distribuídos para cobrir t
  
 ## Vídeo de demonstração
  
-O grupo deverá gravar um vídeo de demonstração do site desenvolvido.
- 
-> **Algumas informações úteis**
-> - O vídeo deve se limitar a 5 minutos e deve apresentar os objetivos do projeto antes de mostrar o sistema desenvolvido.
-> - O vídeo deve possuir uma narração que explica o que está sendo apresentado.
-> - Foque nas principais tarefas que o seu sistema desenvolveu. Não é necessário apresentar cada detalhe implementado.
-> - Não é necessário que todos os integrantes do grupo participem da gravação.
-> - Não é necessário que a face de algum integrante do grupo apareça na gravação.
-> - Uma ótima ferramenta open-source para gravação de vídeos é o [OBS](https://obsproject.com/pt-br/download)
+[Link para o vídeo](https://drive.google.com/file/d/1Fq1LECM4OH_W0nGKqpxKsjtW7SxmOw-Q/view?usp=drive_link)
